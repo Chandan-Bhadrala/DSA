@@ -9,7 +9,7 @@ int main()
     printf("\nPlease tell me for what integer you require a math table: ");
     scanf(" %d", &num);
 
-    printf("Your table for number %d is:\n", num);
+    printf("Your table for number: %d is\n", num);
     for (int i = 1; i <= 10; i++)
     {
         printf("%d X %d = %d\n", num, i, num * i);
