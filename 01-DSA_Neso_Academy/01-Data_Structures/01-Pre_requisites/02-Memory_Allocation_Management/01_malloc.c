@@ -13,7 +13,7 @@
 
 // In One-line 
 // malloc → uninitialized memory
-// calloc → zero-initialized memory
+// calloc → zero-initialized memory (calloc() → “Clear Allocation”.)
 // Rest everything → SAME
 
 // Memory allocated using malloc or calloc must be freed after the end of their use case to avoid memory leak issues.

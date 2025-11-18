@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+// calloc() → “Clear Allocation”.
+
 int main()
 {
     int n, size;
