@@ -18,15 +18,17 @@ int main()
     int num = 5;
     int *p = &num;
 
-    printf("Print the address of the variable 'num' (using the pointer): %p\n", (void*)p);
-    
-    printf("Print the address of the variable 'num' (direct address of the num using & with num): %p\n", (void*)&num);
-    
-    printf("Print the address of the pointer 'p': %p\n", (void*)&p);
-    
+    printf("Print the address of the variable 'num' (using the pointer): %p\n", (void *)p);
+
+    printf("Print the address of the variable 'num' (direct address of the num using & with num): %p\n", (void *)&num);
+
+    printf("Print the address of the pointer 'p': %p\n", (void *)&p);
+
     printf("Print the value stored at the address given by the pointer 'p' (i.e. num): %d\n", *p);
-    
+
     printf("Print the value stored in the variable 'num': %d\n", num);
+
+    printf("Print the value stored at the address given by the pointer 'p' (i.e. num): %d\n", p[0]);
 
     // Need to free the pointer.
     free(p);
