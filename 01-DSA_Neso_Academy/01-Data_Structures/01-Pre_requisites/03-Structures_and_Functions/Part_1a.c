@@ -8,12 +8,12 @@
 // 1.3 We define structure related functions separately.
 // 2. and How to intertwined structures with the functions.
 
-// # Now, In this series, we will see how to intertwined structures with the functions.
+// ## Now, In this series, we will see how to intertwined structures with the functions.
 // 1. Passing Structure Members as Arguments.
 // 1.1 Passing structure members as value.
 // 1.2 Passing Addresses of Structure Members.
 
-// 1.1 Passing structure members as value.
+// # 1.1 Passing structure members as value (i.e., Pass-by-Value).
 // ---
 
 // ### Below is a defined struct named student.

@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-// 1.2 Passing Addresses of Structure Members.
+// # 1.2 Passing Addresses of Structure Members (i.e., Pass-by-reference).
 // ---
 
 // Below is a defined struct named student.
@@ -19,7 +19,7 @@ void printDetails(char *name, int *age, int *roll, float *marks)
     printf("Name: %s\n", name);
     printf("Age: %d\n", *age); // dereference age.
     printf("Roll Number: %d\n", *roll);
-    printf("Marks: %.2f\n", *marks); // .2f indicates this format specifier of float will only keep two digits after the decimal.
+    printf("Marks: %.2f\n", *marks); // .2f indicates this format specifier of float will round up to keep only two digits after the decimal.
 }
 
 // Now, here comes the main function utilizing the struct and the related function defined above.
