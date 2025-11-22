@@ -8,17 +8,13 @@ using namespace std;
 int main()
 {
     int n;
-    cout << "Enter an integer to claculate its 2's complement: ";
+    cout << "Enter an integer to calculate its 2's complement: ";
     cin >> n;
-  
 
-    if (n < 0)
-    {        cout << "Please enter the positive integer.";
-        return 0;
-    }
+    int onesCompliment = ~n;
+    int twosCompliment = onesCompliment + 1;
 
-   
-    cout << "Reversed Integer is: " <<  endl;
+    cout << "2's compliment of the " << n << " is " << twosCompliment << endl;
 
     return 0;
 }
