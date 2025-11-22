@@ -3,9 +3,8 @@
 using namespace std;
 
 // # Binary to Decimal.
-// 1. Will take user binary input in the string, as if binary input from the user is taken as int, then CPU will consider that binary as an int and will further convert it to its binary.
-// 1.1. So, have to take user binary input as a string to process it to the decimal value.
-// 2.
+// 1. Take user input in the int.
+// 2. Extract each digit using % modulus operator
 
 int main()
 {
@@ -18,7 +17,7 @@ int main()
 
     for (char digit : bin)
     {
-        decimal = decimal + digit * base;
+        decimal = decimal + (digit - '0') * base;
         base = base * 2;
     }
 
