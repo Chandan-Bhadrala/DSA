@@ -3,25 +3,32 @@
 using namespace std;
 
 // # Binary to Decimal.
-// 1. Take user input in the int.
-// 2. Extract each digit using % modulus operator
+// 1. Take user binary input in the int.
+// 2. Extract each binary digit using % modulus operator.
+// 3. Add each digit multiplied by the base value into a sum variable.
+// 4. That sum variable is your decimal value.
 
 int main()
 {
-    string bin;
+    int n;
     cout << "Enter a binary number to calculate its decimal value: ";
-    cin >> bin;
+    cin >> n;
 
-    int decimal = 0;
+    int sum = 0;
     int base = 1; // 2^0
 
-    for (char digit : bin)
+    int copyN = n;
+
+    while (copyN)
     {
-        decimal = decimal + (digit - '0') * base;
+        int extractedDigit = copyN % 10;
+        copyN = copyN / 10;
+
+        sum = sum + extractedDigit * base;
         base = base * 2;
     }
 
-    cout << "Decimal value of the given " << bin << " is " << decimal << endl;
+    cout << "Decimal value of the given " << n << " is " << sum << endl;
 
     return 0;
 }
