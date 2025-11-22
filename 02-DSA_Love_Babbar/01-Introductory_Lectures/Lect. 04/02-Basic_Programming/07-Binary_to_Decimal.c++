@@ -24,6 +24,14 @@ int main()
         int extractedDigit = copyN % 10;
         copyN = copyN / 10;
 
+        // Fail check: If user enters any number other than 0 or 1 in the binary input, like 102301. Then this is not an binary input from the user.
+        // This if block will help.
+        if (extractedDigit != 0 && extractedDigit != 1)
+        {
+            cout << "Invalid binary number!" << endl;
+            return 0;
+        }
+
         sum = sum + extractedDigit * base;
         base = base * 2;
     }
