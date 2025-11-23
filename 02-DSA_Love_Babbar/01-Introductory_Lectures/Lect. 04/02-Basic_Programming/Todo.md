@@ -9,6 +9,9 @@
 
 ## 21.11.2025: Listen to Lect. 06
 
-6.  Binary representation of negative number using 2's compliment.
-7.  Binary to Decimal.
-8.  Decimal to Binary.
+06. Binary representation of negative number using 2's compliment.
+07. Binary to Decimal.
+08. Decimal to Binary.
+09. 1s Complement of Base 10 Integer.
+10. Power of 2.
+11. nCr calculation.
