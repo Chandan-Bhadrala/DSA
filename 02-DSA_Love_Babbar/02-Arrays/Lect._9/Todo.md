@@ -1,13 +1,18 @@
 #TODO:
-01. Check whether number a Prime Number or not.
-02. Fibonacci series.  
-03. Count 1's in a binary number.
-04. Sum and product of the digits of the number.
-05. Reverse an integer.
+
+1. Shifting to JS from C++, as DSA concepts are language independent.
+2. As along with the DSA, I've to learn C++ too, which is diverting my mind from learning the concepts of the DSA.
+3. So, I've decided to learn one thing at a time, which is DSA and not the C++ concepts.
+
+## Lect. 08.
+01. Find Minimum and Maximum value in the Array.
+02. Print sum of all the array elements.  
+03. Linear Search an array for the given number.
+04. Reverse an Array.
 
 ---
 
-## 21.11.2025: Listen to Lect. 06
+## Lect. 09
 
 06. Binary representation of negative number using 2's compliment.
 07. Binary to Decimal.

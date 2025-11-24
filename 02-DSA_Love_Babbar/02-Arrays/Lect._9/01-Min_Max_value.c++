@@ -4,32 +4,37 @@ using namespace std;
 
 // # Find the minimum and maximum values within the array.
 
-std::array<int, 2> maxAndMin(int arr[])
+std::array<int, 2> maxAndMin(int arr[], int size)
 {
     int answer[2] = {0};
     int max = arr[0], min = arr[0];
 
-    for (int x : arr)
+    for (int i = 0; i < size; i++)
     {
-        if (x > max)
+        if (arr[i] > max)
         {
-            max = x;
+            max = arr[i];
         }
-        if (x < min)
+        if (arr[i] < min)
         {
-            min = x;
+            min = arr[i];
         }
     }
 
-    return answer[max, min];
+    return {max, min}; // return std::array
 }
 
 int main()
 {
+
     int size = 0;
-    int arr[size] = {0};
+
+    // Before initializing the array get to know its size.
     cout << "Enter the required size of the array: ";
     cin >> size;
+
+    // Initialize array with the size.
+    int arr[size] = {0};
 
     for (int i = 0; i < size; i++)
     {
@@ -37,9 +42,10 @@ int main()
         cin >> arr[i];
     }
 
-    int answer[2] = maxAndMin(arr);
+    std::array<int, 2> answer = maxAndMin(arr, size);
 
-    cout << "Maximum and Minimum values with in the given array is: " << answer[0] << answer[1] << endl;
+    cout << "Maximum = " << answer[0]
+         << ", Minimum = " << answer[1] << endl;
 
     return 0;
 }
