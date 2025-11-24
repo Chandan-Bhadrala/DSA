@@ -1,35 +1,45 @@
 #include <iostream>
+#include <array>
 using namespace std;
 
 // # Find the minimum and maximum values within the array.
-int main()
+
+std::array<int, 2> maxAndMin(int arr[])
 {
-    int n;
-    cout << "Enter the number to check whether it's prime or not: ";
-    cin >> n;
+    int answer[2] = {0};
+    int max = arr[0], min = arr[0];
 
-    if (n == 2)
+    for (int x : arr)
     {
-        cout << "Entered number " << n << " is a prime number." << endl;
-    }
-    
-    if (n % 2 == 0)
-    {
-        cout << "Entered number " << n << " is not a prime number." << endl;
-        return 0;
-    }
-
-    for (int i = 3; i < n; i = i + 2)
-    {
-        int mod = n % i;
-
-        if (mod == 0)
+        if (x > max)
         {
-            cout << "Entered number " << n << " is not a prime number." << endl;
-            return 0;
+            max = x;
+        }
+        if (x < min)
+        {
+            min = x;
         }
     }
-    cout << "Entered number " << n << " is a prime number." << endl;
+
+    return answer[max, min];
+}
+
+int main()
+{
+    int size = 0;
+    int arr[size] = {0};
+    cout << "Enter the required size of the array: ";
+    cin >> size;
+
+    for (int i = 0; i < size; i++)
+    {
+        cout << "Enter the element at array position " << i + 1;
+        cin >> arr[i];
+    }
+
+    int answer[2] = maxAndMin(arr);
+
+    cout << "Maximum and Minimum values with in the given array is: " << answer[0] << answer[1] << endl;
 
     return 0;
 }
