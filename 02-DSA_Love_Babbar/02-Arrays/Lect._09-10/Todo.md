@@ -17,7 +17,7 @@
 
 ## Lect. 10
 
-05. 
+05. Swap Alternate Elements in the Array
 06. Binary representation of negative number using 2's compliment.
 07. Binary to Decimal.
 08. Decimal to Binary.
