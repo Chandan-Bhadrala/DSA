@@ -6,35 +6,33 @@
 // 5. And we will keep swapping both element using i and i + 1.
 // 6. With upper bound on i + 1 < array.length.
 
+// -----------------------------
 import readline from "readline/promises";
 
-// 00. Create input interface
+// 00a. Create input interface
 const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout,
 });
 
-// 01. A generic helper function helps to take multiple user input using async/await.
+// 00b. A generic helper function helps to take multiple user input using async/await.
 async function ask(q) {
   return rl.question(q);
 }
-
 // -----------------------------
 
-// 02. A function to reverse an array.
-function arrReverse(arr) {
+// 01. A function to swap alternate elements of an array.
+function swapAlternateElements(arr) {
   let i = 0;
-  let j = arr.length - 1; // j is the pointer to the last index of the array.
+  const swappedArray = [];
 
-  const reversedArray = [];
-
-  while (i <= j) {
+  // Codition is kept "i <= arr.length - 1". Because if i reaches at the array boundary (i.e., array's last element) then, within loop we are accesing i + 1, which will result in accessing the undefined element, i.e. out of bound element.
+  while (i <= arr.length - 1) {
     let temp = arr[i];
 
-    reversedArray[i] = arr[j];
-    reversedArray[j] = temp;
-    i++;
-    j--;
+    swappedArray[i] = arr[i + 1];
+    swappedArray[i + 1] = temp;
+    i += 2;
   }
 
   return reversedArray;
