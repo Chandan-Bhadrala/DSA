@@ -1,3 +1,5 @@
+// # Find the minimum and maximum values within the array.
+
 import readline from "readline/promises";
 
 // 00. Create input interface
@@ -27,7 +29,7 @@ function maxAndMin(arr) {
 // -----------------------------
 
 // Example Static usage:
-const arr1 = [4, 2, 9, 1, 7];
+const arr1 = [1, 2, 9, 6, 7];
 const result1 = maxAndMin(arr1);
 console.log("Maximum:", result1[0], "Minimum:", result1[1]);
 
