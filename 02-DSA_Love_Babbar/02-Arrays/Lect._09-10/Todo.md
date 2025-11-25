@@ -18,9 +18,10 @@
 ## Lect. 10
 
 05. Swap Alternate Elements in the Array
-06. Binary representation of negative number using 2's compliment.
-07. Binary to Decimal.
-08. Decimal to Binary.
-09. 1s Complement of Base 10 Integer.
-10. Power of 2.
-11. nCr calculation.
+06. Find unique number in the Array.
+07. Find if occurrence of each number in the array has unique count. 1207.
+08. Find the single duplicate number in the number sequence stored in the array.
+09. Find all duplicates in the array.
+10. Intersection elements between the two arrays. @45:50 hrs
+11. 
+12.

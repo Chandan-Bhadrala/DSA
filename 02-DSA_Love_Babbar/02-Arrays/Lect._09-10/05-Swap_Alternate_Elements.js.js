@@ -21,13 +21,14 @@ async function ask(q) {
 }
 // -----------------------------
 
-// 01. A function to swap alternate elements of an array.
+// 01a. A function to swap alternate elements of an array.
 function swapAlternateElements(arr) {
   let i = 0;
-  const swappedArray = [];
+  const swappedArray = [...arr];
 
-  // Codition is kept "i <= arr.length - 1". Because if i reaches at the array boundary (i.e., array's last element) then, within loop we are accesing i + 1, which will result in accessing the undefined element, i.e. out of bound element.
-  while (i <= arr.length - 1) {
+  // The condition is kept as "i < arr.length - 1" because if i reaches the second last index, then within the loop we are accessing i + 1, which will result in accessing an undefined element, i.e., an out-of-bound element for the special case of an array with odd indices.
+  // "array.length - 1" gives the last index number, and thus we have kept the condition < and not <=, so that we never touch the last index in the loop.
+  while (i < arr.length - 1) {
     let temp = arr[i];
 
     swappedArray[i] = arr[i + 1];
@@ -35,21 +36,21 @@ function swapAlternateElements(arr) {
     i += 2;
   }
 
-  return reversedArray;
+  return swappedArray;
 }
 
 // -----------------------------
 
-// Example Dynamic usage (taking input from the user using "ask" function):
+// 01b. Example Dynamic usage:
 const inputArray = await ask(
   "Enter an array elements separated by a single space: "
 );
 
 const arr1 = inputArray.trim().split(" ").map(Number);
 
-const reversedArray = arrReverse(arr1);
+const swappedArray = swapAlternateElements(arr1);
 
-console.log(`Reversed Array: [${reversedArray}]`);
+console.log(`Swapped alternate elements of the array: [${swappedArray}]`);
 
 rl.close(); // This will close the CLI for the user input.
 // This closes the readline interface and ends the user input session.
