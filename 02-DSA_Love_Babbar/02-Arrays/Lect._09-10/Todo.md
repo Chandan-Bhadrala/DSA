@@ -21,7 +21,7 @@
 06. Find unique number in the Array.
 07. Find if occurrence of each number in the array has unique count. 1207.
 08. Find the single duplicate number in the number sequence stored in the array.
-09. Find all duplicates in the array.
+09. Find all duplicates numbers in the array.
 10. Intersection elements between the two arrays. @45:50 hrs
 11. Pair sum. You are given an array and an integer. You have to find pair of numbers in the array whose sum is equal to the integer.
 12. Find triplets in the array whose sum is equal to the given value of n.
