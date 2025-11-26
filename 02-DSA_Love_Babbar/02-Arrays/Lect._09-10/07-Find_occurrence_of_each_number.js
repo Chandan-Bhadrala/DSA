@@ -39,8 +39,8 @@ function countElementFrequency(arr) {
   const countObject = {};
 
   while (i <= arr.length - 1) {
-    // Here, or operator is asking if the key exists in the object, all good proceeds.
-    // And if the key is not already present in the object then initialize the key with 0 and add 1 to it.
+    // Here, or operator is asking if the key exists and is initialized in the object, all good proceeds.
+    // And if the key is not present and thus neither initialized, then this or operator will create the key with the value 1.
     countObject[arr[i]] = (countObject[arr[i]] || 0) + 1;
 
     i++;
