@@ -7,7 +7,7 @@
 
 ## Lect. 13.
 01. Find the left most and right most index of the given number in the sorted array.
-02. Find the total number of occurrences for the given number in the array. 
+02. Find the total number of occurrences of the given number in the array.
 03. Find the peak element in the mountain array.
 04. Find the pivot element in the array.
 05. 
