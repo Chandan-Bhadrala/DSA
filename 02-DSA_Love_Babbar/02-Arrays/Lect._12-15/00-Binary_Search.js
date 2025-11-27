@@ -1,8 +1,11 @@
 // # Basic Binary Search Implementation.
-// 1. I'll be creating an object out of the array.
-// 2. Where object key will be the array number, which in this case would be 0 and 1.
-// 3. And the object key value will be the numbers count.
-// 4. Will create a new array and will loop the array in accordance to the number's count and will push the corresponding number into it.
+// 1. To apply Binary Search, we need a sorted array and 3 pointers.
+// 1.1. i -> starting index.
+// 1.2. j -> end index.
+// 1.3. mid -> (i + j)/2.
+// 2. We will use the mid pointer to locate the desired number in the array.
+// 3. We will shift the pointer "i" = "mid + 1" or "j" = "mid - 1" depending on whether the desired number is smaller or larger than the element pointed to by the "mid" pointer.
+// 4. Read below the Binary Search code implementation to gain further understanding of Binary Search.
 
 // -----------------------------
 import readline from "readline/promises";
