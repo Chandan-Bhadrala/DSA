@@ -1,22 +1,10 @@
 // # Pair sum - You are given an array and an integer. You have to find a pair of numbers in the array whose sum is equal to the given integer "n".
 // 1. We will have an array filled with numbers.
-// 2. We have to find the count for each number.
-// 2.1. Meaning, we have to check how many times a number is present in the array.
-// 2.2. If the count for the each number is different or unique we have to return true otherwise false.
-// 3. This question can easily be done using a set and a sorted array.
-// 3.1. So, will attempt this question once I know how to sort an array and how to use a set.
-// 4. Till then Adios my friend.
-
-// ## Read an O(n) solution on the LeetCode, will attempt that. Solution is:
-// 1. Sort an given array.
-// 1.1. Then, traverse through the array and save the count for each element in another array.
-// 2. Sort that array too using a default sort function given by the programming language.
-// 3. Check that count sorted array for any equal adjacent number.
-// 3.1. If any adjacent number in the count array is same return false else return true.
-
-// ## In pursuit to implement logic read in the LeetCode, I rather figured to implement my own logic using objects.
-// 1. Simply for every number in the array initialize the object with number as an object key and its count as object key-value.
-// 2. This object use seems fair and easy.
+// 2. We have to find two numbers in the given sorted array whose sum is equal to the given number n.
+// 3. Going to use two pointers in the given sorted array.
+// 3.1. One "i" will traverse from the beginning of the array and other "j" will traverse from the end of the array to look for the numbers whose sum could be equal to the given number n.
+// 3.2. Will decrement j if the sum of the current pair is greater than the n.
+// 3.3. Will increment i if the sum of the current pair is smaller than the n.
 
 // -----------------------------
 import readline from "readline/promises";
@@ -33,67 +21,68 @@ async function ask(q) {
 }
 // -----------------------------
 
-// 01a. A function to find count or frequency of an element in an array.
-function countElementFrequency(arr) {
+// 01a. A function to find a pair of numbers in the array whose sum is equal to n.
+function pairSum(arr, n) {
   let i = 0;
-  const countObject = {};
+  let j = arr.length - 1;
 
-  while (i <= arr.length - 1) {
-    // Here, or operator is asking if the key exists in the object, all good proceeds.
-    // And if the key is not already present in the object then initialize the key with 0 and add 1 to it.
-    countObject[arr[i]] = (countObject[arr[i]] || 0) + 1;
+  arr.sort((a, b) => a - b);
 
-    i++;
-  }
+  const pair = [];
 
-  return countObject;
-}
+  while (i < j) {
+    if (arr[i] + arr[j] < n) {
+      i++;
+    } else if (arr[i] + arr[j] > n) {
+      j--;
+    } else if (arr[i] + arr[j] == n) {
+      pair.push([arr[i], arr[j]]);
 
-// -----------------------------
-// 01b. A function to check all frequency values are unique or not.
-function uniqueValues(obj) {
-  let i = 0;
-  const freqArray = [];
-
-  // Pushing all keys into an array.
-  for (let key in obj) {
-    freqArray.push(obj[key]);
-  }
-
-  freqArray.sort((a, b) => a - b);
-
-  while (i < freqArray.length - 1) {
-    if (freqArray[i] == freqArray[i + 1]) {
-      return false;
+      // Try moving left pointer first to find another bigger number which can become a pair of numbers whose sum could be equal to the n.
+      if (arr[i] + arr[j - 1] >= n) {
+        j--; // Move right pointer to try a different match
+      } else {
+        i++; // Move left pointer to find another match
+      }
     }
-    i++;
   }
 
-  return true;
+  return pair;
 }
 
 // -----------------------------
 
-// 01c. Example Dynamic usage:
+// 01b. Taking user input:
 const inputArray = await ask(
   "Enter an array elements separated by a single space: "
 );
+const arr = inputArray.trim().split(" ").map(Number);
 
-const arr1 = inputArray.trim().split(" ").map(Number);
+const inputN = await ask(
+  "Enter a number for whom you are looking for the pair of the numbers in the array whose sum is equal to that number: "
+);
+let n = parseInt(inputN, 10);
 
-const countObject = countElementFrequency(arr1);
-
-const hasUniqueFrequency = uniqueValues(countObject);
-
-console.log("Frequency of the numbers in the given array is:", countObject);
-
-if (hasUniqueFrequency) {
-  console.log("Thus, frequency of the numbers in the given array is Unique");
-} else {
-  console.log(
-    "Thus, frequency of the numbers in the given array is not Unique"
+while (isNaN(n)) {
+  const inputN = await ask(
+    "Please Enter ONLY an integer number for whom you are looking for the pair of the numbers in the array whose sum is equal to that number: "
   );
+  n = parseInt(inputN, 10);
 }
+// -----------------------------
+
+// 01c. Displaying output:
+const pair = pairSum(arr, n);
+
+if (pair.length > 0) {
+  console.log(
+    `Pair of numbers in the array of whose sum is equal to ${n} are: `
+  );
+  pair.forEach((p) => console.log(p));
+} else
+  console.log(
+    `Didn't found any pair of numbers in the given array whose sum is equal to the given number ${n}`
+  );
 
 rl.close(); // This will close the CLI for the user input.
 // This closes the readline interface and ends the user input session.
