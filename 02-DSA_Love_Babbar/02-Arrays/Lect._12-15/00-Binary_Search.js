@@ -22,62 +22,75 @@ async function ask(q) {
 }
 // -----------------------------
 
-// 01a. A function to sort arrays filled with 0s and 1s.
-function sort01(arr) {
-  let i = 0;
-  const numObj = {};
-  const sortedArray = [];
+// 01a. A function to search an element in an arrays using Binary Search.
+function searchN(arr, numberToSearch) {
+  // Sort the given array
+  arr.sort((a, b) => a - b);
 
-  while (i < arr.length) {
-    if (arr[i] == 0) numObj[arr[i]] = (numObj[arr[i]] || 0) + 1;
-    if (arr[i] == 1) numObj[arr[i]] = (numObj[arr[i]] || 0) + 1;
-    i++;
+  let start = 0;
+  let end = arr.length - 1;
+  let numberOfComparisons = 0;
+
+  while (start <= end) {
+    let mid = Math.floor((start + end) / 2);
+    numberOfComparisons++;
+
+    if (numberToSearch > arr[mid]) {
+      start = mid + 1;
+    } else if (numberToSearch < arr[mid]) {
+      end = mid - 1;
+    } else if (numberToSearch == arr[mid]) {
+      return {
+        status: "success",
+        data: { index: mid, searchedNumber: arr[mid], numberOfComparisons },
+      };
+    }
   }
 
-  let count0 = numObj[0];
-  let count1 = numObj[1];
-
-  let i0 = 0;
-  let i1 = 0;
-
-  while (i0 < count0) {
-    sortedArray.push(0);
-    i0++;
-  }
-  while (i1 < count1) {
-    sortedArray.push(1);
-    i1++;
-  }
-
-  return sortedArray;
+  return {
+    status: "error",
+    message: "Given number not found in the array",
+  };
 }
 
 // -----------------------------
 
 // 01b. Taking and validating user input:
-const inputArray = await ask(
-  "Provide an array filled only with 0s and 1s for sorting: "
-);
-const arr = inputArray.trim().split(" ").map(Number);
+let inputArray = await ask("Provide an array for Binary Search an element n: ");
+let arr = inputArray.trim().split(" ").map(Number);
 
-let isArrayValid = arr.every((x) => x == 0 || x == 1);
+let isInvalidArray = arr.some((x) => isNaN(x));
 
-while (!isArrayValid) {
-  const inputArray = await ask(
-    "Please provide an array ONLY filled with 0s and 1s for sorting: "
+while (isInvalidArray) {
+  inputArray = await ask(
+    "Please provide an valid array ONLY filled with NUMBERS for Binary Search an element n: "
   );
+  arr = inputArray.trim().split(" ").map(Number);
 
-  const arr = inputArray.trim().split(" ").map(Number);
-
-  isArrayValid = arr.every((x) => x == 0 || x == 1);
+  isInvalidArray = arr.some((x) => isNaN(x));
 }
 
+// -------
+
+let inputN = await ask("Enter the number you want to search: ");
+let searchTerm = Number(inputN);
+
+while (isNaN(searchTerm)) {
+  inputN = await ask("Enter ONLY a NUMBER you want to search: ");
+  searchTerm = Number(inputN);
+}
 // -----------------------------
 
 // 01c. Displaying output:
-const sortedArray = sort01(arr);
+const searchNResult = searchN(arr, searchTerm);
 
-console.log(`Here is your sorted array: ${[...sortedArray]}`);
+if (searchNResult.status == "success") {
+  console.log(
+    `Given element ${searchTerm} is present at index: ${searchNResult.data.index}`
+  );
+} else if (searchNResult.status == "error") {
+  console.log(`Given element ${searchTerm} is not present in the array.`);
+}
 
 rl.close(); // This will close the CLI for the user input.
 // This closes the readline interface and ends the user input session.
