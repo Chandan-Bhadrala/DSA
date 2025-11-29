@@ -1,8 +1,12 @@
 // # Find the peak element in the mountain array.
-// 1. I'll be creating an object out of the array.
-// 2. Where object key will be the array number, which in this case would be 0 and 1.
-// 3. And the object key value will be the numbers count.
-// 4. Will create a new array and will loop the array in accordance to the number's count and will push the corresponding number into it.
+// 1. We will be given an array which can be broken down into two parts.
+// 1.1. In the first part of the array, we will be having line of ascending numbers and then in the second part of the array, we will be having a line of descending numbers.
+// 1.2. This ascending and descending line of numbers is forming a mountain.
+// 2. And we are supposed to find the peak/highest element in this array, called peak of the mountain using binary search.
+// 3. The trick is to compare the mid value with the number behind it and ahead of it.
+// 3.1. To evaluate whether the number is the peak or not, we can check whether **both numbers** which are **behind and ahead** of the mid value are **smaller than the mid value or not**.
+// 3.2. However, we also need to evaluate, in which direction we need to move the mid pointer to scan for the peak element.
+// 3.2.1. We will be doing so by checking the inclination of the numbers slope.
 
 // -----------------------------
 import readline from "readline/promises";
@@ -19,73 +23,70 @@ async function ask(q) {
 }
 // -----------------------------
 
-// 01a. A function to sort arrays filled with 0s and 1s.
-function sort012(arr) {
-  let i = 0;
-  const numObj = {};
-  const sortedArray = [];
+// 01a. A function to search an element in an arrays using Binary Search.
+function searchPeakElement(arr) {
+  let peakElement = null;
+  let start = 0;
+  let end = arr.length - 1;
 
-  while (i < arr.length) {
-    if (arr[i] == 0) numObj[arr[i]] = (numObj[arr[i]] || 0) + 1;
-    if (arr[i] == 1) numObj[arr[i]] = (numObj[arr[i]] || 0) + 1;
-    if (arr[i] == 2) numObj[arr[i]] = (numObj[arr[i]] || 0) + 1;
-    i++;
+  while (start <= end) {
+    let mid = Math.floor((start + end) / 2);
+    // Condition for success case, meaning condition for finding the peak element of the array.
+    if (
+      mid - 1 >= 0 &&
+      mid + 1 < arr.length &&
+      arr[mid - 1] < arr[mid] &&
+      arr[mid] > arr[mid + 1]
+    ) {
+      return { status: "success", data: { peakElement: arr[mid] } };
+    }
+    // Condition for climbing up the number line.
+    else if (mid - 1 >= 0 && mid + 1 < arr.length && arr[mid] < arr[mid + 1]) {
+      start = mid + 1;
+    }
+    // Condition for climbing down the number line.
+    else if (mid - 1 >= 0 && mid + 1 < arr.length && arr[mid] > arr[mid + 1]) {
+      end = mid;
+    }
   }
 
-  let count0 = numObj[0];
-  let count1 = numObj[1];
-  let count2 = numObj[2];
-
-  let i0 = 0;
-  let i1 = 0;
-  let i2 = 0;
-
-  // push 0s
-  while (i0 < count0) {
-    sortedArray.push(0);
-    i0++;
-  }
-
-  // push 1s
-  while (i1 < count1) {
-    sortedArray.push(1);
-    i1++;
-  }
-
-  // push 2s
-  while (i2 < count2) {
-    sortedArray.push(2);
-    i2++;
-  }
-  return sortedArray;
+  return {
+    status: "error",
+    message: "Error occurred while searching, please try again.",
+  };
 }
 
 // -----------------------------
 
 // 01b. Taking and validating user input:
-const inputArray = await ask(
-  "Provide an array filled only with 0s and 1s for sorting: "
+let inputArray = await ask(
+  "Provide an mountain array to search for its peak element: "
 );
-const arr = inputArray.trim().split(" ").map(Number);
+let arr = inputArray.trim().split(" ").map(Number);
 
-let isArrayValid = arr.every((x) => x == 0 || x == 1 || x == 2);
+let isInvalidArray = arr.some((x) => isNaN(x));
 
-while (!isArrayValid) {
-  const inputArray = await ask(
-    "Please provide an array ONLY filled with 0s, 1s and 2s for sorting: "
+while (isInvalidArray) {
+  inputArray = await ask(
+    "Please provide an valid array ONLY filled with NUMBERS for Binary Search an element n: "
   );
+  arr = inputArray.trim().split(" ").map(Number);
 
-  const arr = inputArray.trim().split(" ").map(Number);
-
-  isArrayValid = arr.every((x) => x == 0 || x == 1 || x == 2);
+  isInvalidArray = arr.some((x) => isNaN(x));
 }
 
 // -----------------------------
 
 // 01c. Displaying output:
-const sortedArray = sort012(arr);
+const peakElementResult = searchPeakElement(arr);
 
-console.log(`Here is your sorted array: [${[...sortedArray]}]`);
+if (peakElementResult.status == "success") {
+  console.log(
+    `Peak Element for the given array [${arr}] is: ${peakElementResult.data.peakElement}`
+  );
+} else if (peakElementResult.status == "error") {
+  console.log(peakElementResult.message);
+}
 
 rl.close(); // This will close the CLI for the user input.
 // This closes the readline interface and ends the user input session.
