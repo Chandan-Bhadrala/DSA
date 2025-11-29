@@ -1,9 +1,12 @@
 // # Find the left most and right most index of the given number in the sorted array.
-// 1. I'll be creating an object out of the array.
-// 2. Where object key will be the array number, which in this case would be 0 and 1.
-// 3. And the object key value will be the numbers count.
-// 4. Will create a new array and will loop the array in accordance to the number's count and will push the corresponding number into it.
-
+// 1. We will be given an sorted array with repeated duplicate numbers.
+// 2. Further, we will be given a number which has duplicate occurrences in the array and we have find given numbers starting and ending index.
+// 3. We will be using a binary search to find the starting and the end index of the given number in the sorted array filled with repeated numbers.
+// 4. We will be looping the array in two different functions.
+// 4.1. First we will find the the occurrence of the number for the first time in the given array and storing its index in a variable.
+// 4.2. Then, in one loop scan of the array, we will be scanning the left side of that found number to find the given number starting index and then in the another function, we will be scanning right side of that found number to find the end index of that number.
+// 5. So, will be writing one main function which will call multiple helper function which are written in different scope level for better readability and the scalability.
+// 5.1. This cleanliness will also helps debug the code.
 // -----------------------------
 import readline from "readline/promises";
 
@@ -19,45 +22,61 @@ async function ask(q) {
 }
 // -----------------------------
 
-// 01a. A function to sort arrays filled with 0s and 1s.
-function sort012(arr) {
-  let i = 0;
-  const numObj = {};
-  const sortedArray = [];
-
-  while (i < arr.length) {
-    if (arr[i] == 0) numObj[arr[i]] = (numObj[arr[i]] || 0) + 1;
-    if (arr[i] == 1) numObj[arr[i]] = (numObj[arr[i]] || 0) + 1;
-    if (arr[i] == 2) numObj[arr[i]] = (numObj[arr[i]] || 0) + 1;
-    i++;
+// 01. A main function, which will return the starting and the end index of the number under consideration using the helper functions.
+function startEndIndex(arr, numberToSearch) {
+  let result = searchN(arr, numberToSearch);
+  if (result.status == "error") {
+    return { status: "error", message: "Given number not found in the array" };
   }
 
-  let count0 = numObj[0];
-  let count1 = numObj[1];
-  let count2 = numObj[2];
+  // Send the result to a helper function to find the starting index.
+  numStartIndex(arr);
+}
 
-  let i0 = 0;
-  let i1 = 0;
-  let i2 = 0;
+// 01a. A function to search an element in an arrays using Binary Search.
+function searchN(arr, numberToSearch) {
+  // Sort the given array
+  arr.sort((a, b) => a - b);
 
-  // push 0s
-  while (i0 < count0) {
-    sortedArray.push(0);
-    i0++;
+  let start = 0;
+  let end = arr.length - 1;
+  let numberOfComparisons = 0;
+
+  while (start <= end) {
+    let mid = Math.floor((start + end) / 2);
+    numberOfComparisons++;
+
+    if (numberToSearch > arr[mid]) {
+      start = mid + 1;
+    } else if (numberToSearch < arr[mid]) {
+      end = mid - 1;
+    } else if (numberToSearch == arr[mid]) {
+      return {
+        status: "success",
+        data: { index: mid, searchedNumber: arr[mid], numberOfComparisons },
+      };
+    }
   }
 
-  // push 1s
-  while (i1 < count1) {
-    sortedArray.push(1);
-    i1++;
+  return {
+    status: "error",
+    message: "Given number not found in the array",
+  };
+}
+
+// 01b. A function to scan the array to find the given number's starting index.
+function numStartIndex(arr, n) {
+  arr.sort((a, b) => a - b);
+
+  let startIndex = null;
+  let start = 0;
+  let end = arr.length - 1;
+
+  while (start < end) {
+    let mid = (start + end) / 2;
   }
 
-  // push 2s
-  while (i2 < count2) {
-    sortedArray.push(2);
-    i2++;
-  }
-  return sortedArray;
+  return startIndex;
 }
 
 // -----------------------------
