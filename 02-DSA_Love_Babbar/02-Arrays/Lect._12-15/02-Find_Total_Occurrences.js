@@ -1,9 +1,5 @@
-// # Find the total number of occurrences for the given number in the array.
-// 1. I'll be creating an object out of the array.
-// 2. Where object key will be the array number, which in this case would be 0 and 1.
-// 3. And the object key value will be the numbers count.
-// 4. Will create a new array and will loop the array in accordance to the number's count and will push the corresponding number into it.
-
+// # Find the total occurrence of the given number in the sorted array.
+// 1. Will be using previous code for calculating the leftmost and the rightmost index of the given number and then will subtract right from the left and we will get our answer for the total occurrence.
 // -----------------------------
 import readline from "readline/promises";
 
@@ -19,73 +15,181 @@ async function ask(q) {
 }
 // -----------------------------
 
-// 01a. A function to sort arrays filled with 0s and 1s.
-function sort012(arr) {
-  let i = 0;
-  const numObj = {};
-  const sortedArray = [];
+// 01a. A main function, which will return the starting and the end index of the number under consideration using the helper functions.
+function startEndIndex(arr, numberToSearch) {
+  arr.sort((a, b) => a - b);
+  // Call a searchN helper function to check whether given number even exist in the array or not.
+  let result = searchN(arr, numberToSearch);
 
-  while (i < arr.length) {
-    if (arr[i] == 0) numObj[arr[i]] = (numObj[arr[i]] || 0) + 1;
-    if (arr[i] == 1) numObj[arr[i]] = (numObj[arr[i]] || 0) + 1;
-    if (arr[i] == 2) numObj[arr[i]] = (numObj[arr[i]] || 0) + 1;
-    i++;
+  // Early return if number not found.
+  if (result.status == "error")
+    return { status: "error", message: result.message };
+
+  let numInitialIndex = result.data.index;
+
+  // Call a numStartIndex helper function to find the number's starting index.
+  let startIndexResult = numStartIndex(arr, numberToSearch, numInitialIndex);
+
+  // Call a helper function to find the number's end index.
+  let endIndexResult = numEndIndex(arr, numberToSearch, numInitialIndex);
+
+  // Final return value.
+  if (
+    startIndexResult.status == "success" &&
+    endIndexResult.status == "success"
+  ) {
+    return {
+      status: "success",
+      data: {
+        startIndex: startIndexResult.data.startIndex,
+        endIndex: endIndexResult.data.endIndex,
+        numberToSearch,
+      },
+    };
+  } else
+    return {
+      status: "error",
+      message:
+        "Error while searching for the right and the left index for the given number.",
+    };
+}
+
+// 01b. A function to search an element in an arrays using Binary Search.
+function searchN(arr, numberToSearch) {
+  let start = 0;
+  let end = arr.length - 1;
+  let numberOfComparisons = 0;
+
+  while (start <= end) {
+    let mid = Math.floor((start + end) / 2);
+    numberOfComparisons++;
+
+    if (numberToSearch > arr[mid]) {
+      start = mid + 1;
+    } else if (numberToSearch < arr[mid]) {
+      end = mid - 1;
+    } else if (numberToSearch == arr[mid]) {
+      return {
+        status: "success",
+        data: { index: mid, searchedNumber: arr[mid], numberOfComparisons },
+      };
+    }
   }
 
-  let count0 = numObj[0];
-  let count1 = numObj[1];
-  let count2 = numObj[2];
+  return {
+    status: "error",
+    message: "Given number not found in the array",
+  };
+}
 
-  let i0 = 0;
-  let i1 = 0;
-  let i2 = 0;
+// 01c. A function to scan the array to find the given number's starting index.
+function numStartIndex(arr, numberToSearch, numInitialIndex) {
+  let startIndex = null;
+  let start = 0;
+  let end = numInitialIndex;
 
-  // push 0s
-  while (i0 < count0) {
-    sortedArray.push(0);
-    i0++;
+  while (start <= end) {
+    let mid = Math.floor((start + end) / 2);
+
+    if (numberToSearch > arr[mid]) {
+      start = mid + 1;
+    } else if (numberToSearch < arr[mid]) {
+      end = mid - 1;
+    } else if (
+      numberToSearch == arr[mid] &&
+      mid - 1 >= 0 &&
+      numberToSearch == arr[mid - 1]
+    ) {
+      end = mid - 1;
+    } else if (numberToSearch == arr[mid] && numberToSearch != arr[mid - 1]) {
+      return {
+        status: "success",
+        data: { startIndex: mid, searchedNumber: arr[mid] },
+      };
+    }
   }
 
-  // push 1s
-  while (i1 < count1) {
-    sortedArray.push(1);
-    i1++;
+  return {
+    status: "error",
+    message:
+      "Error occurred while searching the left most index for the given number",
+  };
+}
+// 01d. A function to scan the array to find the given number's end index.
+function numEndIndex(arr, numberToSearch, numInitialIndex) {
+  let endIndex = null;
+  let start = numInitialIndex;
+  let end = arr.length - 1;
+
+  while (start <= end) {
+    let mid = Math.floor((start + end) / 2);
+
+    if (numberToSearch > arr[mid]) {
+      start = mid + 1;
+    } else if (numberToSearch < arr[mid]) {
+      end = mid - 1;
+    } else if (
+      numberToSearch == arr[mid] &&
+      mid + 1 < arr.length &&
+      numberToSearch == arr[mid + 1]
+    ) {
+      start = mid + 1;
+    } else if (numberToSearch == arr[mid] && numberToSearch != arr[mid + 1]) {
+      return {
+        status: "success",
+        data: { endIndex: mid, searchedNumber: arr[mid] },
+      };
+    }
   }
 
-  // push 2s
-  while (i2 < count2) {
-    sortedArray.push(2);
-    i2++;
-  }
-  return sortedArray;
+  return {
+    status: "error",
+    message:
+      "Error occurred while searching the right most index for the given number",
+  };
 }
 
 // -----------------------------
 
 // 01b. Taking and validating user input:
-const inputArray = await ask(
-  "Provide an array filled only with 0s and 1s for sorting: "
+let inputArray = await ask(
+  "Please provide an array only filled with numbers: "
 );
-const arr = inputArray.trim().split(" ").map(Number);
+let arr = inputArray.trim().split(" ").map(Number);
 
-let isArrayValid = arr.every((x) => x == 0 || x == 1 || x == 2);
+let isArrayValid = arr.every((x) => !isNaN(x));
 
 while (!isArrayValid) {
-  const inputArray = await ask(
-    "Please provide an array ONLY filled with 0s, 1s and 2s for sorting: "
-  );
+  inputArray = await ask("Please provide an array ONLY filled with numbers: ");
 
-  const arr = inputArray.trim().split(" ").map(Number);
+  arr = inputArray.trim().split(" ").map(Number);
 
-  isArrayValid = arr.every((x) => x == 0 || x == 1 || x == 2);
+  isArrayValid = arr.every((x) => !isNaN(x));
 }
 
+let inputN = await ask(
+  "Provide a number for which you intend to know leftmost and rightmost index: "
+);
+
+let n = Number(inputN);
+
+while (isNaN(n)) {
+  inputN = await ask("Please ONLY provide a NUMBER: ");
+  n = Number(inputN);
+}
 // -----------------------------
 
 // 01c. Displaying output:
-const sortedArray = sort012(arr);
+const result = startEndIndex(arr, n);
 
-console.log(`Here is your sorted array: [${[...sortedArray]}]`);
+if (result.status == "success") {
+  let numOccurrenceCount = 1 + result.data.endIndex - result.data.startIndex;
+  console.log(
+    `Total number of occurrence of the given number: ${n} in the array is: ${numOccurrenceCount}`
+  );
+} else {
+  console.log(result.message);
+}
 
 rl.close(); // This will close the CLI for the user input.
 // This closes the readline interface and ends the user input session.

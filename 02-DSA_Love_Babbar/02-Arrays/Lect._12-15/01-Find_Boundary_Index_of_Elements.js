@@ -24,6 +24,8 @@ async function ask(q) {
 
 // 01a. A main function, which will return the starting and the end index of the number under consideration using the helper functions.
 function startEndIndex(arr, numberToSearch) {
+  arr.sort((a, b) => a - b);
+
   // Call a searchN helper function to check whether given number even exist in the array or not.
   let result = searchN(arr, numberToSearch);
 
@@ -103,8 +105,8 @@ function numStartIndex(arr, numberToSearch, numInitialIndex) {
       end = mid - 1;
     } else if (
       numberToSearch == arr[mid] &&
-      numberToSearch == arr[mid - 1] &&
-      mid - 1 >= 0
+      mid - 1 >= 0 &&
+      numberToSearch == arr[mid - 1]
     ) {
       end = mid - 1;
     } else if (numberToSearch == arr[mid] && numberToSearch != arr[mid - 1]) {
@@ -136,8 +138,8 @@ function numEndIndex(arr, numberToSearch, numInitialIndex) {
       end = mid - 1;
     } else if (
       numberToSearch == arr[mid] &&
-      numberToSearch == arr[mid + 1] &&
-      mid + 1 < arr.length
+      mid + 1 < arr.length &&
+      numberToSearch == arr[mid + 1]
     ) {
       start = mid + 1;
     } else if (numberToSearch == arr[mid] && numberToSearch != arr[mid + 1]) {
