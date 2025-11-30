@@ -1,8 +1,23 @@
-// # Find the pivot element in the array.
-// 1. I'll be creating an object out of the array.
-// 2. Where object key will be the array number, which in this case would be 0 and 1.
-// 3. And the object key value will be the numbers count.
-// 4. Will create a new array and will loop the array in accordance to the number's count and will push the corresponding number into it.
+// # Find the pivot element in a rotated and sorted array.
+// 1. In this problem, we are given an array with **unique** sorted elements which is rotated n times.
+// 1.1. Rotating an array 1 time means, shifting the last element to first.
+// 1.2. Thus, rotating an array n times means, shifting n elements from the rear of an array to the beginning of the array.
+// 2. So, now as we understood what is an sorted and then a rotated array is.
+// 2.1. The question, we have to find the element at which the rotation has happened.
+// 3. Here's an example: Assume an sorted array: [1, 2, 4, 5, 6, 8, 9, 10, 12].
+// 3.1. Let it be a 4 times rotated array, then the array would become: [8, 9, 10, 12, 1, 2, 4, 5, 6,].
+// 3.2. Now, we have to reply with the answer as an index of either 12 or 1.
+// 4. Now, as we have understood the problem statement clearly, we can approach towards a solution.
+// 4.1. Approach is simple, we have two parts of the array both are sorted.
+// 4.2. We either look for 12 or 1. We have to decide this from the beginning.
+// 4.3. Let's say we are looking for number 1's index.
+// 4.4. Then, we can easily say, previous number than our pivot element 1 will always be bigger.
+// 5. Or if we are looking for the element 12, then we can easily say number ahead of our pivot number 12 will be a smaller number.
+// 6. Thus, now we can begin scanning our rotated sorted array for the pivot element.
+// 6.1. In my approach below, I'll be looking for the smallest number and will consider that number as a pivot element.
+// 6.2. One can easily code for the other solution too.
+// 7. Key in this question is **unique elements** and array is **sorted** before rotating.
+// 7.1. And the solution is to move start and the end pointer towards the unsorted region, because that is the place where the pivot element resides.
 
 // -----------------------------
 import readline from "readline/promises";
@@ -19,45 +34,32 @@ async function ask(q) {
 }
 // -----------------------------
 
-// 01a. A function to sort arrays filled with 0s and 1s.
-function sort012(arr) {
-  let i = 0;
-  const numObj = {};
-  const sortedArray = [];
+// 01a. A function to find the pivot element in the rotated sorted array.
+function pivotElement(arr) {
+  let start = 0;
+  let end = arr.length - 1;
 
-  while (i < arr.length) {
-    if (arr[i] == 0) numObj[arr[i]] = (numObj[arr[i]] || 0) + 1;
-    if (arr[i] == 1) numObj[arr[i]] = (numObj[arr[i]] || 0) + 1;
-    if (arr[i] == 2) numObj[arr[i]] = (numObj[arr[i]] || 0) + 1;
-    i++;
+  while (start <= end) {
+    // Updating mid-pointer value.
+    let mid = Math.floor((start + end) / 2);
+
+    // Applying multiple if-else conditions to search for the minimum value in the array which is our pivot value.
+
+    // Success case, found our min value.
+    if (mid - 1 >= 0 && arr[mid] < arr[mid - 1]) {
+      return pivotElement;
+    }
+
+    // If our mid-pointer is at the right of our minimum value, shift end-pointer to the left.
+    if (mid - 1 >= 0 && arr[mid] > arr[mid - 1]) {
+      end = mid - 1;
+    }
+
+    // If our mid-pointer is at the left of our minimum value, shift start-pointer to the left.
+    if (mid - 1 >= 0 && arr[mid] > arr[mid - 1]) {
+      end = mid - 1;
+    }
   }
-
-  let count0 = numObj[0];
-  let count1 = numObj[1];
-  let count2 = numObj[2];
-
-  let i0 = 0;
-  let i1 = 0;
-  let i2 = 0;
-
-  // push 0s
-  while (i0 < count0) {
-    sortedArray.push(0);
-    i0++;
-  }
-
-  // push 1s
-  while (i1 < count1) {
-    sortedArray.push(1);
-    i1++;
-  }
-
-  // push 2s
-  while (i2 < count2) {
-    sortedArray.push(2);
-    i2++;
-  }
-  return sortedArray;
 }
 
 // -----------------------------

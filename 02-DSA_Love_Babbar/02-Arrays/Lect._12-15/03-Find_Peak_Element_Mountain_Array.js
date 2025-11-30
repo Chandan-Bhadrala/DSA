@@ -41,11 +41,22 @@ function searchPeakElement(arr) {
       return { status: "success", data: { peakElement: arr[mid] } };
     }
     // Condition for climbing up the number line.
-    else if (mid - 1 >= 0 && mid + 1 < arr.length && arr[mid] < arr[mid + 1]) {
+    else if (
+      mid - 1 >= 0 &&
+      mid + 1 < arr.length &&
+      arr[mid] < arr[mid + 1] &&
+      arr[mid] > arr[mid - 1]
+    ) {
       start = mid + 1;
     }
     // Condition for climbing down the number line.
-    else if (mid - 1 >= 0 && mid + 1 < arr.length && arr[mid] > arr[mid + 1]) {
+    else if (
+      mid - 1 >= 0 &&
+      mid + 1 < arr.length &&
+      arr[mid] > arr[mid + 1] &&
+      arr[mid] < arr[mid - 1]
+    ) {
+      // end = mid and not end = mid-1, because mid could be the peak element, so can't reset end to mid-1. This way we are ignoring the possibility of mid value to be the peak value.
       end = mid;
     }
   }

@@ -9,15 +9,18 @@
 01. Find the left most and right most index of the given number in the sorted array.
 02. Find the total number of occurrences of the given number in the array.
 03. Find the peak element in the mountain array.
-04. Find the pivot element in the array.
-05. 
-06.  
-07.  
 
 ---
 
 ## Lect. 14
+04. Find the pivot element in a rotated and sorted array.
+05. Search for an element in a rotated and sorted array.
+06. Square root with precision up to 3 decimal points using binary search. 
 
+---
+
+## Lect. 15
+07. Book Allocation Problem.
 08. Find the single duplicate number in the number sequence stored in the array.
 09. Find all duplicates numbers in the array.
 10. Intersection elements between the two arrays. @45:50 hrs
@@ -28,4 +31,4 @@
 
 ---
 
-## Lect. 15
+## Lect. 16
