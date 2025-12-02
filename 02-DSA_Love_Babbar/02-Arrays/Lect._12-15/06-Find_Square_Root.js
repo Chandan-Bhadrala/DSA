@@ -1,0 +1,48 @@
+// # Square root with precision up to 3 decimal points using binary search.
+// 00. Will be given a number and we will have to find the square root value of the given number with the precision upto three decimal points.
+// 1. Will be using binary search for finding the integer part of the square root.
+// 2. And will be using linear search to calculate the decimal part of the square root value. 
+
+//-----------------
+
+// 01. A function to search for a given element in the rotated sorted array.
+function pivotElement(arr, searchN) {
+  let start = 0;
+  let end = arr.length - 1;
+  let mid = null;
+
+  while (start <= end) {
+    // Updating mid-pointer value.
+    mid = Math.floor((start + end) / 2);
+
+     //00. If the element is found at mid.
+    if (arr[mid] === searchN) return mid;
+
+    // 1. Selecting either of the sorted side of the array for searching the target value.
+
+    // 1.1. Below condition assures us, the target element is in the left sorted array half.
+    if (searchN > arr[end]) {
+      // Selecting the new index values to point, for the start and the end index.
+      if (arr[mid] > arr[end] && searchN > arr[mid]) start = mid + 1;
+      else if (arr[mid] < arr[end]) end = mid - 1;
+
+      // Returning the target index, if found.
+      if (searchN == arr[start]) return start;
+      if (searchN == arr[end]) return end;
+    }
+    // 1.2. Below condition assures us, the target element is in the right sorted array half.
+    else {
+      // Selecting the new index values to point, for the start and the end index.
+      if (arr[mid] > arr[end]) start = mid + 1;
+      else if (arr[mid] < arr[end] && arr[mid] < searchN) start = mid + 1;
+      else if (arr[mid] < arr[end] && arr[mid] > searchN) end = mid - 1;
+
+      // Returning the target index, if found.
+      if (searchN == arr[start]) return start;
+      if (searchN == arr[end]) return end;
+    }
+  }
+
+  // Didn't found the target value within the array.
+  return -1;
+}
