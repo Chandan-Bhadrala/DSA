@@ -1,4 +1,5 @@
 // # Find the pivot element in a rotated and sorted array.
+// 00. The below solution is incorrect, find the correct solution in "04b" code.
 // 1. In this problem, we are given an array with **unique** sorted elements which is rotated n times.
 // 1.1. Rotating an array 1 time means, shifting the last element to the first index.
 // 1.2. Thus, rotating an array n times means, shifting n elements from the rear of an array to the beginning of the array.
