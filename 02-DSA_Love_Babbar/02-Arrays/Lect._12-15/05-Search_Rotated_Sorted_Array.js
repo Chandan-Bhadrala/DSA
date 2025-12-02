@@ -1,5 +1,6 @@
-// # Find the pivot element in a rotated and sorted array.
-// 1. Now find the maximum pivot value in the rotated sorted array.
+// # Search for an element in a rotated and sorted array.
+// 00. We have to find for the target element in the rotated sorted array.
+// 1. 
 
 //-----------------
 
