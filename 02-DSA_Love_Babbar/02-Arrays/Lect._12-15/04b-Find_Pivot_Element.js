@@ -17,6 +17,8 @@ function pivotElement(arr) {
     let end = arr.length - 1;
     let mid = Math.floor((start + end) / 2);
 
+    // Didn't used "equal to" sign in while loop below, to avoid infinite loop at "start = end" condition.
+    // As we need to iterate through whole while loop to find the pivot element value.
     while (start < end) {
         // Updating mid-pointer value.
         mid = Math.floor((start + end) / 2);

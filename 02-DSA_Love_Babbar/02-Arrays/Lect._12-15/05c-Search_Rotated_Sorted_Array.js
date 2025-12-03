@@ -1,14 +1,6 @@
-// # Solution approach is wrong.
-// 1. This approach has major flaw, we are dividing the array on the based of the target value and applying the binary search without even giving a thought that the half in which we are applying binary search might not be sorted.
-// 1.1. So, trying solution again in 05b, with new mind set.
-
-//-----------------
-
 // # Search for an element in a rotated and sorted array.
-// 00a. We have to find for the target element in the rotated sorted array.
-// 00b. We will be given an rotated sorted array and target element to search.
-// Solution:
-// 1. We will compare our arr[mid] value with the arr[start] or arr[end] to conclude that our target element is at which side of the array.
+// 1. Will be calculating pivot value first in this approach.
+// 1.1. And then will confirm at which side the target value lies and will scan for the target value in that range later using binary search.
 
 //-----------------
 
