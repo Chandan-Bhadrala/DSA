@@ -23,3 +23,12 @@
 07. Book Allocation Problem.
 08. Painter’s Partition Problem.
 09. Aggressive Cows Problem.
+
+---
+
+## Homework
+10. EKO
+11. Prata Roti
+12. Beautiful Triplets
+
+---

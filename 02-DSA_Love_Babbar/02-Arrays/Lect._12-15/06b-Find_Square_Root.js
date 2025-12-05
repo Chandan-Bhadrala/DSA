@@ -1,5 +1,5 @@
 // # Square root with precision up to 3 decimal points using binary search.
-// Did it using Linear Search in 06a file.
+// Did this DSA question using Linear Search in 06a file.
 // Will use Binary Search this time to compute Integer part of the square root.
 
 // -----------------------------
@@ -21,13 +21,18 @@ async function ask(q) {
 function findSquareRoot(target) {
   let intPart = 0;
 
-  // First we will search for the "integer part" of the square root.
-  for (let i = 1; i <= target; i++) {
-    // Checking whether current value of "i" is suitable candidate for the integer part of the square root answer.
-    if (i * i <= target) {
-      intPart = i;
-    } else if (i * i > target) {
-      break;
+  let start = 0;
+  let end = target - 1;
+
+  // First we will search for the "integer part" of the square root, using Binary Search.
+  while (start <= end) {
+    let mid = Math.floor((start + end) / 2);
+
+    if (mid * mid <= target) {
+      intPart = mid;
+      start = mid + 1;
+    } else {
+      end = mid - 1;
     }
   }
 
@@ -41,7 +46,7 @@ function findSquareRoot(target) {
     let denominator = 10 ** i;
 
     // Updating denominator value of 10th -> 100th -> 1000th
-    for (let j = 0; j <= 9; j++) {
+    for (let j = 1; j <= 9; j++) {
       if (
         (finalAnswer + 1 / denominator) * (finalAnswer + 1 / denominator) <=
         target
@@ -52,7 +57,7 @@ function findSquareRoot(target) {
     i++;
   }
 
-  return Number(finalAnswer.toFixed(3));;
+  return Number(finalAnswer.toFixed(3));
 }
 
 // 01b. Taking and validating user input:
