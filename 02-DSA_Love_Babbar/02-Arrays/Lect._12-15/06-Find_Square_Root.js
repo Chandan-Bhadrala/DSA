@@ -1,48 +1,34 @@
 // # Square root with precision up to 3 decimal points using binary search.
 // 00. Will be given a number and we will have to find the square root value of the given number with the precision upto three decimal points.
 // 1. Will be using binary search for finding the integer part of the square root.
-// 2. And will be using linear search to calculate the decimal part of the square root value. 
+// 1.1. Will create a range of numbers to apply binary search.
+// 1.2. Self created number line will lie from 1 to n.
+// 1.3. n being the number for which square root has to find.
+// 2. So, to find the square root of the n, we will use a number line range from 1 to n - 1.
+// 3. I believe we can easily reduce the number line range from 1 to n - 1 to 1 to (n-1)/2.
+// 3.1. Will check this number range to check its efficiency and correctness.
+// 4. However we have to use linear search to calculate the decimal part of the square root value.
 
 //-----------------
 
-// 01. A function to search for a given element in the rotated sorted array.
-function pivotElement(arr, searchN) {
-  let start = 0;
-  let end = arr.length - 1;
-  let mid = null;
+// 01. A function to calculate the square root of the given number n.
+function findSquareRoot(target) {
+  let intPart = null;
 
-  while (start <= end) {
-    // Updating mid-pointer value.
-    mid = Math.floor((start + end) / 2);
-
-     //00. If the element is found at mid.
-    if (arr[mid] === searchN) return mid;
-
-    // 1. Selecting either of the sorted side of the array for searching the target value.
-
-    // 1.1. Below condition assures us, the target element is in the left sorted array half.
-    if (searchN > arr[end]) {
-      // Selecting the new index values to point, for the start and the end index.
-      if (arr[mid] > arr[end] && searchN > arr[mid]) start = mid + 1;
-      else if (arr[mid] < arr[end]) end = mid - 1;
-
-      // Returning the target index, if found.
-      if (searchN == arr[start]) return start;
-      if (searchN == arr[end]) return end;
-    }
-    // 1.2. Below condition assures us, the target element is in the right sorted array half.
-    else {
-      // Selecting the new index values to point, for the start and the end index.
-      if (arr[mid] > arr[end]) start = mid + 1;
-      else if (arr[mid] < arr[end] && arr[mid] < searchN) start = mid + 1;
-      else if (arr[mid] < arr[end] && arr[mid] > searchN) end = mid - 1;
-
-      // Returning the target index, if found.
-      if (searchN == arr[start]) return start;
-      if (searchN == arr[end]) return end;
+  // First we will search for the "integer part" of the square root.
+  for (let i = 1; i < target; i++) {
+    // Checking whether current value of "i" is suitable candidate for the integer part of the square root answer.
+    if (i * i <= target) {
+      intPart = i;
     }
   }
 
-  // Didn't found the target value within the array.
-  return -1;
+  // Now, we will find the decimal part of the square root answer.
+  for(let i = 1; i<9; i++){
+    if((intPart+i/10)*(intPart+i/10) <= target){
+      finalAnswer = intPart
+    }
+  }
+
+
 }
