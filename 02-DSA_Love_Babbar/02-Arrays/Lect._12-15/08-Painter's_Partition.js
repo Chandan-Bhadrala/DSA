@@ -1,14 +1,6 @@
-// # Search for an element in a rotated and sorted array.
-// 1. Will be calculating pivot value first in this approach.
-// 1.1. And then will confirm at which side the target value lies and will scan for the target value in that range later using binary search.
+// # Painter's Partition Problem.
+// 1. 
 
-// Didn't tried this approach.
-// Happily learned about the fact that:
-// 1. Compare the start and the end pointer with the **mid pointer**.
-// 1.1. Role of the **mid-pointer**, is only of the comparison with the start or the end pointer, to make the right decision of shrinking the boundaries.
-// 2. In the unsorted array, always first find which half is sorted and only use the boundary pointer of the sorted half of the array to compare with it with the mid pointer, to come to the decision of shifting the start or the end pointer.
-// 2.1. Start and the end pointers are considered as the boundary pointers.
-// 2.1.1. Because they define the search space boundary.
 //-----------------
 
 // 01. A function to search for a given element in the rotated sorted array.
