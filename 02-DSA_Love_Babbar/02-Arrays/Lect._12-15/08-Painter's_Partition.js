@@ -1,5 +1,6 @@
 // # Painter's Partition Problem.
-// 1. 
+// 1. Didn't wrote the code for it, it was exact same problem as of Book Allocation problem.
+// 2. Simply copy pasted the solution into the GFG and it even accepted it.
 
 //-----------------
 
