@@ -43,6 +43,7 @@ function insertionSort(arr) {
 1. Insertion Sort splits the array into two sections: sorted (left) and unsorted (right).
 2. It picks one element from the unsorted section and inserts it into the correct position inside the sorted section.
 3. It does this by shifting larger elements to the right and placing the target element at the correct location.
+  3.1. Instead of swapping repeatedly (like Bubble Sort), we shift elements to the right until the correct position for the key is found. This saves CPU cycles.
 
 function insertionSort(arr) {
   let sortArr = [...arr]; // Copy so original array remains unchanged.
@@ -52,7 +53,7 @@ function insertionSort(arr) {
     let key = sortArr[i];     // The element we want to insert in the sorted portion.
     let j = i - 1;            // Pointer to scan the sorted section.
 
-    // Shift elements to the right if they are larger than the key.
+    // **Shift** elements to the right if they are larger than the key.
     while (j >= 0 && sortArr[j] > key) {
       sortArr[j + 1] = sortArr[j];
       j--;
