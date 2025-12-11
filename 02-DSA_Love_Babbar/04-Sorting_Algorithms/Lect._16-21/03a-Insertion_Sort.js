@@ -14,24 +14,34 @@
 function insertionSort(arr) {
   let sortArr = [...arr];
 
+  // i is used to select the target.
   for (let i = 1; i < sortArr.length; i++) {
+    // j is used to compare selected target value with the values at the left.
     let j = i;
-    let minimumIndex = 0;
 
+    // Will be storing the minimum-value in the minimumValue variable  temporarily.
+    let minimumValue = null;
+
+    // If in the current index, a smaller value is placed in comparison to the value at the left, then store current value in the minimumValue variable.
+    if (sortArr[j] < sortArr[j - 1]) {
+      minimumValue = sortArr[j];
+    }
+
+    // Start Shifting.
     while (j >= 1) {
-      // If the element at left is greater than the element at right, then store the minimum value index in the minimumIndex.
-      if (sortArr[j - 1] > sortArr[j]) {
-        // Left-shifting the smaller values.
-        minimumIndex = j;
+      // If the element at left is greater than the element at right, then store the minimum value index in the minimumIndex and start in-place shifting.
+      // As **in-place shifting** is less expensive than **swapping** in regard to CPU cycles.
+
+      // 01a. Shifting bigger values on the right.
+      if (sortArr[j] < sortArr[j - 1] && sortArr[j]>minimumValue) {
+        sortArr[j] = sortArr[j - 1];
+      }
+      // 01b. If left value is not greater than the right value than insert the minimum value.
+      else {
+        sortArr[j] = minimumValue;
       }
       j--;
     }
-
-    // Swap only once the inner-loop has finalized the minimumIndexValue.
-    [sortArr[i - 1], sortArr[minimumIndex]] = [
-      sortArr[minimumIndex],
-      sortArr[i - 1],
-    ];
   }
 
   return sortArr;
@@ -92,3 +102,45 @@ function insertionSort(arr) {
   return sortArr;
 }
  */
+
+
+import readline from "readline/promises";
+// 00a. Create input interface
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout,
+});
+
+// 00b. A generic helper function helps to take multiple user input using async/await.
+async function ask(q) {
+  return rl.question(q);
+}
+
+// -----------------------------
+
+// 01a. Taking and validating user input:
+let inputArray = await ask(
+  "Please provide an array only filled with numbers: "
+);
+let arr = inputArray.trim().split(" ").map(Number);
+
+let isArrayValid = arr.every((x) => !isNaN(x));
+
+while (!isArrayValid) {
+  inputArray = await ask("Please provide an array ONLY filled with numbers: ");
+
+  arr = inputArray.trim().split(" ").map(Number);
+
+  isArrayValid = arr.every((x) => !isNaN(x));
+}
+
+// -----------------------------
+
+// 01c. Displaying output:
+const result = insertionSort(arr);
+
+console.log(result);
+
+rl.close(); // This will close the CLI for the user input.
+// This closes the readline interface and ends the user input session.
+// -----------------------------
