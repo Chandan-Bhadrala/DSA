@@ -6,8 +6,8 @@
 ## Solution Approach:
   1. 
  */
-function reverseArray(arr) {
-  let reverseArr = [...arr];
+function reverseArray(arr1, arr2) {
+  
 
   return reverseArr;
 }

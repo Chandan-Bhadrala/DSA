@@ -3,12 +3,20 @@
 ## Question:
   1. We will be given an array filled with numbers along with the 0's.
   2. We will have to move all the 0's to the end.
-  3. Keeping the rest of the numbers intact.
+  3. Keeping the rest of the numbers orders intact.
 ## Solution Approach:
   1. 
  */
-function reverseArray(arr) {
-  let reverseArr = [...arr];
+function moveZeroes(arr) {
+  // Preserve original array.
+  let arrCopy = [...arr];
 
-  return reverseArr;
+  let i = 0;
+  while (i < arrCopy.length) {
+   
+    if(arr[i])
+   
+    i++;
+  }
+  return arrCopy;
 }

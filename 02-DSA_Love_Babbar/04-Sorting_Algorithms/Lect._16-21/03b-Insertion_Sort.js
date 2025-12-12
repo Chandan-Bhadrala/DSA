@@ -1,30 +1,54 @@
-// 01. A function implementation of the **Insertion Sort**.
-// 1. In insertion sort, we pick a target element (key) and insert it into the correct 
-//    position inside the sorted left section.
-// 2. We do not swap repeatedly. We shift bigger elements to the right to make space.
-// 3. Shifting costs fewer CPU cycles than swapping.
+/**
+Insertion Sort Implementation.
 
+In this sorting method, we will be using two pointers:
+
+1. Pointer i → points to the target element.
+   1.1. The target element is the value that needs to be inserted at its correct location.
+   1.2. The target element is stored temporarily for safe shifting of other elements.
+
+2. Pointer j → points to the element immediately left of the target element.
+   2.1. Pointer j will traverse from (i - 1) towards index 0.
+   2.2. Pointer j compares its current element with the target value.
+   2.3. If pointer j finds a smaller element, we insert the target value at index (j + 1).
+   2.4. If pointer j finds a bigger element, that bigger element is shifted right by 1 step.
+
+3. This method inherently starts sorting the array from the very first scan.
+   3.1. Thus, during the process:
+        3.1.1. The left side forms a sorted section.
+        3.1.2. The right side remains unsorted.
+*/
+
+//-----------------
+
+// Insertion Sort implementation.
+// Insertion sort performs only one final write for the target value, saving CPU cycles.
 function insertionSort(arr) {
-  let sortArr = [...arr]; // no mutation of original array
+  let sortArr = [...arr]; // Preserve original array
 
-  // i = current target element
   for (let i = 1; i < sortArr.length; i++) {
+    let targetValue = sortArr[i]; // Storing target element
+    let j = i - 1; // Pointer to the left of target
 
-    // Step 01: store target element temporarily
-    let currentValue = sortArr[i];
-
-    // j = pointer used to shift elements on the left side
-    let j = i - 1;
-
-    // Step 02: shift all bigger elements to the right
-    // until we find the correct position for currentValue
-    while (j >= 0 && sortArr[j] > currentValue) {
-      sortArr[j + 1] = sortArr[j];   // shift right
-      j--;                            // keep going left
+    // Move pointer j leftwards until a smaller element is found
+    while (j >= 0) {
+      // If left element is bigger, shift it to the right
+      if (sortArr[j] > targetValue) {
+        sortArr[j + 1] = sortArr[j];
+      }
+      // If left element is smaller, insert the target value at (j + 1)
+      else {
+        sortArr[j + 1] = targetValue;
+        break;
+      }
+      j--;
     }
 
-    // Step 03: insert the currentValue in its correct position
-    sortArr[j + 1] = currentValue;
+    // If j became -1, it means targetValue is the smallest so far
+    // Insert at position 0 (only if not already inserted by break)
+    if (j < 0) {
+      sortArr[0] = targetValue;
+    }
   }
 
   return sortArr;
