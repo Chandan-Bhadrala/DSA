@@ -6,8 +6,8 @@
 ## Solution Approach:
   1. 
  */
-function reverseArray(arr) {
-  let reverseArr = [...arr];
-
-  return reverseArr;
+function isRotatedSortedArray(arr) {
+  let isRotatedSorted = false;
+  
+  return isRotatedSorted;
 }

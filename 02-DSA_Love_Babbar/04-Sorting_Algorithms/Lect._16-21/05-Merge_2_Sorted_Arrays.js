@@ -6,8 +6,8 @@
 ## Solution Approach:
   1. 
  */
-function reverseArray(arr1, arr2) {
+function mergeSort(arr1, arr2) {
   
 
-  return reverseArr;
+  return arr1;
 }

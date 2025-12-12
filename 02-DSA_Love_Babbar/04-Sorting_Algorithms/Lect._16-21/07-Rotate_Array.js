@@ -7,8 +7,8 @@
 ## Solution Approach:
   1. 
  */
-function reverseArray(arr) {
-  let reverseArr = [...arr];
+function rotateArray(arr) {
+  let rotatedArray = [...arr];
 
-  return reverseArr;
+  return rotatedArray;
 }
