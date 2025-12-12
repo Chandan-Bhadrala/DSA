@@ -1,5 +1,5 @@
 /**
-# Bubble Sort.
+# Bubble Sort Implementation.
 1. In this method, we will keep comparing the adjacent elements of the array and will keep swapping the bigger element with the smaller elements to create an array of the ascending array elements.
   1.1. This will also create two sub-array, one with sorted elements at the end as we have bubbled up the bigger element at the last, with the help of continuous right-adjacent comparisons.
   1.2. And the left unsorted sub-array which yet has to bubble up the bigger elements to the right.
