@@ -3,8 +3,12 @@
 ## Question:
   1. We will be given an array and we have to reverse all of its elements.
 ## Solution Approach:
-  1. 
- */
+  1. Take two pointers:
+    1.1. i -> starts from the start-index of the array.
+    1.2. j -> starts from the end-index of the array.
+  2. Keep swapping the elements of the both indices and keep pushing both the pointers towards each other.
+*/
+
 function reverseArray(arr) {
   // Preserve original array.
   let reverseArr = [...arr];
