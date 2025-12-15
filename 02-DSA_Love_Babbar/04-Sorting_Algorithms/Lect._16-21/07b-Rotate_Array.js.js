@@ -16,8 +16,29 @@
 ## Time Complexity: O(n)
 ## Space Complexity: O(1), as rotation has happened in place of the original array.
  */
-function rotateArray(arr) {
-  let rotatedArray = [...arr];
+function rotateArray(nums, k) {
+  // Reducing the size of the k to a reasonable number.
+  // Keeping "k" within the array length range.
+  k = k % nums.length;
 
-  return rotatedArray;
+  // 1. Rotate whole array.
+  reverseArray(nums);
+  // 2. Rotate "0 to k - 1" section of the array.
+  reverseArray(nums, 0, k - 1);
+  // 3. Rotate "k to n - 1" section of the array.
+  reverseArray(nums, k, nums.length - 1);
+
+  // Now, in-place rotation of nums has already been occurred with the space-complexity of O(1).
+}
+
+// A generic function to rotate an array elements.
+function reverseArray(nums, startIndex = 0, endIndex = nums.length - 1) {
+  // Didn't used "<=" operator as the mid-most (point of startIndex and endIndex convergence) element doesn't need to be rotated.
+  while (startIndex < endIndex) {
+    [nums[startIndex], nums[endIndex]] = [nums[endIndex], nums[startIndex]];
+
+    startIndex++;
+    endIndex--;
+  }
+  return nums;
 }
