@@ -7,6 +7,7 @@
 ## Solution Approach:
   1. Using i pointer to locate the 0's while traversing.
   2. Using j pointer to find an array element to swap with.
+## Time Complexity: O(n^2)
  */
 function moveZeroes(nums) {
   // Preserve original array.
