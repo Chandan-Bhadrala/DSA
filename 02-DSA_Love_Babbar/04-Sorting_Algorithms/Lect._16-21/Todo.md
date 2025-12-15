@@ -6,14 +6,18 @@
 03. Insertion Sort Implementation.
 
 ---
-## Lect. 20 - 21
+## Lect. 20
 04. Reverse an Array.
 05. Merge two Sorted Arrays into the first array.
 06. Move Zero's
-07. Rotate Array.
-08. Check if given array is rotated and sorted.
 ---
 
+## Lect. 21
+07. Rotate Array.
+08. Check if given array is rotated and sorted.
+09. Add two arrays with carry forward.
+
+---
 ## Homework
 10. 
 
