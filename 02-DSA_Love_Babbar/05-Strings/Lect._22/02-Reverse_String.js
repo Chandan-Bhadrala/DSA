@@ -2,33 +2,26 @@
 # Reverse a String.
 
 ## Question:
-1. Find the number of characters in the string.
+1. Reverse a string.
+
 ## Solution Approach:
-  1. In C++ or C, this question has significance, as in C or C++, we will be using "Null Character (\0)" to locate the end of the string and count the number of characters before the null-character.
-  2. In JS, we could simply use array.length or string.length to see the length of the string.  
+  1. Strings are stored in an array similar to the numbers stored in the array.
+  2. So simply use two pointers to reverse the string.
+    2.1. One pointer holds the first element.
+    2.2. Second pointer holds the last element.
+  3. Both pointers keep on swapping elements and keep converging towards each other incrementally.
 */
 
 // -----------------------------
 
-// 01. A function implementation of the Selection Sort.
-// 1. Selection Sort, swaps array elements only once.
-function selectionSort(arr) {
-  let sortArr = [...arr];
+// 01. A function to reverse a string in-place using two-pointers.
+function reverseString(s) {
+  let i = 0;
+  let j = s.length - 1;
 
-  // Take first element of the array and then compare it with other array elements of the array using inner-loop.
-  // If any other array element of the inner-loop found bigger than the array element selected by the outer-loop then, save its index and swap those elements **ONLY ONCE** at the end of the inner-loop only, to save CPU cycles on swapping.
-  for (let i = 0; i < sortArr.length; i++) {
-    let minimumIndex = i;
-    for (let j = i + 1; j < arr.length; j++) {
-      if (sortArr[minimumIndex] > sortArr[j]) {
-        // Way to swap array elements in JS.
-        minimumIndex = j;
-      }
-    }
-    // Swap Once.
-    // Swap the found minimum index with the help of the inner-loop, with the outer-loop index value.
-    [sortArr[i], sortArr[minimumIndex]] = [sortArr[minimumIndex], sortArr[i]];
+  while (i < j) {
+    [s[i], s[j]] = [s[j], s[i]];
+    i++;
+    j--;
   }
-
-  return sortArr;
 }
