@@ -19,6 +19,6 @@
 
 ---
 ## Homework
-10. 
+10. No Homework.
 
 ---
