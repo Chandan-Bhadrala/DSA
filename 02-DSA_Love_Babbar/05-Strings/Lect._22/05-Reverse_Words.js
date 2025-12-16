@@ -1,10 +1,13 @@
 /**
-# Selection Sort Implementation.
-1. Selection sort takes an unsorted array and break that into two sections:
-  1.1. One Section of sorted sub-array and other section of the unsorted sub-array.
-2. Selection Sort takes one smallest element from the unsorted sub-array and stores the element correctly into the sorted sub-array.
-3. Selection Sort, keep repeating step 2 until all elements from an unsorted sub-array is shifted towards the sorted sub-array.
+# Reverse words.
+
+## Question:
+1. Find the number of characters in the string.
+## Solution Approach:
+  1. In C++ or C, this question has significance, as in C or C++, we will be using "Null Character (\0)" to locate the end of the string and count the number of characters before the null-character.
+  2. In JS, we could simply use array.length or string.length to see the length of the string.  
 */
+
 // -----------------------------
 
 // 01. A function implementation of the Selection Sort.
