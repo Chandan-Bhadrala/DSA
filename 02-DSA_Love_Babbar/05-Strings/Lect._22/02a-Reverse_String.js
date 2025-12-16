@@ -3,6 +3,7 @@
 
 ## Question:
 1. Reverse a string.
+  1.1. String given as an array elements.
 
 ## Solution Approach:
   1. Strings are stored in an array similar to the numbers stored in the array.
@@ -14,7 +15,7 @@
 
 // -----------------------------
 
-// 01. A function to reverse a string in-place using two-pointers.
+// 01. A function to reverse a string given as array elements in-place using two-pointers.
 function reverseString(s) {
   let i = 0;
   let j = s.length - 1;
@@ -24,4 +25,8 @@ function reverseString(s) {
     i++;
     j--;
   }
+  return s;
 }
+
+let s = ["a", "b", "c"];
+console.log("output", reverseString(s));
