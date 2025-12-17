@@ -1,8 +1,11 @@
 /**
 # Reverse words.
+<<<<<<< HEAD
 Link:
 https://leetcode.com/problems/reverse-words-in-a-string-iii/description/
 
+=======
+>>>>>>> b3817e80154a93f42fcbeeb6adf37f3349e5a524
 **Example 1:**
 **Input:** s = "Let's take LeetCode contest"
 **Output:** "s'teL ekat edoCteeL tsetnoc"
@@ -10,8 +13,6 @@ https://leetcode.com/problems/reverse-words-in-a-string-iii/description/
 **Example 2:**
 **Input**: s = "Mr Ding"
 **Output:** "rM gniD"
-
-
 
 ## Question:
 1. Find the number of characters in the string.
