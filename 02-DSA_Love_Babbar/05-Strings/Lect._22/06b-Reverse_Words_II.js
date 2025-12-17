@@ -1,24 +1,19 @@
 /**
 # Reverse words.
+
 Link:
-https://leetcode.com/problems/reverse-words-in-a-string/description/
+https://leetcode.com/problems/reverse-words-in-a-string-iii/description/
 
 **Example 1:**
-**Input:** s = "the sky is blue"
-**Output:** "blue is sky the"
+**Input:** s = "Let's take LeetCode contest"
+**Output:** "s'teL ekat edoCteeL tsetnoc"
 
 **Example 2:**
-**Input:** s = "  hello world  "
-**Output:** "world hello"
-**Explanation:** Your reversed string should not contain leading or trailing spaces.
-
-**Example 3:**
-**Input:** s = "a good   example"
-**Output:** "example good a"
-**Explanation:** You need to reduce multiple spaces between two words to a single space in the reversed string.
+**Input**: s = "Mr Ding"
+**Output:** "rM gniD"
 
 ## Question:
-1. Normalize white-spaces in the string and reverse it.
+1. Keep words in the string in their places, only mirror them.
 ## Solution Approach:
  
 */
@@ -60,24 +55,25 @@ function normalizeSpaces(s) {
 function reverseSentence(s) {
   // Trim the leading, trailing and in between words white spaces.
   let normalizedString = normalizeSpaces(s);
-  let reversedSentence = "";
+  let mirroredSentence = "";
   let word = "";
 
   // Let's consider string a stream of characters rather than array of words for the rotation purpose.
   let i = normalizedString.length - 1;
   while (i >= 0) {
     if (normalizedString[i] != " ") {
-      word = normalizedString[i] + word;
+      // Building words in reverse, mirror fashion.
+      word = word + normalizedString[i];
     } else {
-      reversedSentence = reversedSentence + word + " ";
+      mirroredSentence = word + " " + mirroredSentence;
       word = "";
     }
     i--;
   }
   // Adding last boundary word.
-  reversedSentence = reversedSentence + word;
+  mirroredSentence = word + " " + mirroredSentence;
 
-  return reversedSentence;
+  return mirroredSentence;
 }
 
 //------------
