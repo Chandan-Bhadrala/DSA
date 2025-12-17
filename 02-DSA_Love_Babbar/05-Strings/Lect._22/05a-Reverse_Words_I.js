@@ -1,12 +1,21 @@
 /**
-# Find maximum occurring characters.
+# Reverse words.
+**Example 1:**
+**Input:** s = "the sky is blue"
+**Output:** "blue is sky the"
+
+**Example 2:**
+**Input:** s = "  hello world  "
+**Output:** "world hello"
+**Explanation:** Your reversed string should not contain leading or trailing spaces.
+
+**Example 3:**
+**Input:** s = "a good   example"
+**Output:** "example good a"
+**Explanation:** You need to reduce multiple spaces between two words to a single space in the reversed string.
 
 Link:
-https://www.geeksforgeeks.org/problems/maximum-occuring-character-1587115620/1
-
-**Input String:** "abcdeapapqarr"
-**Expected Output:** 'a'
-**Explanation:** Since 'a' has appeared four times in the string which happens to be the highest frequency character, the answer would be 'a'.
+https://leetcode.com/problems/reverse-words-in-a-string/description/
 
 ## Question:
 1. Find the number of characters in the string.

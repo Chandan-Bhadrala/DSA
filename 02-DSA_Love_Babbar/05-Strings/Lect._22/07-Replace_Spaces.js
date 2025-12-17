@@ -1,12 +1,8 @@
 /**
-# Find maximum occurring characters.
+# Replace Spaces. URL-ify a given string (Replace spaces with %20).
 
-Link:
-https://www.geeksforgeeks.org/problems/maximum-occuring-character-1587115620/1
-
-**Input String:** "abcdeapapqarr"
-**Expected Output:** 'a'
-**Explanation:** Since 'a' has appeared four times in the string which happens to be the highest frequency character, the answer would be 'a'.
+**Input:** "Hi there, how are you."
+**Output:** "Hi%20there,%20how%20are%20you."
 
 ## Question:
 1. Find the number of characters in the string.

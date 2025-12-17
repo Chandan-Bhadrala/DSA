@@ -1,5 +1,15 @@
 /**
-# Remove all adjacent duplicates in a string.
+# Reverse words.
+**Example 1:**
+**Input:** s = "Let's take LeetCode contest"
+**Output:** "s'teL ekat edoCteeL tsetnoc"
+
+**Example 2:**
+**Input**: s = "Mr Ding"
+**Output:** "rM gniD"
+
+Link:
+https://leetcode.com/problems/reverse-words-in-a-string-iii/description/
 
 ## Question:
 1. Find the number of characters in the string.
