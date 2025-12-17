@@ -49,3 +49,12 @@ function reverseWords(s) {
   wordsArray = wordsArray.join(" ");
   return wordsArray;
 }
+
+//------------
+let s = "the sky is blue";
+// let s = "A man, a plan, a canal: Panama";
+
+console.log("Reverse Words:", reverseWords(s));
+
+// Just a proof that string is stored as an character array.
+console.log(s[0], s[1], s[2], s[3], s[4], s[5], s[6]);

@@ -28,7 +28,7 @@ https://leetcode.com/problems/reverse-words-in-a-string/description/
 
 // -----------------------------
 
-// 01. A function to reverse words - Using JS helper function "split and join".
+// 01. A function to reverse words - w/o JS split or join methods. Will consider string as an character array and will loop around to get the answer.
 function reverseWords(s) {
   // Split is used to turn string characters array into a word array based on the delimiter.
   // Below I've used a single white space as delimiter to covert the characters array into a word array.
@@ -49,3 +49,12 @@ function reverseWords(s) {
   wordsArray = wordsArray.join(" ");
   return wordsArray;
 }
+
+//------------
+let s = "the sky is blue";
+// let s = "A man, a plan, a canal: Panama";
+
+console.log("Reverse Words:", reverseWords(s));
+
+// Just a proof that string is stored as an character array.
+console.log(s[0], s[1], s[2], s[3], s[4], s[5], s[6]);
