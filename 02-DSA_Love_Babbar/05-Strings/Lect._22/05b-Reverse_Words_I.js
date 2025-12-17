@@ -30,8 +30,13 @@ https://leetcode.com/problems/reverse-words-in-a-string/description/
 
 // 01. A function to reverse words - w/o JS split or join methods. Will consider string as an character array and will loop around to get the answer.
 function reverseWords(s) {
-  // Split is used to turn string characters array into a word array based on the delimiter.
-  // Below I've used a single white space as delimiter to covert the characters array into a word array.
+  // Trim the white spaces between the words and leading and trailing white-spaces too.
+  let k = 0;
+  while (k < s.length) {
+    if (s[k] >= "a") {
+    }
+    k++;
+  }
   let wordsArray = s.trim().replace(/\s+/g, " ").split(" ");
 
   // Now, we have a string words as an array elements, thus now we can play around with them in anyway we like.
