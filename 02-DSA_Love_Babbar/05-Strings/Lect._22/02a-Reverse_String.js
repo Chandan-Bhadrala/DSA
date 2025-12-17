@@ -1,5 +1,6 @@
 /**
 # Reverse a String.
+let s = ["a", "b", "c"];
 
 ## Question:
 1. Reverse a string.
