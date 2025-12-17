@@ -28,38 +28,66 @@ https://leetcode.com/problems/reverse-words-in-a-string/description/
 
 // -----------------------------
 
-// 01. A function to reverse words - w/o JS split or join methods. Will consider string as an character array and will loop around to get the answer.
-function reverseWords(s) {
-  // Trim the white spaces between the words and leading and trailing white-spaces too.
-  let k = 0;
-  while (k < s.length) {
-    if (s[k] >= "a") {
-    }
-    k++;
-  }
-  let wordsArray = s.trim().replace(/\s+/g, " ").split(" ");
-
-  // Now, we have a string words as an array elements, thus now we can play around with them in anyway we like.
-
+// 00. A helper function for trimming leading, trailing and more than one white space between the words.
+function normalizeSpaces(s) {
+  let res = [];
   let i = 0;
-  let j = wordsArray.length - 1;
+  let spaceAllowed = false;
 
-  while (i < j) {
-    [wordsArray[i], wordsArray[j]] = [wordsArray[j], wordsArray[i]];
-
+  // skip leading spaces
+  while (i < s.length && s[i] === " ") {
     i++;
-    j--;
   }
-  // Convert array back to a string using join method.
-  wordsArray = wordsArray.join(" ");
-  return wordsArray;
+
+  for (; i < s.length; i++) {
+    if (s[i] === " ") {
+      if (spaceAllowed) {
+        res.push(" ");
+        spaceAllowed = false; // block further spaces
+      }
+    } else {
+      res.push(s[i]);
+      spaceAllowed = true; // a space may follow a word
+    }
+  }
+
+  // remove trailing space if any
+  if (res.length > 0 && res[res.length - 1] === " ") {
+    res.pop();
+  }
+
+  return res.join("");
+}
+
+// 01. A function to reverse words - w/o JS split or join methods. Will consider string as an character array and will loop around to get the answer.
+function reverseSentence(s) {
+  // Trim the leading, trailing and in between words white spaces.
+  let normalizedString = normalizeSpaces(s);
+  let reversedSentence = "";
+  let word = "";
+
+  // Let's consider string a stream of characters rather than array of words for the rotation purpose.
+  let i = normalizedString.length - 1;
+  while (i >= 0) {
+    if (normalizedString[i] != " ") {
+      word = normalizedString[i] + word;
+    } else {
+      reversedSentence = reversedSentence + word + " ";
+      word = "";
+    }
+    i--;
+  }
+  // Adding last boundary word.
+  reversedSentence = reversedSentence + word;
+
+  return reversedSentence;
 }
 
 //------------
 let s = "the sky is blue";
 // let s = "A man, a plan, a canal: Panama";
 
-console.log("Reverse Words:", reverseWords(s));
+console.log("Reverse Words:", reverseSentence(s));
 
 // Just a proof that string is stored as an character array.
-console.log(s[0], s[1], s[2], s[3], s[4], s[5], s[6]);
+// console.log(s[0], s[1], s[2], s[3], s[4], s[5], s[6]);
