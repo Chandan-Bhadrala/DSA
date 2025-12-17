@@ -1,5 +1,8 @@
 /**
-# Remove all occurrences of a substring.
+# Remove all adjacent duplicates in a string.
+
+Link:
+https://leetcode.com/problems/remove-all-adjacent-duplicates-in-string/description/
 
 ## Question:
 1. Find the number of characters in the string.

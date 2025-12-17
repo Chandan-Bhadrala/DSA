@@ -1,12 +1,8 @@
 /**
-# Find maximum occurring characters.
+# Remove all occurrences of a substring.
 
 Link:
-https://www.geeksforgeeks.org/problems/maximum-occuring-character-1587115620/1
-
-**Input String:** "abcdeapapqarr"
-**Expected Output:** 'a'
-**Explanation:** Since 'a' has appeared four times in the string which happens to be the highest frequency character, the answer would be 'a'.
+https://leetcode.com/problems/remove-all-occurrences-of-a-substring/description/
 
 ## Question:
 1. Find the number of characters in the string.

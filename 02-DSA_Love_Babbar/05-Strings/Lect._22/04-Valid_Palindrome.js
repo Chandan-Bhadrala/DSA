@@ -1,5 +1,7 @@
 /**
 # Valid Palindrome.
+let s = "A man, a plan, a canal: Panama";
+
 Link:
 https://leetcode.com/problems/valid-palindrome/description/
 

@@ -1,7 +1,8 @@
 /**
-# Reverse words.
+# Remove all occurrences of a substring.
+
 Link:
-https://leetcode.com/problems/reverse-words-in-a-string/description/
+https://leetcode.com/problems/permutation-in-string/description/
 
 ## Question:
 1. Find the number of characters in the string.
