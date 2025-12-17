@@ -51,8 +51,8 @@ function normalizeSpaces(s) {
   return res.join("");
 }
 
-// 01. A function to reverse words - w/o JS split or join methods. Will consider string as an character array and will loop around to get the answer.
-function reverseSentence(s) {
+// 01. A function to mirror words - w/o JS split or join methods. Will consider string as an character array and will loop around to get the answer.
+function mirrorSentenceWords(s) {
   // Trim the leading, trailing and in between words white spaces.
   let normalizedString = normalizeSpaces(s);
   let mirroredSentence = "";
@@ -65,13 +65,13 @@ function reverseSentence(s) {
       // Building words in reverse, mirror fashion.
       word = word + normalizedString[i];
     } else {
-      mirroredSentence = word + " " + mirroredSentence;
+      mirroredSentence = " " + word + mirroredSentence;
       word = "";
     }
     i--;
   }
   // Adding last boundary word.
-  mirroredSentence = word + " " + mirroredSentence;
+  mirroredSentence = word + mirroredSentence;
 
   return mirroredSentence;
 }
@@ -80,7 +80,7 @@ function reverseSentence(s) {
 let s = "the sky is blue";
 // let s = "A man, a plan, a canal: Panama";
 
-console.log("Reverse Words:", reverseSentence(s));
+console.log("Reverse Words:", mirrorSentenceWords(s));
 
 // Just a proof that string is stored as an character array.
 // console.log(s[0], s[1], s[2], s[3], s[4], s[5], s[6]);

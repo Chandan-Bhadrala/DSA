@@ -20,25 +20,33 @@ https://leetcode.com/problems/reverse-words-in-a-string-iii/description/
 
 // -----------------------------
 
-// 01. A function implementation of the Selection Sort.
-// 1. Selection Sort, swaps array elements only once.
-function selectionSort(arr) {
-  let sortArr = [...arr];
+// 01. A function to reverse words - Using JS helper function "split and join".
+function mirrorSentenceWords(s) {
+  // Split is used to turn string characters array into a word array based on the delimiter.
+  // Below I've used a single white space as delimiter to covert the characters array into a word array.
+  let wordsArray = s.trim().replace(/\s+/g, " ").split(" ");
 
-  // Take first element of the array and then compare it with other array elements of the array using inner-loop.
-  // If any other array element of the inner-loop found bigger than the array element selected by the outer-loop then, save its index and swap those elements **ONLY ONCE** at the end of the inner-loop only, to save CPU cycles on swapping.
-  for (let i = 0; i < sortArr.length; i++) {
-    let minimumIndex = i;
-    for (let j = i + 1; j < arr.length; j++) {
-      if (sortArr[minimumIndex] > sortArr[j]) {
-        // Way to swap array elements in JS.
-        minimumIndex = j;
-      }
-    }
-    // Swap Once.
-    // Swap the found minimum index with the help of the inner-loop, with the outer-loop index value.
-    [sortArr[i], sortArr[minimumIndex]] = [sortArr[minimumIndex], sortArr[i]];
+  // Now, we have a string words as an array elements, thus now we can play around with them in anyway we like.
+
+  let i = 0;
+  let j = wordsArray.length - 1;
+
+  while (i < j) {
+    [wordsArray[i], wordsArray[j]] = [wordsArray[j], wordsArray[i]];
+
+    i++;
+    j--;
   }
-
-  return sortArr;
+  // Convert array back to a string using join method.
+  wordsArray = wordsArray.join(" ");
+  return wordsArray;
 }
+
+//------------
+let s = "the sky is blue";
+// let s = "A man, a plan, a canal: Panama";
+
+console.log("Reverse Words:", mirrorSentenceWords(s));
+
+// Just a proof that string is stored as an character array.
+console.log(s[0], s[1], s[2], s[3], s[4], s[5], s[6]);
