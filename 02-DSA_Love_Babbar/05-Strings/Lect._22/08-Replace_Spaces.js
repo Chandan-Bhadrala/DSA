@@ -1,5 +1,7 @@
 /**
 # Replace Spaces. URL-ify a given string (Replace spaces with %20).
+Link:
+https://www.geeksforgeeks.org/problems/urlify-a-given-string--141625/1
 
 **Input:** "Hi there, how are you."
 **Output:** "Hi%20there,%20how%20are%20you."
