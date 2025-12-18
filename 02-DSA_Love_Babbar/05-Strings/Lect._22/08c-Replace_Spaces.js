@@ -16,17 +16,19 @@ https://www.geeksforgeeks.org/problems/urlify-a-given-string--141625/1
 
 // 01. A function implementation of the URL-IFY a given string - w/o using JS helper function.
 function url_ifyString(s) {
+  let res = "";
   for (let i = 0; i < s.length; i++) {
-   
-    // ## This below code didn't worked because, strings are **immutable**.
+    // Rather than trying to change the string, created a new string and appended all the words.
     if (s[i] == " ") {
-      s[i] = "%20";
+      res += "%20";
+    } else {
+      res += s[i];
     }
   }
 
-  return s;
+  return res;
 }
 
 //------------
-let s = "Hi there, how are you.";
+let s = "Hi there,   how are you.";
 console.log("URL-fy string:", url_ifyString(s));

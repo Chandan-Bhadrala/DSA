@@ -14,11 +14,11 @@ https://www.geeksforgeeks.org/problems/urlify-a-given-string--141625/1
 
 // -----------------------------
 
-// 01. A function implementation of the URL-IFY a given string.
+// 01. A function implementation of the URL-IFY a given string - using helper JS helper function "replace".
 function url_ifyString(s) {
   return s.replace(/\s+/g, "%20");
 }
 
 //------------
 let s = "Hi there, how are you.";
-console.log("Max character in a string:", url_ifyString(s));
+console.log("URL-fy string:", url_ifyString(s));
