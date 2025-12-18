@@ -9,33 +9,32 @@ https://www.geeksforgeeks.org/problems/maximum-occuring-character-1587115620/1
 **Explanation:** Since 'a' has appeared four times in the string which happens to be the highest frequency character, the answer would be 'a'.
 
 ## Question:
-1. Find the number of characters in the string.
+1. Find characters which has maximum occurrence in the given string in the string.
 ## Solution Approach:
-  1. In C++ or C, this question has significance, as in C or C++, we will be using "Null Character (\0)" to locate the end of the string and count the number of characters before the null-character.
-  2. In JS, we could simply use array.length or string.length to see the length of the string.  
+ 1. Create an array 0 to 25 index and push the corresponding character into the array accordingly.
+ 2. Find the maximum array element and its index in the array and return the corresponding character.
 */
 
 // -----------------------------
 
-// 01. A function implementation of the Selection Sort.
-// 1. Selection Sort, swaps array elements only once.
-function selectionSort(arr) {
-  let sortArr = [...arr];
+// 01. A function to find and return the maximum or most frequent character in the string.
+function maxCharacter(s) {
+  let characterArray = [0];
 
-  // Take first element of the array and then compare it with other array elements of the array using inner-loop.
-  // If any other array element of the inner-loop found bigger than the array element selected by the outer-loop then, save its index and swap those elements **ONLY ONCE** at the end of the inner-loop only, to save CPU cycles on swapping.
-  for (let i = 0; i < sortArr.length; i++) {
-    let minimumIndex = i;
-    for (let j = i + 1; j < arr.length; j++) {
-      if (sortArr[minimumIndex] > sortArr[j]) {
-        // Way to swap array elements in JS.
-        minimumIndex = j;
-      }
-    }
-    // Swap Once.
-    // Swap the found minimum index with the help of the inner-loop, with the outer-loop index value.
-    [sortArr[i], sortArr[minimumIndex]] = [sortArr[minimumIndex], sortArr[i]];
+  // Scan through array and push their number count in the corresponding array position.
+  for (let i = 0; i < s.length; i++) {
+    let index = s[i] - "a";
+    characterArray[index] += 1;
   }
-
-  return sortArr;
+  let max = Math.max(...characterArray) + "a";
+  return max;
 }
+
+//------------
+let s = "Output";
+// let s = "A man, a plan, a canal: Panama";
+
+console.log("Reverse Words:", maxCharacter(s));
+
+// Just a proof that string is stored as an character array.
+// console.log(s[0], s[1], s[2], s[3], s[4], s[5], s[6]);
