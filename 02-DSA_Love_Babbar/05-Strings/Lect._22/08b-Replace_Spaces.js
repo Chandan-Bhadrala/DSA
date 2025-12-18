@@ -37,3 +37,8 @@ function selectionSort(arr) {
 
   return sortArr;
 }
+
+
+//------------
+let s = "Hi there, how are you.";
+console.log("Max character in a string:", maxCharacter(s));
