@@ -18,6 +18,12 @@ function removeAllSubstrings(s, part) {
 }
 
 //------------
-let s = "Hi there, how are you.";
-let substring = "there,"
-console.log("Given string after removing the substring:", removeAllSubstrings(s, substring));
+
+let s = "daabcbaabcbc"
+let substring = "abc" // Output: "dab"
+// let s1 = "Hi there, how are you.";
+// let substring1 = "there,";
+console.log(
+  "Given string after removing the substring:",
+  removeAllSubstrings(s, substring)
+);
