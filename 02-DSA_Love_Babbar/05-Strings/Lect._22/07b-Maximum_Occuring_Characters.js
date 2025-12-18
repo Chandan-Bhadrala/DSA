@@ -19,15 +19,30 @@ https://www.geeksforgeeks.org/problems/maximum-occuring-character-1587115620/1
 
 // 01. A function to find and return the maximum or most frequent character in the string.
 function maxCharacter(s) {
-  let characterArray = [0];
+  s = s.toLowerCase(); // normalize string letter casing.
+
+  let characterArray = new Array(26).fill(0);
 
   // Scan through array and push their number count in the corresponding array position.
   for (let i = 0; i < s.length; i++) {
-    let index = s[i] - "a";
-    characterArray[index] += 1;
+
+    // If-condition, to avoid characters other than "a" - "z".
+    let ASCIIcode = s.charCodeAt(i);
+    if(ASCIIcode>=97 && ASCIIcode<=122){
+
+      // Below code will increment the index from 0 to 25 according to the character's alphabetical order.
+      let index = ASCIIcode - "a".charCodeAt(0);
+      characterArray[index]++;
+    }
+
   }
-  let max = Math.max(...characterArray) + "a";
-  return max;
+  let firstMaxValue = Math.max(...characterArray);
+  let maxValueIndex = characterArray.indexOf(firstMaxValue);
+
+  let mostRepeatedCharacter = maxValueIndex + "a".charCodeAt(0); // Smaller in Lexicographical Order.
+
+  // Creating number into a ASCII character and returning.
+  return String.fromCharCode(mostRepeatedCharacter);
 }
 
 //------------
