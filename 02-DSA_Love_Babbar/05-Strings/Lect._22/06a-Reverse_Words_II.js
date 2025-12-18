@@ -20,26 +20,18 @@ https://leetcode.com/problems/reverse-words-in-a-string-iii/description/
 
 // -----------------------------
 
-// 01. A function to reverse words - Using JS helper function "split and join".
+// 01. A function to mirror words - Using JS helper function "split and join".
 function mirrorSentenceWords(s) {
-  // Split is used to turn string characters array into a word array based on the delimiter.
-  // Below I've used a single white space as delimiter to covert the characters array into a word array.
-  let wordsArray = s.trim().replace(/\s+/g, " ").split(" ");
+  // Normalize the white spaces in the given string.
+  let normalizedString = s.trim().replace(/\s+/g, " ");
 
-  // Now, we have a string words as an array elements, thus now we can play around with them in anyway we like.
+  // Split the normalized string character array on the basis of the single white spaces and let a word array form.
+  let wordsArray = normalizedString.split(" ");
 
-  let i = 0;
-  let j = wordsArray.length - 1;
+  // Loop through array using map method and return the word after applying split, reverse and join method.
+  let mirroredSentence = wordsArray.map((w) => w.split("").reverse().join(""));
 
-  while (i < j) {
-    [wordsArray[i], wordsArray[j]] = [wordsArray[j], wordsArray[i]];
-
-    i++;
-    j--;
-  }
-  // Convert array back to a string using join method.
-  wordsArray = wordsArray.join(" ");
-  return wordsArray;
+  return mirroredSentence.join(" ");
 }
 
 //------------
