@@ -30,5 +30,5 @@ function url_ifyString(s) {
 }
 
 //------------
-let s = "Hi there,   how are you.";
+let s = "Hi there, how are you.";
 console.log("URL-fy string:", url_ifyString(s));
