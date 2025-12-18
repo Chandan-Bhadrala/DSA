@@ -13,12 +13,15 @@ https://leetcode.com/problems/remove-all-occurrences-of-a-substring/description/
 // -----------------------------
 
 // 01. A function implementation to remove all occurrences of a substring - using replace helper function.
-function removeAllSubstrings(s, part) {}
+function removeAllSubstrings(s, part) {
+  while (s.includes(part)) s = s.replace(part, "");
+  return s;
+}
 
 //------------
 
-let s = "daabcbaabcbc"
-let substring = "abc" // Output: "dab"
+let s = "daabcbaabcbc";
+let substring = "abc"; // Output: "dab"
 // let s1 = "Hi there, how are you.";
 // let substring1 = "there,";
 console.log(
