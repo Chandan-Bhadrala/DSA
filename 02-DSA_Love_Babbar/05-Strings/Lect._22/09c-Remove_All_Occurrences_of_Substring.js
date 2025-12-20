@@ -18,7 +18,15 @@ https://leetcode.com/problems/remove-all-occurrences-of-a-substring/description/
 ## New approach:
  1. Use split and join to create a solution.
  2. And remove substring upon only finding the full part to avoid pointer rollback.
-* /
+
+## Left the problem.
+  1. It is too difficult for me to create even array based solution.
+    1.1. Or I just don't want to spend anymore time on it.
+    1.2. As I will never be doing this code in real life.
+  2. I'm most likely going to be a fullstack in some average company and not in the MAANG ever or building compilers or DOM.
+    2.1. So, I can leave to try to solve this question with bare minimum helpers and start moving forward.
+  3. Might solve this problem if I ever needed in the future.
+*/
 
 
 // 01. A function implementation to remove all occurrences of a substring - w/o using replace helper function.
@@ -67,3 +75,64 @@ console.log(
   "Given string after removing the substring:",
   removeAllSubstrings(s, substring)
 );
+
+// ChatGPT Solution.
+// Solution 1:
+function removeAllSubstrings1(s, part) {
+  let result = [];
+  let partLen = part.length;
+
+  for (let ch of s) {
+    result.push(ch);
+
+    // Check only when enough characters exist
+    if (result.length >= partLen) {
+      let match = true;
+
+      for (let i = 0; i < partLen; i++) {
+        if (result[result.length - partLen + i] !== part[i]) {
+          match = false;
+          break;
+        }
+      }
+
+      // Remove substring if matched
+      if (match) {
+        result.length -= partLen;
+      }
+    }
+  }
+
+  return result.join("");
+}
+
+//--------------
+
+// Solution 2:
+function removeAllSubstrings2(s, part) {
+  let result = "";
+  let partLen = part.length;
+
+  for (let i = 0; i < s.length; i++) {
+    result += s[i];
+
+    // Only check when result is long enough
+    if (result.length >= partLen) {
+      let match = true;
+
+      for (let j = 0; j < partLen; j++) {
+        if (result[result.length - partLen + j] !== part[j]) {
+          match = false;
+          break;
+        }
+      }
+
+      // Remove the substring if matched
+      if (match) {
+        result = result.slice(0, result.length - partLen);
+      }
+    }
+  }
+
+  return result;
+}

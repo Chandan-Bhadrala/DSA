@@ -1,4 +1,10 @@
 #TODO:
+## Future Note:
+- Did till 08. DSA question onwards 09 is not that easy.
+    - Solution to 09 onwards are time consuming and need some good amount of thought process.
+    - So as of now, I'm choosing to move on to the next topic of 2D array and then recursion.
+- I might do them in future, if I ever need or require advance and complex ways to iterate over the strings to retrieve the solution.
+
 
 ## Lect. 22
 01. Length of String
