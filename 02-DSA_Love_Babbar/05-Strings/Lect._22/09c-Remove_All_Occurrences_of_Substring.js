@@ -15,30 +15,9 @@ https://leetcode.com/problems/remove-all-occurrences-of-a-substring/description/
 
 // -----------------------------
 /**
-## Error in my approach:
- 1. I was trying to solve this problem without using any helper at all.
-  1.1. I was trying to solve it by only using if and for-loop.
-  1.2. ChatGPT suggested that'll make the problem solution completely rudimentary and way too difficult than it is needed.
-2. So, ChatGPT suggested to use join or slice to solve this problem at least.
-  2.1. In DSA using join or slice is 100 % acceptable.
-  2.2. Only using replace, replaceAll or regex are generally discouraged in DSA problems.
-    2.2.1. However, replace and regex are completely acceptable and often preferred in **production code**.
-3. As per ChatGPT helpers which abstracts away the need for loop and provide the solution without incremental aggregation are not useful for the DSA part.
-  3.1. As use of regex and replace completely hides the need for looping and aggregation.
-  3.2. This prevents demonstrating understanding of how the solution is built incrementally.
-4. However, split, join and slice doesn't abstracts away the need for the loop to scan and aggregate the desired solution.
-  4.1. Thus, split, join, slice, charAt, push, pop, length, Indexing: s[i] are 100 % fine to use in DSA.
-  4.2. As, they assist with basic operations but still require manual control over iteration and logic.
-  4.3. As they don't hide the need for the looping the variable for extracting the desired solution.
-  4.4. Therefore, helpers such as:
-- split
-- join
-- slice
-- charAt
-- push / pop
-- length
-- indexing (s[i])
-are fully acceptable in DSA solutions.
+## New approach:
+ 1. Use split and join to create a solution.
+ 2. And remove substring upon only finding the full part to avoid pointer rollback.
 * /
 
 
