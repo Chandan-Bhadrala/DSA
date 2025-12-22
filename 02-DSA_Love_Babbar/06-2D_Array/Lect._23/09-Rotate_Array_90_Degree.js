@@ -1,10 +1,15 @@
 /**
-# Find largest row sum.
+# Rotate Array by 90 degree.
 Link:
-https://leetcode.com/problems/sum-in-a-matrix/description/
+https://leetcode.com/problems/rotate-image/
 ## Question:
 ## Solution Approach:
-  1. 
+  1. Iterate one array and find largest number within it push it in an another array.
+    1.1. Delete that number from too from that array.
+  2. Similarly find the largest number from the rest of the inner arrays and push it into the same another array.
+    2.2. Delete those numbers too from that inner arrays.
+  3. Take the largest number among the another new array and add that to the total sum.
+  4. Keep repeating the step 1 and 2 till the inner gets exhaust.
 */
 // -----------------------------
 

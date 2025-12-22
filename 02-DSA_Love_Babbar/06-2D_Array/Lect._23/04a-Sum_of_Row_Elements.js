@@ -2,39 +2,36 @@
 # Calculate sum of row elements.
 
 ## Question:
-1. Take the 2D array and a target value to search.
-2. Return boolean as a search result.
+1. Calculate sum of each row and print the same for the each row.
 ## Solution Approach:
-  1.  
+  1. Traverse each row and add the elements and push the sum in a new 1D array.  
 */
 // -----------------------------
 
-// 01. Create a 2D array. For given 1D array.
-function findTarget(matrix, target) {
+// ## Function to calculate row-wise sum.
+function rowSum(matrix) {
   let rows = matrix.length;
   let cols = matrix[0].length;
+  let sumMatrix = [];
 
-  // Iterate row iterator to access matrix[i][j] properly.
+  // Traverse matrix.
   for (let i = 0; i < rows; i++) {
-    // Iterate col iterator to access matrix[i][j] properly.
+    let rowSum = 0;
     for (let j = 0; j < cols; j++) {
-      if (matrix[i][j] == target) return true;
+      rowSum += matrix[i][j];
     }
+    sumMatrix.push(rowSum);
   }
 
-  // Looped out of the matrix, i.e., never found the target value.
-  return false;
+  return sumMatrix;
 }
 
 // --- Output:
 console.log(
-  "Does target exists in the array? ",
-  findTarget(
-    [
-      [1, 4, 7],
-      [2, 5, 8],
-      [3, 6, 9],
-    ],
-    3
-  )
+  "Sum of Row elements:",
+  rowSum([
+    [1, 4, 7],
+    [2, 5, 8],
+    [3, 6, 9],
+  ])
 );

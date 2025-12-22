@@ -2,34 +2,34 @@
 # Find sum of column elements.
 
 ## Question:
-1. Take the 2D array and a target value to search.
-2. Return boolean as a search result.
+  1. Traverse each col and add the elements and push the sum in a new 1D array.  
 ## Solution Approach:
   1.  
 */
 // -----------------------------
 
-// 01. Create a 2D array. For given 1D array.
-function findTarget(matrix, target) {
+// ## Function to calculate col-wise sum.
+function colSum(matrix) {
   let rows = matrix.length;
   let cols = matrix[0].length;
+  let sumMatrix = [];
 
-  // Iterate row iterator to access matrix[i][j] properly.
-  for (let i = 0; i < rows; i++) {
-    // Iterate col iterator to access matrix[i][j] properly.
-    for (let j = 0; j < cols; j++) {
-      if (matrix[i][j] == target) return true;
+  // Traverse matrix.
+  for (let j = 0; j < cols; j++) {
+    let colSum = 0;
+    for (let i = 0; i < cols; i++) {
+      colSum += matrix[i][j];
     }
+    sumMatrix.push(colSum);
   }
 
-  // Looped out of the matrix, i.e., never found the target value.
-  return false;
+  return sumMatrix;
 }
 
 // --- Output:
 console.log(
-  "Does target exists in the array? ",
-  findTarget(
+    "Sum of Col elements:",
+  colSum(
     [
       [1, 4, 7],
       [2, 5, 8],
