@@ -6,12 +6,20 @@
 1. Take the 2D array and a target value to search.
 2. Return boolean as a search result.
 ## Solution Approach (Binary Search):
-  1. Will make the target comparison with the row's last column element.  
-  2. If the last row element is smaller than the target value then, will increment the row value.
-  3. Else will decrement the column value.
-  4. The invariant here is:
-    At any step, all elements left of col are smaller
-    and all elements below row are larger
+  1. Will consider the 2D sorted matrix as a flattened sorted 1D array.
+  2. Keep start = matrix[0][0] value and end = matrix[lastRow][lastColumn].
+    2.1. Rather Keep start = 0 index and end = lastIndex.
+    2.2. And apply Binary search on sorted indices.
+  3. mid = Math.floor((start + end)/2).
+  4. midValue = matrix[Math.floor(mid/n)][mid%n]
+    4.1. Reason for above rowIndex and columnIndex values is written in notes in hashnode.
+    4.2.You can consider theatre seating arrangement to understand the reasoning behind the rowIndex and columnIndex values.
+    4.3. Assume theatre has seats in 1 dimension only.
+    4.4. 4 seats in every row section and you got ticket for seat 19.
+    4.5. How would you find your seat.
+    4.6. Row section Int(19/4) = 4.
+    4.7. Seat in Row section, 19%4 = 3.
+
 */
 // -----------------------------
 
