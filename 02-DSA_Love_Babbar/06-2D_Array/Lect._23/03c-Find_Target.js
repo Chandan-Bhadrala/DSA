@@ -1,15 +1,21 @@
 /**
-# Find the target in the given 2D array (Linear Search).
+# Find the target in the given 2D array (Binary Search).
+## Given matrix is sorted in ascending order.
 
 ## Question:
 1. Take the 2D array and a target value to search.
 2. Return boolean as a search result.
-## Solution Approach:
-  1.  
+## Solution Approach (Binary Search):
+  1. Will make the target comparison with the row's last column element.  
+  2. If the last row element is smaller than the target value then, will increment the row value.
+  3. Else will decrement the column value.
+  4. The invariant here is:
+    At any step, all elements left of col are smaller
+    and all elements below row are larger
 */
 // -----------------------------
 
-// ## Linear Search the target in a 2D array. Time Complexity: O(m * n)
+// ## Binary Search the target in a 2D array. Time Complexity: O(log n)
 function findTarget(matrix, target) {
   let rows = matrix.length;
   let cols = matrix[0].length;
@@ -31,9 +37,9 @@ console.log(
   "Does target exists in the array? ",
   findTarget(
     [
-      [1, 2, 3],
-      [4, 5, 6],
-      [7, 8, 9],
+      [1, 4, 7],
+      [2, 5, 8],
+      [3, 6, 9],
     ],
     3
   )

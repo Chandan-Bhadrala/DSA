@@ -1,11 +1,12 @@
 /**
-# Find the target in the given 2D array (Binary Search).
-## Given matrix is sorted in ascending order.
+# Find the target in the given 2D array (Staircase Search).
+1. Given matrix is sorted in ascending order.
+2. Time Complexity: O(m + n) instead of O(m * n) as in a Linear search in 03a) Code. 
 
 ## Question:
 1. Take the 2D array and a target value to search.
 2. Return boolean as a search result.
-## Solution Approach (Binary Search):
+## Solution Approach (Staircase Search):
   1. Will make the target comparison with the row's last column element.  
   2. If the last row element is smaller than the target value then, will increment the row value.
   3. Else will decrement the column value.
@@ -15,16 +16,23 @@
 */
 // -----------------------------
 
-// 01. Create a 2D array. For given 1D array.
+// ## Staircase Search the target in a 2D array. Time Complexity: O(m + n)
 function findTarget(matrix, target) {
   let rows = matrix.length;
   let cols = matrix[0].length;
 
-  // Iterate row iterator to access matrix[i][j] properly.
-  for (let i = 0; i < rows; i++) {
-    // Iterate col iterator to access matrix[i][j] properly.
-    for (let j = 0; j < cols; j++) {
-      if (matrix[i][j] == target) return true;
+  let row = 0;
+  // let col = -1; // It doesn't access last element in JS. -1 access last array element in the Python.
+  let col = cols - 1;
+
+  while (row < rows && col >= 0) {
+    let currValue = matrix[row][col];
+    console.log(currValue);
+    if (currValue == target) return true;
+    if (currValue < target) {
+      row++;
+    } else {
+      col--;
     }
   }
 
@@ -37,10 +45,10 @@ console.log(
   "Does target exists in the array? ",
   findTarget(
     [
-      [1, 4, 7],
-      [2, 5, 8],
-      [3, 6, 9],
+      [1, 2, 3],
+      [4, 5, 6],
+      [7, 8, 9],
     ],
-    3
+    7
   )
 );
