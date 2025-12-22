@@ -1,6 +1,8 @@
 /**
 # Find the target in the given 2D array (Binary Search).
 ## Given matrix is sorted in ascending order.
+Link:
+https://leetcode.com/problems/search-a-2d-matrix/
 
 ## Question:
 1. Take the 2D array and a target value to search.
@@ -28,11 +30,24 @@ function findTarget(matrix, target) {
   let rows = matrix.length;
   let cols = matrix[0].length;
 
-  // Iterate row iterator to access matrix[i][j] properly.
-  for (let i = 0; i < rows; i++) {
-    // Iterate col iterator to access matrix[i][j] properly.
-    for (let j = 0; j < cols; j++) {
-      if (matrix[i][j] == target) return true;
+  let start = 0; // First index.
+  let end = rows * cols - 1; // Last Index to perform binary search.
+
+  while (start <= end) {
+    let mid = Math.floor((start + end) / 2);
+
+    let midValue = matrix[Math.floor(mid / cols)][mid % cols];
+
+    // Return true if target value is found.
+    if (midValue == target) {
+      return true;
+    }
+
+    // Modify value of start or end to continue the search.
+    if (midValue > target) {
+      end = mid - 1;
+    } else {
+      start = mid + 1;
     }
   }
 
@@ -45,9 +60,9 @@ console.log(
   "Does target exists in the array? ",
   findTarget(
     [
-      [1, 4, 7],
-      [2, 5, 8],
-      [3, 6, 9],
+      [1, 2, 3],
+      [4, 5, 6],
+      [7, 8, 9],
     ],
     3
   )
