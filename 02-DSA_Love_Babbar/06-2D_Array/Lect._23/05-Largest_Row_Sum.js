@@ -1,34 +1,37 @@
 /**
 # Find largest row sum.
-Link:
-https://leetcode.com/problems/sum-in-a-matrix/description/
+
 ## Question:
+1. Find the row whose elements sum is the largest among all the rows.
+
 ## Solution Approach:
-  1. 
+1. 
 */
 // -----------------------------
 
-// 01. Create a 2D array. For given 1D array.
-function findTarget(matrix, target) {
+// ## Function to find the row with the largest element sum.
+function largestSumRow(matrix) {
   let rows = matrix.length;
   let cols = matrix[0].length;
+  let sumMatrix = [];
 
-  // Iterate row iterator to access matrix[i][j] properly.
+  // Traverse matrix.
   for (let i = 0; i < rows; i++) {
-    // Iterate col iterator to access matrix[i][j] properly.
+    let rowSum = 0;
     for (let j = 0; j < cols; j++) {
-      if (matrix[i][j] == target) return true;
+      rowSum += matrix[i][j];
     }
+    sumMatrix.push(rowSum);
   }
-
-  // Looped out of the matrix, i.e., never found the target value.
-  return false;
+  console.log(...sumMatrix);
+  console.log(sumMatrix);
+  return Math.max(...sumMatrix);
 }
 
 // --- Output:
 console.log(
   "Does target exists in the array? ",
-  findTarget(
+  largestSumRow(
     [
       [1, 4, 7],
       [2, 5, 8],
