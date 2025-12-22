@@ -1,5 +1,5 @@
 /**
-# Find the target in the given 2D array.
+# Calculate sum of row elements.
 
 ## Question:
 1. Take the 2D array and a target value to search.
