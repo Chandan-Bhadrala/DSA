@@ -14,12 +14,11 @@ function spiralPrint(matrix) {}
 // --- Output:
 console.log(
   "Array elements printed in a spiral fashion:",
-  findTarget(
+  spiralPrint(
     [
       [1, 4, 7],
       [2, 5, 8],
       [3, 6, 9],
-    ],
-    3
+    ]
   )
 );
