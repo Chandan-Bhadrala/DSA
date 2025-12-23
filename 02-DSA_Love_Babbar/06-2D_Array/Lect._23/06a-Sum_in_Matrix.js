@@ -19,6 +19,7 @@ Repeat for n columns: O(mn²).
 */
 // -----------------------------
 
+// Brute force got by the Chat GPT.
 // ## Find Sum in a Matrix.
 function sumMatrix(matrix) {
   let m = nums.length;
