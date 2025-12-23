@@ -10,18 +10,23 @@ https://leetcode.com/problems/sum-in-a-matrix/description/
 // -----------------------------
 
 // ## Find Sum in a Matrix.
-function sumMatrix(matrix, target) {
+function sumMatrix(matrix) {
+
+  // map function is changing the original array. Because map function is passing the value and which in this case is a reference to the inner-array.
+  // So, sort is changing the original inner array as sort has reference to the shared array via. reference.
+  // If the inner element of the array would have been a numbers then map would have also passed numbers as value but reference issue would not have been there for numbers.
+  matrix.map((arr) => arr.sort());
+
+
   
 }
 
 // --- Output:
 console.log(
   "Sum in Matrix ",
-  findTarget(
-    [
-      [1, 4, 7],
-      [2, 5, 8],
-      [3, 6, 9],
-    ]
-  )
+  sumMatrix([
+    [2, 5, 1],
+    [2, 9, 3],
+    [0, 7, 4],
+  ])
 );
