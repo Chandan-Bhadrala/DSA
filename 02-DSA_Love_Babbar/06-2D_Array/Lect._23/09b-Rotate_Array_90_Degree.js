@@ -8,7 +8,9 @@ https://leetcode.com/problems/rotate-image/
 */
 // -----------------------------
 
-// ## Rotate Array by 90 degrees.
+// ## Rotate Array by 90 degrees - in-place rotation, intelligent and practical solution. Production grade or production needed.
+// Production needed in-place manipulation. As array could easily contains millions or billions of entry.
+// So, creating a copy of an array could be memory in-efficient or costly.
 function rotateArrayBy90(matrix) {
   
 }
