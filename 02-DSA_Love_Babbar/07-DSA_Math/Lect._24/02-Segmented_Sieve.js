@@ -1,5 +1,5 @@
 /**
-# Initialize and Access 2D Array.
+# Segmented Sieve.
 
 ## Question:
 1. Take the input and store it row-wise.
