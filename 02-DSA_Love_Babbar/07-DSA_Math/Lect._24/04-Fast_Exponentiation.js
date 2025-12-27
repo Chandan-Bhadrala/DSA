@@ -1,5 +1,7 @@
 /**
 # Fast Exponentiation.
+Tutorial Link:
+https://youtu.be/hFWckDXE-K8?si=l9aDtoE3hOmYUMjh
 
 ## Question:
 

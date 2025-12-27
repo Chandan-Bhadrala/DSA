@@ -1,5 +1,7 @@
 /**
 # GCD by Euclid's Theorem.
+Tutorial Link:
+https://youtu.be/yHwneN6zJmU?si=3MAJ89tOOor0nzFe
 
 ## Question:
 ## Solution Approach:

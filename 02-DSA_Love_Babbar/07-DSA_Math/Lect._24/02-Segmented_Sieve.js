@@ -1,43 +1,75 @@
 /**
-# Segmented Sieve.
+# Segmented Sieve. By AI Gemini.
 
 ## Question:
-1. Take the input and store it row-wise.
-Input:
-arr: [1, 2, 3, 4, 5, 6, 7, 8, 9], row: 3, col: 3
-Output:
-1 2 3
-4 5 6
-7 8 9
+
 ## Solution Approach:
-  1.  
+ 
 */
 // -----------------------------
 
-// 01. Create a 2D array. For given 1D array.
-function row_wise_Initialization(arr, rows, cols) {
-  // Declared an empty array.
-  let matrix = []; // To create a 2D array.
+/**
+ * Uses Segmented Sieve to find primes in the range [low, high]
+ */
+function segmentedSieve(low, high) {
+    // Step 1: Find all primes up to sqrt(high) using simple sieve
+    const limit = Math.floor(Math.sqrt(high));
+    const primeBase = simpleSieve(limit);
 
-  let k = 0; // To iterate over the given 1D arr.
+    // Step 2: Initialize boolean array for the range [low, high]
+    // index 0 represents the number 'low', index 1 represents 'low + 1'
+    const rangeSize = high - low + 1;
+    const isPrime = new Array(rangeSize).fill(true);
 
-  // ## Initialize an array.
-  // 1. For-loop to iterate over rows.
-  for (let i = 0; i < rows; i++) {
-    // 2. Declare an empty rows. To avoid undefined rows
-    matrix[i] = [];
+    // Special case: if low is 1, mark it as false
+    if (low === 1) isPrime[0] = false;
 
-    // 3. For-loop to iterate over columns of the row.
-    for (let j = 0; j < cols; j++) {
-      matrix[i][j] = arr[k];
-      k++;
+    // Step 3: Use the base primes to mark multiples in the range
+    for (let i = 0; i < primeBase.length; i++) {
+        const p = primeBase[i];
+
+        // Find the first multiple of p that is >= low
+        let start = Math.floor(low / p) * p;
+        if (start < low) start += p;
+        
+        // If start is the prime itself, move to the next multiple
+        if (start === p) start += p;
+
+        // Mark multiples of p in the [low, high] range
+        for (let j = start; j <= high; j += p) {
+            isPrime[j - low] = false;
+        }
     }
-  }
-  return matrix;
+
+    // Step 4: Collect primes
+    const primes = [];
+    for (let i = 0; i < rangeSize; i++) {
+        if (isPrime[i]) {
+            primes.push(low + i);
+        }
+    }
+    return primes;
 }
 
-// --- Output:
-console.log(
-  "2D Matrix:",
-  row_wise_Initialization([1, 2, 3, 4, 5, 6, 7, 8, 9], 3, 3)
-);
+/**
+ * Helper: Standard Sieve to get base primes
+ */
+function simpleSieve(limit) {
+    const isPrime = new Array(limit + 1).fill(true);
+    isPrime[0] = isPrime[1] = false;
+    for (let p = 2; p * p <= limit; p++) {
+        if (isPrime[p]) {
+            for (let i = p * p; i <= limit; i += p)
+                isPrime[i] = false;
+        }
+    }
+    const primes = [];
+    for (let i = 2; i <= limit; i++) {
+        if (isPrime[i]) primes.push(i);
+    }
+    return primes;
+}
+
+// Example: Primes between 100 and 150
+console.log(segmentedSieve(100, 150));
+// Output: [101, 103, 107, 109, 113, 127, 131, 137, 139, 149]
