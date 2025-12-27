@@ -7,7 +7,7 @@
 3. However, Eratosthenes has provided a efficient way to find the prime number up till a given number.
 4. As finding prime numbers upto a large number like "10,000" could be a CPU heavy task, if computed using naive approach.
 
-Time Complexity (Naive Approach): O(N^2).
+Time Complexity (Naive Approach): O(N * sqrt(N)).
 Time Complexity (Sieve of Eratosthenes): O(N log log N).
 
 Time Complexity Difference:
@@ -23,12 +23,49 @@ Sieve of Eratosthenes is approximately **200 times** faster than a Naive approac
 */
 // -----------------------------
 
-// 01. Create a 2D array. For given 1D array.
+// ## Sieve of Eratosthenes for finding the Prime Number upto given number "n".
 function sieveOfEratosthenes(n) {
+  // We will consider array indices to be our numbers and its boolean value will indicate, whether it's prime or not.
+  // Initially we are considering every number to be a prime number.
+  // As it is easier to mark "Not a Prime Number" in an array than to mark numbers as a prime number in a code.
+  let listOfNumbers = new Array(n + 1).fill(1);
+
+  // 0 and 1 are not a prime number.
+  listOfNumbers[0] = 0;
+  listOfNumbers[1] = 0;
+
+  // Will push final sieved prime-numbers into this (primeNumbers) array.
   let primeNumbers = [];
 
+  // ## Filter out multiples of the initial prime numbers.
+  // 01. Run for loop only till "i * i < n".
+  // i * i <= n is kept instead of i * i < n. Because consider n = 49.
+  // For i * i < n, we won't be checking for 7 and our code won't check beyond i = 6. Which will yield wrong boundary output.
+  for (let i = 2; i * i <= n; i++) {
+    // Enter filter method only if the "i" number is a prime number.
+    if (listOfNumbers[i]) {
+      // 02. Filter out multiples of initial prime numbers in the listOfNumbers array.
+      // Instead of running every numbers table starting from 2 (i.e., j = i * 2), we can further improve code by starting multiple table from "j = i * i".
+      // As doing 7 * 2, will not yield any new result.
+      // So, starting from 7 * 7 makes more sense.
+      // j is kept <= instead of <, because we wish to check whether the last number n is a multiple of any prime number or not.
+      for (let j = i * 2; j <= n; j = j + i) {
+        // Start marking multiples of the initial prime number as "not a prime number".
+        listOfNumbers[j] = 0;
+      }
+    }
+  }
+
+  // If index holds a value 1, then it means it's an prime number and thus push its index value into the primeNumbers Array.
+  for (let i = 0; i < listOfNumbers.length; i++) {
+    if (listOfNumbers[i]) {
+      primeNumbers.push(i);
+    }
+  }
+
+  // Finally return primeNumbers Array.
   return primeNumbers;
 }
 
 // --- Output:
-console.log("Prime Numbers:", sieveOfEratosthenes(50));
+console.log("Prime Numbers:", sieveOfEratosthenes(100));

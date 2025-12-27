@@ -65,7 +65,7 @@ function sieveOfEratosthenes(n) {
 }
 
 // Example Usage:
-console.log(sieveOfEratosthenes(30)); 
+console.log(sieveOfEratosthenes(100)); 
 // Output: [2, 3, 5, 7, 11, 13, 17, 19, 23, 29]
 
 /**
@@ -75,7 +75,7 @@ console.log(sieveOfEratosthenes(30));
   - Space Complexity: $O(n)$. We require an array to store the "prime" status of every number up to $n$.
 
 ### Why do we stop at the square root of n?
-If a number $n$ has a factor larger than sqrt n, it must also have a factor smaller than sqrt n. 
+If a number **n** has a factor larger than sqrt n, it must also have a factor smaller than sqrt n. 
 
 For example, if **n = 100**, **sqrt n = 10**. If we check all multiples of primes up to 10, we will have already marked 20, 30, 40... 90, 100. There is no need to check multiples of 11 because **11 X 2** was already marked by 2, **11 X 3** by 3, and so on.
 */
