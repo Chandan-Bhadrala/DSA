@@ -1,23 +1,22 @@
 /**
-# Print numbers from 1 to n
+# Print n to 1.
 
 ## Question:
 ## Solution Approach:
 */
 // -----------------------------
 
-function Euclid_GCD(a, b) {
-  while (b != 0) {
-    let remainder = a % b;
-    a = b;
-    b = remainder;
+function print_N(n) {
+  // Base case to terminate the recursive-loop.
+  if (n == 0) {
+    return;
   }
 
-  return a;
+  // Print before creating the recursive call stack.
+  console.log(n);
+  print_N(n - 1); // Tail Recursion.
+  // Upon unwinding the call stack do nothing.
 }
 
 // --- Output:
-let a = 90;
-let b = 100;
-
-console.log(`GCD of two numbers ${a} and ${b} is:`, Euclid_GCD(a, b));
+print_N(9);
