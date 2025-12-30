@@ -6,7 +6,7 @@
 */
 // -----------------------------
 
-function print_N(n) {
+function print_n(n) {
   let x = 1;
   // 01. Base Case:
   if (x == n) {
@@ -16,11 +16,11 @@ function print_N(n) {
   // Recursive Case: Call main function with smaller argument value, till we reach to the base case argument value.
   console.log(x);
   x++;
-  print_N(x);
+  print_n(x);
 }
 
 // --- Output:
-print_N(9);
+print_n(9);
 
 /**
 Error: In above approach.

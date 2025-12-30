@@ -1,5 +1,5 @@
 /**
-# Collect numbers from n to 1 skipping even numbers in an array.
+# Collect numbers from 1 to n skipping even numbers in an array.
 
 ## Question:
 ## Solution Approach:
@@ -7,7 +7,7 @@
 // -----------------------------
 
 function collect_n_skip_even(n) {
-  // Base case, only to terminate the recursive-loop.
+  // Base case, for terminating the recursive-loop and providing/returning the seed value (i.e., an array in this case) for further use by the waiting recursive calls.
   if (n == 0) {
     return [];
   }
@@ -26,7 +26,12 @@ function collect_n_skip_even(n) {
 
   if (n % 2 == 1) {
     // Returning updated array to next recursive function call which is about to be unwound.
-    return numbersArray.push(n);
+
+    // return numbersArray.push(n);
+    // ⬆️ Wrong, JS after using a push method returns a number (array length). So, I'm returning a number instead of the resultant array.
+
+    let arrayLength = numbersArray.push(n); // Push method returns new array length and not an array itself.
+    return numbersArray; // So, returning updated array separately.
   }
 
   // Returning untouched value (an array) from the previous recursive call.

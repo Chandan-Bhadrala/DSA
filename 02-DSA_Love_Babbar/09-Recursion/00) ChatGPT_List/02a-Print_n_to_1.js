@@ -6,7 +6,7 @@
 */
 // -----------------------------
 
-function print_N(n) {
+function print_n(n) {
   // Base case to terminate the recursive-loop.
   if (n == 0) {
     return;
@@ -14,9 +14,9 @@ function print_N(n) {
 
   // Print before creating the recursive call stack.
   console.log(n);
-  print_N(n - 1); // Tail Recursion.
+  print_n(n - 1); // Tail Recursion.
   // Upon unwinding the call stack do nothing.
 }
 
 // --- Output:
-print_N(9);
+print_n(9);

@@ -114,3 +114,6 @@ You are right to reject it *at this stage*.
 > **If you cannot narrate recursion line-by-line, formulas are useless.**
 
 You are doing the right thing by insisting on execution-first understanding.
+
+
+
