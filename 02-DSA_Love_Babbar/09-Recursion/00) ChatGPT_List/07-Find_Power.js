@@ -6,18 +6,15 @@
 */
 // -----------------------------
 
-function Euclid_GCD(a, b) {
-  while (b != 0) {
-    let remainder = a % b;
-    a = b;
-    b = remainder;
+function exp_power(n, exp) {
+  // Base case to seed a value and to terminate the recursion call stack loop.
+  if (exp <= 0) {
+    return 1;
   }
 
-  return a;
+  // Base case will return 1 and waiting recursive calls will multiply their value of n's with base-case provided seed value.
+  return exp_power(n, exp - 1) * n;
 }
 
 // --- Output:
-let a = 90;
-let b = 100;
-
-console.log(`GCD of two numbers ${a} and ${b} is:`, Euclid_GCD(a, b));
+console.log(exp_power(10, 4));

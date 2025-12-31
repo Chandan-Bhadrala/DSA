@@ -6,18 +6,9 @@
 */
 // -----------------------------
 
-function Euclid_GCD(a, b) {
-  while (b != 0) {
-    let remainder = a % b;
-    a = b;
-    b = remainder;
-  }
-
-  return a;
+function factorial(n) {
+  
 }
 
 // --- Output:
-let a = 90;
-let b = 100;
-
-console.log(`GCD of two numbers ${a} and ${b} is:`, Euclid_GCD(a, b));
+console.log(factorial(10));
