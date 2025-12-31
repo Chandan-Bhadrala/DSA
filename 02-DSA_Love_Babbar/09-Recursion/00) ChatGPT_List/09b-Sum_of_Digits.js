@@ -6,8 +6,10 @@
 Requirement: I need recursive call to either return sum or the digits.
 1. If I make recursion call to return sum, then I can return that sum to the main calling function too.
 */
+
 // -----------------------------
 
+// Trial 2: ❌ Failed 
 function sum_of_digits(n, sum = 0) {
   // Base Case: Terminate the recursive loop and seed initial value for sum-> 0.
   if (n <= 0) {
