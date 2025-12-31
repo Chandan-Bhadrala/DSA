@@ -6,18 +6,23 @@
 */
 // -----------------------------
 
-function Euclid_GCD(a, b) {
-  while (b != 0) {
-    let remainder = a % b;
-    a = b;
-    b = remainder;
-  }
+function factorial(n) {
+  // Base case to seed a value and to terminate the recursion call stack loop.
+  if (n == 1) return 1;
 
-  return a;
+
+  // factorial(n-1) for the very first time, will be equal to 1 as returned by the factorial(1) (Our Base Case).
+  // For next unwound recursion call factorial(n - 1) will be replaced by 1 and n will be 2.
+  // And this way result will be built upon unwinding of the waiting recursion call stacks.
+  return factorial(n - 1) * n;
 }
 
 // --- Output:
-let a = 90;
-let b = 100;
+console.log(factorial(10));
 
-console.log(`GCD of two numbers ${a} and ${b} is:`, Euclid_GCD(a, b));
+/**
+## Comment Improvement by ChatGPT.
+---
+## A more precise phrasing would be:
+factorial(n-1) resolves to 1 only after the base case is reached, and then its return value is used while the call stack unwinds.
+*/
