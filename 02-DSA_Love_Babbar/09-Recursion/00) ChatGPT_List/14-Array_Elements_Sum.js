@@ -6,9 +6,8 @@
 */
 // -----------------------------
 
-function factorial(n) {
-
+function arrayElementsSum(n) {
 }
 
 // --- Output:
-console.log(factorial(10));
+console.log(arrayElementsSum([1, 2, 3]));

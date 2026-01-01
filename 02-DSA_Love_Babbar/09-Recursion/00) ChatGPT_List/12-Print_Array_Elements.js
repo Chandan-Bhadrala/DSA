@@ -6,9 +6,9 @@
 */
 // -----------------------------
 
-function factorial(n) {
-
+function printArrayElements(n) {
+  return;
 }
 
 // --- Output:
-console.log(factorial(10));
+printArrayElements([1, 2, 3]);

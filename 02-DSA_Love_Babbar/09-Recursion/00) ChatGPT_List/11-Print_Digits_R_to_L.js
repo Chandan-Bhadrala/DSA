@@ -6,9 +6,18 @@
 */
 // -----------------------------
 
-function factorial(n) {
+function printDigitRightToLeft(n) {
+  // Base Case: return undefine, as no meaningful return value or seed value is required.
+  if (n <= 0) {
+    return;
+  }
 
+  console.log(n % 10);
+
+  printDigitRightToLeft(Math.floor(n / 10));
+
+  return;
 }
 
 // --- Output:
-console.log(factorial(10));
+printDigitRightToLeft(1234);

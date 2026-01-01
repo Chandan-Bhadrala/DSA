@@ -6,9 +6,7 @@
 */
 // -----------------------------
 
-function factorial(n) {
-
-}
+function largestElement(n) {}
 
 // --- Output:
-console.log(factorial(10));
+console.log(largestElement([1, 2, 3]));

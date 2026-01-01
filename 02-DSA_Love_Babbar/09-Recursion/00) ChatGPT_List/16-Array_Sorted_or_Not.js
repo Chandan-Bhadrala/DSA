@@ -6,9 +6,7 @@
 */
 // -----------------------------
 
-function factorial(n) {
-  
-}
+function isArraySorted(n) {}
 
 // --- Output:
-console.log(factorial(10));
+console.log(isArraySorted([1, 2, 3]));

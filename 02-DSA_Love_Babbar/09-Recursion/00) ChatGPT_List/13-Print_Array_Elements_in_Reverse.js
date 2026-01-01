@@ -6,9 +6,7 @@
 */
 // -----------------------------
 
-function factorial(n) {
-
-}
+function printArrayElementsReverse(n) {}
 
 // --- Output:
-console.log(factorial(10));
+printArrayElementsReverse([1, 2, 3]);
