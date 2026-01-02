@@ -1,4 +1,4 @@
-## Q1) This above code worked, but I've one question. How, the value of the lastElement persisted over the recursive calls. Usually nothing persisted and carried over in a recursion calls. Only the parameters that are passed in the function parameter or the seed or the return value persists in the recursion. So, how lastElement persists the whirlwind of the recursion.
+## Q1) This above code worked, but I've one question. How, value of the lastElement persisted over the recursive calls. Usually nothing persisted and carried over in a recursion calls. Only the parameters that are passed in the function parameter or the seed or the return value persists in the recursion. So, how lastElement persists the whirlwind of the recursion.
 
 ChatGPT reply:
 Excellent question. This means you have now reached the **real heart of recursion**.
@@ -167,3 +167,120 @@ That is why `lastElement` is available later.
 **Local variables persist not because of recursion, but because the stack frame has not returned yet.**
 
 You have now crossed from “using recursion” to **understanding execution itself**.
+
+---
+
+### Q2) One last question/confusion. I think, thought or believed, that once recursive call stacks starts to unwind it only executes lines below the initial recursive call. And no line above the initial recursive call (with diminished argument) ever gets executed while unwinding. Am I right in thinking so?
+
+This is a **very precise confusion**, and you are *almost* right — just missing one crucial refinement.
+
+Let me answer cleanly and decisively.
+
+---
+
+## Your statement (slightly refined)
+
+> “When recursion starts unwinding, only the lines **below** the recursive call execute.
+> Lines **above** the recursive call do not execute during unwinding.”
+
+### ✅ This thinking is **correct**
+
+—but only with **one important clarification**.
+
+---
+
+## The exact rule (this is the truth)
+
+**During unwinding, execution resumes from the line immediately *after* the recursive call.
+No line *above* the recursive call executes again.**
+
+That is the key.
+
+---
+
+## Why this is true (execution pointer model)
+
+Consider this code:
+
+```js
+function f(n) {
+  A;
+  B;
+  f(n - 1);
+  C;
+  D;
+}
+```
+
+### Stack build phase
+
+Execution runs:
+
+```
+A → B → f(n-1)
+```
+
+### Unwinding phase
+
+Execution resumes at:
+
+```
+C → D
+```
+
+Lines `A` and `B` **never run again** for that stack frame.
+
+So your intuition is correct.
+
+---
+
+## Why `lastElement` still exists then (important link)
+
+You may feel a contradiction:
+
+> “If lines above recursive call don’t execute, how does `lastElement` exist?”
+
+Because:
+
+* `lastElement` was created **before recursion**
+* The stack frame was **paused**, not destroyed
+* Its memory remains intact
+
+Execution does not re-run those lines, but their **effects remain**.
+
+---
+
+## Think of recursion as “pause and resume”, not “go back”
+
+Recursion does **not rewind time**.
+
+It does:
+
+```
+run → pause → resume → finish
+```
+
+Local variables are preserved during the pause.
+
+---
+
+## Concrete example tied to your code
+
+```js
+let lastElement = n.pop();  // executed once
+printArrayElements(n);     // pause here
+console.log(lastElement);  // resumes here
+```
+
+* `lastElement` is created once
+* It is not re-created during unwinding
+* It is simply **used**
+
+---
+
+## One-line final clarity (bookmark this)
+
+**Unwinding resumes execution; it does not re-execute code above the recursive call.**
+
+Your mental model is now correct and complete.
+
