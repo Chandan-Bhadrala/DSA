@@ -18,13 +18,13 @@ function printArrayElements(n) {
     return;
   }
 
-  // Grab the last popped element.
+  // Grab the last popped element and let it get stored in the stack frame.
   let lastElement = n.pop();
 
   // Call recursive function, with reduced array.
   printArrayElements(n);
 
-  // Upon unwinding print the array elements.
+  // Upon unwinding print the array elements, retrieve the array's last element from the lastElement variable stored in the stack frame.
   console.log(lastElement);
   return;
 }
