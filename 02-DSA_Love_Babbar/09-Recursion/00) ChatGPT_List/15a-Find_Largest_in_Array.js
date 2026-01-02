@@ -7,19 +7,32 @@
 // -----------------------------
 
 // Linear Search.
-function largestElement(n, i = 0, max) {
+function largestElement(arr, i = 0, max = arr[0]) {
   // Base case:
-  if (i >= n.length) return;
+  if (i >= arr.length) return;
 
-  max = n[i];
   i++;
 
-  if (n[i] > max) max = n[i];
+  if (arr[i] > max) max = arr[i];
 
-  largestElement(n, i++, max);
+  largestElement(arr, i, max);
 
   return max;
 }
 
 // --- Output:
-console.log(largestElement([1, 3, 5, 7, 9, 11]));
+console.log(largestElement([1, 3, 5, 7]));
+
+/**
+## Recursive Call Frame Stacking
+f(i=0)
+f(i=1)
+f(i=2)
+f(i=3)
+
+## Unwinding Phase
+f(i=3)
+f(i=2)
+f(i=1)
+f(i=0)
+*/
