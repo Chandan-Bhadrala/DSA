@@ -6,7 +6,6 @@
 */
 // -----------------------------
 
-// Linear Search
 function removeOccurrences(str, target, i = 0) {}
 
 // --- Output:
