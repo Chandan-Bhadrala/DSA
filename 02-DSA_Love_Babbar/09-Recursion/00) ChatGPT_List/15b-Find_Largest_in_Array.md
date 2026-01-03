@@ -1,4 +1,4 @@
-## Q1) Can we use binary search in the recursion?
+### Q1) Can we use binary search in the recursion?
 
 ChatGPT reply:
 Yes — **binary search is naturally recursive**.
@@ -109,3 +109,8 @@ If you want next:
 * trace binary search stack step-by-step
 * compare recursive vs iterative versions
 * or convert it into tail recursion
+
+---
+
+
+
