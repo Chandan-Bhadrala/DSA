@@ -31,3 +31,8 @@ function reverseString(s) {
 
 let s = ["a", "b", "c"];
 console.log("output", reverseString(s));
+
+// Remember strings are immutable, you've to build a copy of the string from scratch.
+// JS do not let mutate string.
+// Strings as array elements can be mutated.
+// Pure string can't be mutated.  
