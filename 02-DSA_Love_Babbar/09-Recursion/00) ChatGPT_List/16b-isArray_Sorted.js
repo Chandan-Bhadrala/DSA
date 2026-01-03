@@ -37,8 +37,3 @@ console.log(isArraySorted([1, 2, 3, 0]));
 2. Base case will only be reached if the array is sorted and in this case unwinding of the recursive calls will lead to the propagation of the return value seeded by the base case.
 */
 
-function isArraySorted(arr, i = 0) {
-  if (i >= arr.length - 1) return 1;
-  if (arr[i] > arr[i + 1]) return -1;
-  return isArraySorted(arr, i + 1);
-}
