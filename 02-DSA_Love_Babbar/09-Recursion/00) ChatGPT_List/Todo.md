@@ -110,6 +110,8 @@ Level 5 — recursion that feels like DSA
 29. Find first occurrence of an element in array
     
 30. Find last occurrence of an element in array
+
+31. Search target element in the rotated sorted array.
     
 
 Goal:  
