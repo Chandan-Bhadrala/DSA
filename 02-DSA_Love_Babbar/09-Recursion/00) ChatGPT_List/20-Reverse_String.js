@@ -6,8 +6,15 @@
 */
 // -----------------------------
 
-// Linear Search
-function countOccurrences(arr, i = 0) {}
+function reverseString(str, i = 0) {
+  // Base case to terminate the recursive loop and to seed an empty string for further building up of the string.
+  if (i === str.length) return "";
+
+  // Accumulate the strings from the deeper recursive calls. Initially, we will receive an empty string from the base case for further building up.
+  let reversedStr = reverseString(str, i + 1);
+
+  return reversedStr + str[i];
+}
 
 // --- Output:
-console.log(countOccurrences([1, 2, 2, 2, 3, 3, 4, 4, 7, 7, 7, 9, 9]));
+console.log(reverseString("abc"));
