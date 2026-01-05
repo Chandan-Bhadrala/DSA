@@ -7,7 +7,7 @@
 // -----------------------------
 
 // Linear Search
-function countOccurrences(arr, i = 0) {}
+function printFibonacciSeries(n) {}
 
 // --- Output:
-console.log(countOccurrences([1, 2, 2, 2, 3, 3, 4, 4, 7, 7, 7, 9, 9]));
+console.log(printFibonacciSeries(9));

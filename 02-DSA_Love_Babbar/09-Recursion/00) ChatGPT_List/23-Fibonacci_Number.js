@@ -7,7 +7,14 @@
 // -----------------------------
 
 // Linear Search
-function countOccurrences(arr, i = 0) {}
+function FibonacciNumber(n, i = 0, n1 = 0, n2 = 1, sum = n1 + n2) {
+  // Base Case: Terminates the recursive loop when iterator i == n.
+  if (i == n) return n1;
+
+  console.log(n1, n2, sum);
+  // Return accumulated value of sum, at the time base case gets hits.
+  return FibonacciNumber(n, i + 1, n2, sum, n1 + n2);
+}
 
 // --- Output:
-console.log(countOccurrences([1, 2, 2, 2, 3, 3, 4, 4, 7, 7, 7, 9, 9]));
+console.log(FibonacciNumber(9));
