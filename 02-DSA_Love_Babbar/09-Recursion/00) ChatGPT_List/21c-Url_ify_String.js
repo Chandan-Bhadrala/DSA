@@ -8,10 +8,11 @@
 
 /**
 ## Error: In approach.
-1. I never updated the frame stacks value for the hasSplStrAdded while building up the frame stacks.
-    1.1. It was always false for each stacked call stack.
-    1.2. And in my below conditional built, I'm relying on the hasSplStrAdded to build string conditionally.
-    1.3. However, hasSplStrAdded is always false.
+1. Here in the variable hasSplStrAdded, I'm storing the fact that current character of the string is space or not.
+2. So, variable naming is incorrect. As while building the frame stack I've not yet added any "%20".
+3. So, while building the frame stack, I must only know whether the string character is a valid character or an empty white space.
+4. So, the variable naming should be prevWasSpace.
+5. So, now I'm building a prevWasSpace value which can be used at the time of unwinding of the recursion.
 */
 
 // ## Multiple white spaces at one place.
@@ -20,7 +21,7 @@ function url_ify_string(str, i = 0, hasSplStrAdded = false) {
   if (i == str.length) return "";
 
   // Let it be a Head Recursion. So, let's build the frame stack first and receive the return value.
-  let finalStr = url_ify_string(str, i + 1, hasSplStrAdded);
+  let finalStr = url_ify_string(str, i + 1, str[i] === " ");
 
   // Now, we are receiving frame stacks in unwinding phase. So, let's build our answer conditionally.
 
