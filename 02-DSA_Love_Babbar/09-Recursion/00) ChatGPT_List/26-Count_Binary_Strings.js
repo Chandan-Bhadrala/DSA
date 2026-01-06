@@ -2,12 +2,12 @@
 # Count binary strings of length n with no consecutive 1s.
 
 ## Question:
+1. I've to count possible ways a string of length n can be written without any consecutive 1s.
 ## Solution Approach:
 */
 // -----------------------------
 
-// Linear Search
-function countOccurrences(arr, i = 0) {}
+function countBinaryStrings(n) {}
 
 // --- Output:
-console.log(countOccurrences([1, 2, 2, 2, 3, 3, 4, 4, 7, 7, 7, 9, 9]));
+console.log(countBinaryStrings(5));

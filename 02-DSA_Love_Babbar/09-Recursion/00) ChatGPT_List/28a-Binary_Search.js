@@ -1,5 +1,5 @@
 /**
-# Find target element in an array
+# Find target element in an array.
 
 ## Question:
 ## Solution Approach:
