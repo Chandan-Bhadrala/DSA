@@ -1,4 +1,4 @@
-## Q1) It is only working if I add an or case in the base case (i.e., if(n==0 || n==1) and not for if(n==1). Why?
+## Q1) Count binary strings of length n with no consecutive 1s.
 
 Good question. This confusion is **very common**, and fixing it will remove a hidden gap in recursion understanding.
 
