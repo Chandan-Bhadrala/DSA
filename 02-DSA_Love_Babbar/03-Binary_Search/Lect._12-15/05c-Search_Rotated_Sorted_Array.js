@@ -13,7 +13,7 @@
 //-----------------
 
 // 01. A function to search for a given element in the rotated sorted array.
-function pivotElement(arr, target) {
+function searchTarget(arr, target) {
   let start = 0;
   let end = arr.length - 1;
   let mid = null;
@@ -33,7 +33,7 @@ function pivotElement(arr, target) {
     if (arr[start] <= arr[mid]) {
       // 1a. If this condition is true, then our the our **start and the mid** pointer covers the range or bounds of the **left sorted half** of the array.
 
-      // 1a.1. Now, we will check whether the target lies in the left sorted bound or the right unsorted bound and will shrink the search space using start and the end pointers accordingly.
+      // 1a.1. Now, we will check whether the target lies in the left sorted bound or in the right unsorted bound and will shrink the search space using start and the end pointers accordingly.
       if (target < arr[mid] && target >= arr[start]) {
         // If this condition succeeds, this will mean that target lies in the left bound, so will update the search boundaries accordingly.
         end = mid - 1;
@@ -42,7 +42,7 @@ function pivotElement(arr, target) {
         start = mid + 1;
       }
     } else {
-      // 1b. else "start > mid" and now bounds covered by our **start and the mid** pointers are the "left unsorted bounds". So, we will check our target element value with the **right sorted boundary** (which is given by the **end-pointer**), to make certain shift or shrink of the search boundary space.
+      // 1b. else "start > mid" and now bounds covered by our **start and the mid** pointers are the "left unsorted bounds". So, we will check our target element value with the **right sorted boundary** (which is given by the **mid-pointer** and the **end-pointer**), to make certain shift or shrink of the search boundary space.
 
       // Below conditions, will ensure we check for the target element in the right search space.
       if (target <= arr[end] && target > arr[mid]) {

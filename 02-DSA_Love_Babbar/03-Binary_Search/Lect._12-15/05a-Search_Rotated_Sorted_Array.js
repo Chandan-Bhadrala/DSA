@@ -13,7 +13,7 @@
 //-----------------
 
 // 01. A function to search for a given element in the rotated sorted array.
-function pivotElement(arr, searchN) {
+function searchTarget(arr, searchN) {
   let start = 0;
   let end = arr.length - 1;
   let mid = null;
