@@ -6,7 +6,14 @@
 */
 // -----------------------------
 
-function printNumbersReverse(n) {}
+function printNumbersReverse(n) {
+  // Base case: Stop recursive call at n == 0.
+  if (n == 0) return;
+
+  console.log(n);
+  // Call recursive call stack with reduced n to make n reach to the base case value.
+  printNumbersReverse(n - 1);
+}
 
 // --- Output:
-console.log(printNumbersReverse(9));
+printNumbersReverse(9);
