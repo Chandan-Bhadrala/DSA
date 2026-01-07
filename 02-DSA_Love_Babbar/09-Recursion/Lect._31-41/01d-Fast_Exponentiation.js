@@ -6,7 +6,13 @@
 */
 // -----------------------------
 
-function powerN(n, exp) {}
+// Fast Exponentiation:
+function powerN(n, exp) {
+  // Base Case: exp reduced to 0.
+  if (exp == 0) return 1;
+
+  
+}
 
 // --- Output:
 let n = 4;
