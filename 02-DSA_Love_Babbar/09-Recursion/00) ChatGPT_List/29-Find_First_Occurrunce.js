@@ -1,5 +1,5 @@
 /**
-# Find last occurrence of an element in array.
+# Find first occurrence of an element in array.
 
 ## Question:
 ## Solution Approach:
