@@ -25,6 +25,26 @@
 
 ---
 
+## Lect. 34
+14. Reverse a String
+15. isPalindrome
+16. Bubble Sort
+17. Selection Sort
+18. Insertion Sort
+
+---
+
+## Lect. 35
+19. Merge Sort
+20. Inversion Count (Homework)
+
+---
+
+## Lect. 36
+21. Quick Sort
+
+---
+
 ## Homework
 
 
