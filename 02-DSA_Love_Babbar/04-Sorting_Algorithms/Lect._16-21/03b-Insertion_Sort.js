@@ -10,8 +10,8 @@ In this sorting method, we will be using two pointers:
 2. Pointer j → points to the element immediately left of the target element.
    2.1. Pointer j will traverse from (i - 1) towards index 0.
    2.2. Pointer j compares its current element with the target value.
-   2.3. If pointer j finds a smaller element, we insert the target value at index (j + 1).
-   2.4. If pointer j finds a bigger element, that bigger element is shifted right by 1 step.
+    2.2.1. If pointer j finds a smaller element, we insert the target value at index (j + 1).
+    2.2.2. If pointer j finds a bigger element, that bigger element is shifted right by 1 step.
 
 3. This method inherently starts sorting the array from the very first scan.
    3.1. Thus, during the process:
