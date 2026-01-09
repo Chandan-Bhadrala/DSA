@@ -7,14 +7,35 @@
   2.1. Will declare and re-initialize a boolean variable in every loop with false value.
   2.2. Will only update the boolean variable to true once there is any swap occurs in a loop.
 3. If no swap occurs in a loop and we terminate a loop with the boolean variable as false, then that will indicate the array has been sorted.
-*/
-//-----------------
 
-// 01. A function implementation of the **Bubble Sort**.
+## Question:
+## Solution Approach:
+1. In **selection sort** we were bringing smallest array elements to the front.
+2. Similarly, in the **Bubble sort** we are pushing largest element to the back of the array.
+  2.1. Selection sort swaps once.
+  2.2. However, bubble sort swaps continuously.
+    2.3. Thus, bubble sort is application is acceptable only when swapping is cheaper than checking/scanning the whole array.
+3. Bubble sort simply moves a pointer and check its next adjacent element and swaps both if the current element is bigger.
+  3.1. It repeatedly do till whole array is sorted.
+  3.2. It creates the sub-section of the sorted array at the right and keep on taking element from the left unsorted sub-section to push it rightly to its position in the right sorted sub-section.
+*/
+
+//-----------------
+/**
+### Only Wrote comments.
+1. Code was from the previous practice session.
+*/
+
 function bubbleSort(arr) {
+  // Creating a copy of the array so the original array stays unchanged.
   let sortArr = [...arr];
-  let isUnsorted = true;
-  let pass = 0;
+
+  let isUnsorted = true; // A boolean flag to confirm that whole array pass/scan has happened w/o any swapping.
+  // So, we can end the sorting earlier.
+
+  let pass = 0; // To count how many scans of the whole array we have made.
+  // In next scan/pass we will avoid scan last array elements as given by the number of the pass value.
+  // Because in every pass we would have shifted the largest element to the last already.
 
   while (isUnsorted) {
     isUnsorted = false;
