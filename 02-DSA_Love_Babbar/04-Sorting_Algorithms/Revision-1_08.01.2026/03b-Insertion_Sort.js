@@ -1,55 +1,52 @@
 /**
-Insertion Sort Implementation.
+# Insertion Sort Implementation.
 
-In this sorting method, we will be using two pointers:
-
-1. Pointer i → points to the target element.
-   1.1. The target element is the value that needs to be inserted at its correct location.
-   1.2. The target element is stored temporarily for safe shifting of other elements.
-
-2. Pointer j → points to the element immediately left of the target element.
-   2.1. Pointer j will traverse from (i - 1) towards index 0.
-   2.2. Pointer j compares its current element with the target value.
-   2.3. If pointer j finds a smaller element, we insert the target value at index (j + 1).
-   2.4. If pointer j finds a bigger element, that bigger element is shifted right by 1 step.
-
-3. This method inherently starts sorting the array from the very first scan.
-   3.1. Thus, during the process:
-        3.1.1. The left side forms a sorted section.
-        3.1.2. The right side remains unsorted.
+## Question:
+## Solution Approach:
+1. It's name should be mainly shifting algorithm.
+  1.1. As it mainly keep shifting the elements, as swapping is costlier than shifting (CPU cycles wise).
+2. This algo requires to start from the 1st index rather than 0th index using pointer i.
+  2.1. Store the value of the held index by the pointer i in a temp variable.
+3. Now using pointer j starting from "i - 1" position, keep shifting elements to the right till we find a value smaller than target value.
+  3.1. This way bigger values than target value will get shifted to the right from the very beginning.
+  3.2. And this way we will have sorted left section from very beginning.
+4. If pointer j reaches value of index 0, it means pointer j couldn't find smaller element than the target element and then the target element must be placed at index 0.
 */
 
 //-----------------
 
-// Insertion Sort implementation.
-// Insertion sort performs only one final write for the target value, saving CPU cycles.
+/**
+Improvement: New Approach
+1. Handle j == 0 case exclusively.
+2. Write clean code, first shift the bigger values in the first if condition and then only in the else case place the target value to its index.
+*/
+
 function insertionSort(arr) {
-  let sortArr = [...arr]; // Preserve original array
+  // First pointer i to hold the target value.
+  for (let i = 1; i < arr.length; i++) {
+    let targetValue = arr[i];
 
-  for (let i = 1; i < sortArr.length; i++) {
-    let targetValue = sortArr[i]; // Storing target element
-    let j = i - 1; // Pointer to the left of target
-
-    // Move pointer j leftwards until a smaller element is found
-    while (j >= 0) {
-      // If left element is bigger, shift it to the right
-      if (sortArr[j] > targetValue) {
-        sortArr[j + 1] = sortArr[j];
+    // Second pointer to find the proper place for the target value.
+    // Until j finds the proper place it will keep shifting the bigger elements than target element to the right.
+    for (let j = i - 1; j >= 0; j--) {
+      // 01. Shift the bigger values to the right.
+      if (arr[j] > targetValue) {
+        arr[j + 1] = arr[j];
       }
-      // If left element is smaller, insert the target value at (j + 1)
-      else {
-        sortArr[j + 1] = targetValue;
-        break;
+      // 02. Place the target value in the correct position.
+      else if (arr[j] < targetValue) {
+        arr[j + 1] = targetValue;
+        // break; // I've not added this code line earlier. However, this one is the most important line.
+        // As my code was continuously running even after placing the target value and it was still shifting the bigger values to the right.
+        // If the placement has done even then bottom j == 0 condition gets executed and places the target into position 0 index.
+        // So, shifting and placing at index 0 never stops even after placing placing the target value at the right index.
       }
-      j--;
-    }
-
-    // If j became -1, it means targetValue is the smallest so far
-    // Insert at position 0 (only if not already inserted by break)
-    if (j < 0) {
-      sortArr[0] = targetValue;
+      // 03. Handle edge case of j == 0 separately.
+      if (j == 0) arr[0] = targetValue;
     }
   }
 
-  return sortArr;
+  return arr;
 }
+
+console.log(insertionSort([2, 4, 1, 5]));

@@ -15,6 +15,12 @@
 
 //-----------------
 
+/**
+Error: In Approach
+1. My code was conflicting for j == 0 index as I was shifting 1 from index 2 to 0.
+2. It overwrite index 0 value (Using middle else branch) but never shifted value 2.
+*/
+
 function insertionSort(arr) {
   // First pointer i to hold the target value.
   for (let i = 1; i < arr.length; i++) {
