@@ -19,6 +19,8 @@
 Improvement: New Approach
 1. Handle j == 0 case exclusively.
 2. Write clean code, first shift the bigger values in the first if condition and then only in the else case place the target value to its index.
+3. Must add break once the success case (target is placed at its requisite position) is met.
+  3.1. Code must be terminated once the success case is met. No more mutation in the state should be allowed by letting the code flow run.
 */
 
 function insertionSort(arr) {

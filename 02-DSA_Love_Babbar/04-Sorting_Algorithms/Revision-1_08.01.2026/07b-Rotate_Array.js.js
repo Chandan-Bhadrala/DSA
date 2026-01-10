@@ -1,5 +1,5 @@
 /**
-# Rotate Sorted Array.
+# Rotate Sorted Array (In place rotation) - Space Complexity: O(1).
 ## Question:
   1. We will be given an array and a number "n".
   2. We have to rotate that array elements from the rear towards the front.

@@ -18,8 +18,7 @@
   4. To fill up the arr1 with the arr2 elements keeping the sorting in mind.
 */
 
-// m and n are number of elements in each array.
-function mergeSort(nums1, m, nums2, n) {
+function mergeSort(arr1,arr2) {
   let i = m - 1; // accessing the nums1 array from the point where its last element exists in the array.
   let j = n - 1; // accessing the nums2 array from the rear end.
 
