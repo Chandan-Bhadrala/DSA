@@ -17,17 +17,22 @@
 
 function insertionSort(arr) {
   // First pointer i to hold the target value.
-  for (let i = 0; i < arr.length; i++) {
+  for (let i = 1; i < arr.length; i++) {
     let targetValue = arr[i];
 
     // Second pointer to find the proper place for the target value.
     // Until j finds the proper place it will keep shifting the bigger elements than target element to the right.
     for (let j = i - 1; j >= 0; j--) {
+      // If target value is bigger than the left element, then place target element right to the found smaller element.
       if (arr[j] < targetValue) {
-        arr[j] = targetValue;
+        arr[j + 1] = targetValue;
       } else if (j == 0) {
+        
+        // If no value on the left of the target value found smaller then place target value at index 0.
         arr[j] = targetValue;
       } else {
+
+        // Keep shifting bigger elements than the target value to the right.
         arr[j + 1] = arr[j];
       }
     }
