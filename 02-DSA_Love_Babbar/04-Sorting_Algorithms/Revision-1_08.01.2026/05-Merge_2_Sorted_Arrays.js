@@ -18,13 +18,14 @@
   4. To fill up the arr1 with the arr2 elements keeping the sorting in mind.
 */
 
-function mergeSort(arr1,arr2) {
+function mergeSortedArrays(nums1, m, nums2, n) {
   let i = m - 1; // accessing the nums1 array from the point where its last element exists in the array.
   let j = n - 1; // accessing the nums2 array from the rear end.
 
   let k = m + n - 1; // accessing the nums1 array from the rear end.
 
-  while (k >= 0){
+  // Merge while we have both valid left out array.
+  while (i >= 0 && j >= 0) {
     if (nums1[i] > nums2[j]) {
       nums1[k] = nums1[i];
       i--;
@@ -32,7 +33,22 @@ function mergeSort(arr1,arr2) {
       nums1[k] = nums2[j];
       j--;
     }
-  k--;
+    k--;
   }
+
+  // Merge 1/2 left out array with pending elements
+  while (i >= 0) {
+    nums1[k] = nums1[i];
+    i--;
+    k--;
+  }
+
+  // Merge 1/2 left out array with pending elements
+  while (j >= 0) {
+    nums1[k] = nums2[j];
+    j--;
+    k--;
+  }
+
   return nums1;
 }
