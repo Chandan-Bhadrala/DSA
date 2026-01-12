@@ -1,4 +1,4 @@
-### ### Code Review by ChatGPT.
+### Code Review by ChatGPT.
 
 No problem at all 🙂
 With that correction, **your solution is logically perfect**.

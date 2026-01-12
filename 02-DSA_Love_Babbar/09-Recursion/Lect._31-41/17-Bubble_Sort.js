@@ -1,5 +1,5 @@
 /**
-# Reverse a String.
+# Bubble Sort.
 
 ## Question:
 ## Solution Approach:
@@ -7,13 +7,7 @@
 */
 // -----------------------------
 
-/**
-Error: In approach.
-1. Need two pointers to return boolean value or
-2. Need two functions, one for reversing string and one for boolean check that whether the two strings are palindrome or not.
-*/
-
-function isPalindrome(str, i = 0) {
+function bubbleSort(arr) {
   // Base Case: Terminate recursion and to seed a base value.
   if (i == str.length) return "";
 
@@ -26,4 +20,4 @@ function isPalindrome(str, i = 0) {
 }
 
 // --- Output:
-console.log(isPalindrome("aba"));
+console.log(selectionSort([5, 3, 1, 5, 2, 0]));

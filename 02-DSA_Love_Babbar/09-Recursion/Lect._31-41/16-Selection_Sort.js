@@ -1,29 +1,25 @@
 /**
-# Reverse a String.
+# Selection Sort.
 
 ## Question:
 ## Solution Approach:
-1. Will create a copy of a string in reverse and will return back its comparison result.
+1. Bring the smallest array elements to the front one by one.
+2. Use Recursion to loop through the array and the inner for-loop to compare, select and finalize the smallest array element.
+3. Selection Sort creates left sorted sub-section of the array and right sub-section is an unsorted array.
+4. The sorting will be happening in-place within the original given array.
 */
 // -----------------------------
 
-/**
-Error: In approach.
-1. Need two pointers to return boolean value or
-2. Need two functions, one for reversing string and one for boolean check that whether the two strings are palindrome or not.
-*/
-
-function isPalindrome(str, i = 0) {
+function selectionSort(arr, i = 0) {
   // Base Case: Terminate recursion and to seed a base value.
-  if (i == str.length) return "";
+  if (i == arr.length) return arr;
 
-  // Build frame stack with the memory of iterator i and str.
-  // In unwinding phase modify and return the build up string, considering seed string returned from the base case.
-  let prev = isPalindrome(str, i + 1);
+  arr = selectionSort(arr, i + 1);
 
-  // Now, in unwinding phase we have memory of the last character first add it to the base string returned from the base case and return it further to the following unwinding recursive stacks.
-  return prev + str[i];
+
+  
+  return arr;
 }
 
 // --- Output:
-console.log(isPalindrome("aba"));
+console.log(selectionSort([5, 3, 1, 5, 2, 0]));
