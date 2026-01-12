@@ -1,5 +1,5 @@
 /**
-# Bubble Sort.
+# Bubble Sort: Pushes the largest element to the last.
 
 ## Question:
 ## Solution Approach:

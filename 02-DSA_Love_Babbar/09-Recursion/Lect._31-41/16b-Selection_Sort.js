@@ -1,5 +1,5 @@
 /**
-# Selection Sort.
+# Selection Sort: Bring forth the smallest elements.
 
 ## Question:
 ## Solution Approach:
