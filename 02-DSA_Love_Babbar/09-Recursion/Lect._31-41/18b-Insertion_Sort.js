@@ -16,7 +16,7 @@
 // -----------------------------
 
 // ## Purely Recursion Based.
-function InsertionSort(arr, i = 1) {
+function insertionSort(arr, i = 1) {
   // Base Case: Terminate recursion and to return back fully sorted array (arr).
   if (i == arr.length) return arr;
 
@@ -25,7 +25,7 @@ function InsertionSort(arr, i = 1) {
 
   arr = shiftElements(arr, i, targetValue);
 
-  arr = InsertionSort(arr, i + 1);
+  arr = insertionSort(arr, i + 1);
   return arr;
 }
 
@@ -53,4 +53,4 @@ function shiftElements(arr, i, targetValue, j = i - 1) {
 }
 
 // --- Output:
-console.log(InsertionSort([5, 3, 1, 5, 2, 0]));
+console.log(insertionSort([5, 3, 1, 5, 2, 0]));
