@@ -55,4 +55,4 @@ function merge(left, right) {
 }
 
 // --- Output:
-console.log(mergeSort([5, 3, 1, 5, 2, 0]));
+console.log(mergeSort([5, 3, 1, 5, 2, 0, 9, 7, 4, 2, 3, 1]));

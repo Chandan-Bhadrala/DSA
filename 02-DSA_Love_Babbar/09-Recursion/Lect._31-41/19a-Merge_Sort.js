@@ -58,6 +58,6 @@ function mergeSort(arr, depth = 0) {
 }
 
 // Run
-let arr = [4, 1, 3, 2];
+let arr = [4, 1, 3, 2, 12, 5, 0, 7, 9];
 let sorted = mergeSort(arr);
 console.log("Final sorted array:", sorted);
