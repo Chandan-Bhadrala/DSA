@@ -20,6 +20,7 @@ Improvement: Last Code is good enough and correct. However, that code can be opt
 */
 function bubbleSort(arr, i = 0, pass = 0) {
   // Base Case: Terminate recursion and to return back fully sorted array (arr).
+  
   //02. 2nd Improvement. ❌
   // if (i == arr.length - pass) return arr;
   if (i == arr.length) return arr;
