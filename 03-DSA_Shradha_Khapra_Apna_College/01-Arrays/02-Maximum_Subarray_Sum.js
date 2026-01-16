@@ -1,9 +1,8 @@
 /**
-# Find unique element in the array.
+# Find maximum subarray Sum.
 
 ## Question:
 ## Solution Approach:
-1. Use XoR to filter out the duplicates and the answer will be your unique element in the array.
 */
 // -----------------------------
 
