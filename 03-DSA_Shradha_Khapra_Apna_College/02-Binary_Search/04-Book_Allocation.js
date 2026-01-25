@@ -8,7 +8,7 @@
 
 // -----------------------------
 
-function bookAllocation(arr) {}
+function bookAllocation(arr, students) {}
 
 // --- Output:
-console.log(bookAllocation([1, 1, 2, 3, 3, 4, 4, 5, 5]));
+console.log(bookAllocation([12, 34, 67, 90], 2));
