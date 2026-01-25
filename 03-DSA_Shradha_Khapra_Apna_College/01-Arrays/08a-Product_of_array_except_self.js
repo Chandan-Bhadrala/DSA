@@ -7,7 +7,7 @@
 3. We are not allowed to use divide operation.
 
 ## Solution Approach:
-1. I'm thinking to use three pointers
+1. 
 
 */
 
