@@ -13,26 +13,20 @@
 
 // -----------------------------
 
-// ## Answer is found in a single pass.
-function containerWithMostWater(arr) {
-  let maxWaterArea = 0;
+// ## Brute force - Time Complexity O(n^2):
+function productArr(arr) {
+  let resArr = new Array(arr.length).fill(1);
 
-  let i = 0;
-  let j = arr.length - 1;
-
-  while (i < j) {
-    let currentWaterArea = Math.min(arr[i], arr[j]) * (j - i);
-
-    // Updating the maxWaterArea value upon finding the next best candidate.
-    maxWaterArea = Math.max(maxWaterArea, currentWaterArea);
-
-    // Shifting bounds
-    if (arr[i] < arr[j]) i++;
-    else j--;
+  for (let i = 0; i < arr.length; i++) {
+    for (let j = 0; j < arr.length; j++) {
+      if (i != j) {
+        resArr[i] = resArr[i] * arr[j];
+      }
+    }
   }
 
-  return maxWaterArea;
+  return resArr;
 }
 
 // --- Output:
-console.log(containerWithMostWater([9, 7, 5, 12, 0.5, 20, 3, 2, 20]));
+console.log(productArr([4, 2, 3]));
