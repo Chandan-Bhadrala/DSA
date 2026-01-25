@@ -21,9 +21,12 @@
 // -----------------------------
 
 /**
-## Error: In approach.
-1. Couldn't came to the logic.
-2. This question requires nested if-else to come to the solution.
+## Improvement: In approach.
+1. Normalize the mid value.
+2. Mid should be even and it should be holding the first duplicate.
+  2.1. Thus, arr[mid] must be = arr[mid + 1].
+  2.2. This is true, only if all the left value are simply duplicates.
+3. If the above statement is true search the right-half otherwise search the left-half.
 */
 
 function findUnique(arr) {
