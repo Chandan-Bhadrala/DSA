@@ -8,6 +8,12 @@
 
 // -----------------------------
 
+/**
+## Improvement: In approach
+1. I was adding the distance as in the Book Allocation problem.
+2. Whereas, I was supposed to place the cows only if the distance between the two stalls are bigger than the purposed distance.
+*/
+
 // Primary function.
 function allocateSpace(arr, cows) {
   // Edge case:
@@ -40,23 +46,19 @@ function allocateSpace(arr, cows) {
 
 // Helper function.
 function isPossible(arr, cows, mid) {
-  let cowsCount = 1;
-  let minDistance = 0;
+  let cowsCount = 1;              // first cow placed at first stall
+  let lastPosition = arr[0];
 
-  for (let i = 0; i < arr.length; i++) {
-    if (minDistance + arr[i] <= mid) {
-      // We can increase the distance between the two cows.
-      minDistance += arr[i];
-    } else {
-      // Place the next cow in the current stall
-      minDistance = arr[i];
+  for (let i = 1; i < arr.length; i++) {
+    if (arr[i] - lastPosition >= mid) {
       cowsCount++;
+      lastPosition = arr[i];
     }
-    if (cowsCount > cows) return false;
+
+    if (cowsCount === cows) return true;
   }
 
-  // The given mid is qualified as a viable min distance between the given number of cows.
-  return true;
+  return false;
 }
 
 // --- Output:
