@@ -43,6 +43,7 @@ are fully acceptable in DSA solutions.
 
 
 // 01. A function implementation to remove all occurrences of a substring - w/o using replace helper function.
+
 function removeAllSubstrings(s, part) {
   let windowSize = part.length; // Accessing total number of substring characters.
   let stringLastIndex = s.length - 1;
@@ -84,7 +85,5 @@ let s = "daabcbaabcbc";
 let substring = "abc"; // Output: "dab"
 // let s1 = "Hi there, how are you.";
 // let substring1 = "there,";
-console.log(
-  "Given string after removing the substring:",
-  removeAllSubstrings(s, substring)
-);
+
+console.log("Given string after removing the substring:",removeAllSubstrings(s, substring));
