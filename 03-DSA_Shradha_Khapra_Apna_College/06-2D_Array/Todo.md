@@ -1,12 +1,12 @@
 #TODO:
 
-## Lect. 23
-01. Row-wise input
-02. Column-wise input
-03. Find Target
-04. Sum of Row Elements.
-05. Sum of Column Elements.
-06. Largest Row Sum
+## Lect. 34 - 
+01. Find Target (Linearly, Stair case search, Binary Search)
+02. Sum of Row Elements.
+03. Sum of Column Elements.
+04. Sum of Diagonals.
+05. Largest Row Sum
+06. Largest Col Sum
 07. Sum in a Matrix
 08. Wave Print
 09. Spiral Print
