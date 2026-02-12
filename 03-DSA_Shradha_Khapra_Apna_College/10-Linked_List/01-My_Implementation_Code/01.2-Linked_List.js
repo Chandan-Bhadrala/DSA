@@ -1,5 +1,5 @@
 /**
-# ChatGPT Implementation of the Linked List with tail varaible.
+# ChatGPT Implementation of the Linked List with tail variable.
 
 ## Question:
 ## Solution:
@@ -89,7 +89,7 @@ shift() {
   return removed;
 }
 
-// Add at begning.
+// Add at beginning.
 unshift(val) {
   const newNode = new Node(val);
 
@@ -103,6 +103,47 @@ unshift(val) {
 
   this.length++;
   return this;
+}
+
+// Insert a value as a node at the given index.
+insert(val, index) {
+  if (index < 0 || index > this.length) return undefined;
+
+  if (index === 0) return !!this.unshift(val);
+  if (index === this.length) return !!this.push(val);
+
+  let newNode = new Node(val);
+  let current = this.head;
+
+  for (let i = 0; i < index - 1; i++) {
+    current = current.next;
+  }
+
+  newNode.next = current.next;
+  current.next = newNode;
+
+  this.length++;
+  return true;
+}
+
+// Delete the node at the given index.
+delete(index) {
+  if (index < 0 || index >= this.length) return undefined;
+
+  if (index === 0) return this.shift();
+  if (index === this.length - 1) return this.pop();
+
+  let previousNode = this.head;
+
+  for (let i = 0; i < index - 1; i++) {
+    previousNode = previousNode.next;
+  }
+
+  let removedNode = previousNode.next;
+  previousNode.next = removedNode.next;
+
+  this.length--;
+  return removedNode;
 }
 
 
