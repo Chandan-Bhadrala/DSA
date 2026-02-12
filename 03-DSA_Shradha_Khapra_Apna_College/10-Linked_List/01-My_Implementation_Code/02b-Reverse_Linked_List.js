@@ -71,18 +71,17 @@ class LinkedList {
     if (!this.head) return undefined;
 
     let current = this.head;
-    let prev = current;
+    let prev = null; // Last node after the reversal must be null.
     // A variable to keep the next node info protected
     let next = current;
 
     for (let i = 0; i < this.length; i++) {
-      // Updating pointers value.
-      prev = next; // i = 0 -> 0th index. i = 1 -> 1st index
-      current = next.next; // i = 0 -> 1st index. i = 1 -> 2nd index
-      next = next.next; // i = 0 -> 1st index. i = 1 -> 2nd index
+      next = current.next; // Saving the location of the next node.
 
-      // Reversing the link.
-      current.next = prev;
+      current.next = prev; // Switching the link.
+
+      prev = current; // Updating prev
+      current = next; // Updating the current node for the next iteration.
     }
 
     let temp = this.head;

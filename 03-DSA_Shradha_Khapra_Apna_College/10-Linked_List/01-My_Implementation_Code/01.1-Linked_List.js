@@ -1,5 +1,5 @@
 /**
-# ChatGPT Implementation of the Linked List without tail varaible.
+# ChatGPT Implementation of the Linked List without tail variable.
 
 ## Question:
 ## Solution:
@@ -23,78 +23,77 @@ class SinglyLinkedList {
   }
 
   insertAtBeginning(value) {
-  const newNode = new Node(value);
+    const newNode = new Node(value);
 
-  newNode.next = this.head;
-  this.head = newNode;
-
-  this.size++;
-}
-
-insertAtEnd(value) {
-  const newNode = new Node(value);
-
-  if (this.head === null) {
+    newNode.next = this.head;
     this.head = newNode;
-  } else {
-    let current = this.head;
 
-    while (current.next !== null) {
+    this.size++;
+  }
+
+  insertAtEnd(value) {
+    const newNode = new Node(value);
+
+    if (this.head === null) {
+      this.head = newNode;
+    } else {
+      let current = this.head;
+
+      while (current.next !== null) {
+        current = current.next;
+      }
+
+      current.next = newNode;
+    }
+
+    this.size++;
+  }
+
+  deleteByValue(value) {
+    if (this.head === null) return;
+
+    if (this.head.value === value) {
+      this.head = this.head.next;
+      this.size--;
+      return;
+    }
+
+    let current = this.head;
+    let previous = null;
+
+    while (current !== null && current.value !== value) {
+      previous = current;
       current = current.next;
     }
 
-    current.next = newNode;
-  }
+    if (current === null) return;
 
-  this.size++;
-}
-
-deleteByValue(value) {
-  if (this.head === null) return;
-
-  if (this.head.value === value) {
-    this.head = this.head.next;
+    previous.next = current.next;
     this.size--;
-    return;
   }
 
-  let current = this.head;
-  let previous = null;
+  search(value) {
+    let current = this.head;
 
-  while (current !== null && current.value !== value) {
-    previous = current;
-    current = current.next;
+    while (current !== null) {
+      if (current.value === value) return true;
+      current = current.next;
+    }
+
+    return false;
   }
 
-  if (current === null) return;
+  print() {
+    let current = this.head;
+    let result = "";
 
-  previous.next = current.next;
-  this.size--;
-}
+    while (current !== null) {
+      result += current.value + " -> ";
+      current = current.next;
+    }
 
-search(value) {
-  let current = this.head;
-
-  while (current !== null) {
-    if (current.value === value) return true;
-    current = current.next;
+    console.log(result + "null");
   }
-
-  return false;
-}
-
-print() {
-  let current = this.head;
-  let result = "";
-
-  while (current !== null) {
-    result += current.value + " -> ";
-    current = current.next;
-  }
-
-  console.log(result + "null");
-}
-
 }
 
 // ---
@@ -107,9 +106,9 @@ list.insertAtBeginning(5);
 list.insertAtEnd(20);
 list.insertAtEnd(30);
 
-list.print();   // 5 -> 10 -> 20 -> 30 -> null
+list.print(); // 5 -> 10 -> 20 -> 30 -> null
 
 list.deleteByValue(10);
-list.print();   // 5 -> 20 -> 30 -> null
+list.print(); // 5 -> 20 -> 30 -> null
 
 console.log(list.search(20)); // true
