@@ -14,6 +14,8 @@ class Node {
   }
 }
 
+// In the **insertion and removal** method always 4 pointers needs to be re-arranged at last.
+// If the pointer that are re-arranged are any less than 4. Then, there is an error in re-creating the links properly.
 class DoublyLinkedList {
   constructor() {
     this.head = null;
@@ -180,18 +182,42 @@ class DoublyLinkedList {
     }
   }
 
+  // In the **insertion and removal** method always 4 pointers needs to be re-arranged at last.
+  // If the pointer that are re-arranged are any less than 4. Then, there is an error in re-creating the links properly.
+
   // return removed node.
   remove(index) {
-    if (index < 0 || index > this.length) return undefined;
+    if (index < 0 || index >= this.length) return undefined;
 
-    if (index == 0) return !!this.shift();
-    if (index == this.length) return !!this.pop();
+    if (index == 0) return this.shift();
+    if (index == this.length - 1) return this.pop();
 
-    let newNode = new Node(val);
+    let temp = null;
 
+    // Find the concerned node for the removal.
     if (index >= this.length / 2) {
+      temp = this.tail;
+
+      for (let i = this.length - 1; i > index; i--) {
+        temp = temp.prev;
+      }
     } else {
+      temp = this.head;
+      for (let i = 0; i < index; i++) {
+        temp = temp.next;
+      }
     }
+
+    // Remove temp from the DLL and re-arrange pending nodes properly.
+    temp.prev.next = temp.next;
+    temp.next.prev = temp.prev;
+
+    temp.prev = null;
+    temp.next = null;
+
+    this.length--;
+
+    return temp;
   }
 }
 
