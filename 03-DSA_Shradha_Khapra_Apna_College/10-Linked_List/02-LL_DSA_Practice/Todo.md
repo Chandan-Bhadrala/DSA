@@ -11,5 +11,8 @@
     - removeCycle
 05. Merge 2 sorted LL.
 06. Copy LL with random pointers (Create a deep copy of the given LL).
+07. Flatten DLL
+08. Reverse Nodes in K-Group
+09. Swap Nodes in Pairs.
 
 ---
