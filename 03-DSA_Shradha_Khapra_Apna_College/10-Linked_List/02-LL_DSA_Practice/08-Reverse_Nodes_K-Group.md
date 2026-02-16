@@ -1,3 +1,311 @@
+# Taught by ChatGPT.
+
+Good. Recursive version is conceptually beautiful once it clicks.
+
+First understand the idea, then code will feel natural.
+
+---
+
+## Core Recursive Idea
+
+For every call:
+
+1. Check if at least `k` nodes exist.
+2. Reverse first `k` nodes.
+3. Recursively solve the rest.
+4. Attach the reversed part to recursive result.
+
+That’s it.
+
+---
+
+## Recursive Implementation
+
+```javascript
+var reverseKGroup = function(head, k) {
+    if (!head) return null;
+
+    // Step 1: Check if k nodes exist
+    let count = 0;
+    let node = head;
+
+    while (node && count < k) {
+        node = node.next;
+        count++;
+    }
+
+    if (count < k) return head;
+
+    // Step 2: Reverse first k nodes
+    let prev = null;
+    let curr = head;
+    let next = null;
+    count = 0;
+
+    while (curr && count < k) {
+        next = curr.next;
+        curr.next = prev;
+        prev = curr;
+        curr = next;
+        count++;
+    }
+
+    // Step 3: Recursively reverse remaining list
+    head.next = reverseKGroup(curr, k);
+
+    // Step 4: Return new head of this segment
+    return prev;
+};
+```
+
+---
+
+Now let’s break this visually.
+
+---
+
+# Example
+
+Input:
+
+```
+1 → 2 → 3 → 4 → 5 → 6
+k = 3
+```
+
+---
+
+# First Recursive Call
+
+head = 1
+
+We check:
+
+```
+1 → 2 → 3   (k nodes exist)
+```
+
+Good.
+
+---
+
+### Reverse First 3
+
+Initial:
+
+```
+prev = null
+curr = 1
+```
+
+Iteration 1:
+
+```
+1 → null
+prev = 1
+curr = 2
+```
+
+Iteration 2:
+
+```
+2 → 1 → null
+prev = 2
+curr = 3
+```
+
+Iteration 3:
+
+```
+3 → 2 → 1 → null
+prev = 3
+curr = 4
+```
+
+Now:
+
+```
+Reversed part: 3 → 2 → 1
+Remaining: 4 → 5 → 6
+```
+
+---
+
+Now this line executes:
+
+```
+head.next = reverseKGroup(curr, k);
+```
+
+Important:
+
+* `head` is still node 1
+* 1 is now tail of reversed group
+
+So we are saying:
+
+```
+1.next = reverseKGroup(4, 3)
+```
+
+---
+
+# Second Recursive Call
+
+head = 4
+
+Check 3 nodes:
+
+```
+4 → 5 → 6
+```
+
+Reverse them:
+
+```
+6 → 5 → 4
+```
+
+Now:
+
+```
+4.next = reverseKGroup(null, 3)
+```
+
+Next call returns null.
+
+So second call returns:
+
+```
+6 → 5 → 4 → null
+```
+
+---
+
+# Going Back Up (Unwinding Stack)
+
+Back to first call:
+
+We had:
+
+```
+3 → 2 → 1 → ?
+```
+
+Now we connect:
+
+```
+1.next = 6
+```
+
+Final structure:
+
+```
+3 → 2 → 1 → 6 → 5 → 4
+```
+
+Return 3.
+
+Done.
+
+---
+
+# What Recursion Is Actually Doing
+
+Each recursive call:
+
+* Handles one group
+* Delegates remaining list to next call
+* Connects result when stack unwinds
+
+It is divide-and-attach.
+
+---
+
+# Pointer Diagram Summary
+
+Before reverse of group:
+
+```
+head
+ ↓
+1 → 2 → 3 → rest
+```
+
+After local reverse:
+
+```
+prev
+ ↓
+3 → 2 → 1     rest
+              ↑
+             curr
+```
+
+Recursive call handles `rest`.
+
+Then:
+
+```
+1.next = result_of_rest
+```
+
+Return `3`.
+
+---
+
+# Why This Is Elegant
+
+Because:
+
+* No dummy
+* No explicit groupPrev
+* Structure handled naturally by call stack
+
+Each stack frame stores:
+
+* Its own head
+* Its own reversed segment
+
+Very clean logically.
+
+---
+
+# Time & Space
+
+Time: O(n)
+Space: O(n/k) recursion stack
+
+Iterative version is O(1) space.
+
+---
+
+# Web Dev Parallel (Important for You)
+
+Think of this like:
+
+Processing paginated API data recursively:
+
+* Process first batch
+* Recursively process remaining pages
+* Attach results
+
+Or like nested comment tree processing:
+Each node processes its children and returns structured subtree.
+
+This is functional thinking — very powerful in backend design.
+
+---
+
+If you want next, we can:
+
+* Trace stack frames visually
+* Convert this recursive solution into iterative (derive it yourself)
+* Or analyze where beginners usually make mistakes in this recursion
+
+You’re now working at solid intermediate linked list level.
+
+---
 # Taught by Gemini.
 
 To solve **LeetCode 25: Reverse Nodes in k-Group**, the challenge is to reverse groups of size **k** only if there are enough nodes remaining. If a group has fewer than **k** nodes, it remains unchanged.
