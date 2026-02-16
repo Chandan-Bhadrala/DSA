@@ -3,36 +3,42 @@
  * @return {_Node}
  */
 var flatten = function(head) {
-    if (!head) return head;
+  if (!head) return head;
 
-    let curr = head;
-    const stack = [];
+  function dfs(node) {
+    let curr = node;
+    let last = node;
 
-    while (curr !== null) {
-        // If there's a child, we need to dive in
-        if (curr.child) {
-            // Save the next node to process after the child branch is done
-            if (curr.next) {
-                stack.push(curr.next);
-            }
+    while (curr) {
+      let next = curr.next;
 
-            // Connect curr to child
-            curr.next = curr.child;
-            curr.next.prev = curr;
-            
-            // Critical: clear the child reference
-            curr.child = null;
-        } 
-        // If we reach the end of a branch and have saved nodes in the stack
-        else if (!curr.next && stack.length > 0) {
-            let nextNode = stack.pop();
-            curr.next = nextNode;
-            nextNode.prev = curr;
+      // If child exists, flatten it
+      if (curr.child) {
+        let childHead = curr.child;
+        let childTail = dfs(childHead);
+
+        // Connect curr -> child
+        curr.next = childHead;
+        childHead.prev = curr;
+
+        // If next exists, connect childTail -> next
+        if (next) {
+          childTail.next = next;
+          next.prev = childTail;
         }
 
-        // Move to the next node in the flattened sequence
-        curr = curr.next;
+        curr.child = null;   // remove child link
+        last = childTail;
+      } else {
+        last = curr;
+      }
+
+      curr = next;
     }
 
-    return head;
+    return last; // return tail
+  }
+
+  dfs(head);
+  return head;
 };

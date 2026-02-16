@@ -1,39 +1,46 @@
 /**
- * Definition for singly-linked list.
- * function ListNode(val, next) {
- * this.val = (val===undefined ? 0 : val)
- * this.next = (next===undefined ? null : next)
- * }
+ * // Definition for a _Node.
+ * function _Node(val, next, random) {
+ * this.val = val;
+ * this.next = next;
+ * this.random = random;
+ * };
  */
+
 /**
- * @param {ListNode} list1
- * @param {ListNode} list2
- * @return {ListNode}
+ * @param {_Node} head
+ * @return {_Node}
  */
-var mergeTwoLists = function(list1, list2) {
-    // Create a dummy node to hold the start of the merged list
-    let dummy = new ListNode(0);
-    let current = dummy;
+var copyRandomList = function (head) {
+  if (!head) return null;
 
-    // Iterate while both lists have nodes
-    while (list1 !== null && list2 !== null) {
-        if (list1.val <= list2.val) {
-            current.next = list1;
-            list1 = list1.next;
-        } else {
-            current.next = list2;
-            list2 = list2.next;
-        }
-        current = current.next;
-    }
+  // Create a dummy node.
+  let dummyNode = new _Node(0);
 
-    // If one list is exhausted, attach the remainder of the other list
-    if (list1 !== null) {
-        current.next = list1;
-    } else {
-        current.next = list2;
-    }
+  let map = new Map(); // To store the original and copy node pair.
 
-    // Return the next node after dummy, which is the head of the merged list
-    return dummy.next;
+  let curr = head; // Original LL iterator.
+
+  // Create a map of original LL nodes and copy nodes.
+  while (curr) {
+    // Creating map for original and copy nodes.
+    map.set(curr, new _Node(curr.val, null, null));
+
+    // Move original LL iterator.
+    curr = curr.next;
+  }
+
+  curr = head; // Reset curr iterator back to head.
+  while (curr) {
+    let copyNode = map.get(curr); // Bring the copy Node using original node as a key in a map.
+
+    copyNode.next = map.get(curr.next) || null; // Here first curr.next will resolve to the next original node.
+    // And then corresponding node from the map will be brought to be saved as copied node's next value/node.
+    copyNode.random = map.get(curr.random) || null; // Same pattern follows for the random as for the above next node.
+
+    // Move the iterator.
+    curr = curr.next;
+  }
+
+  return map.get(head); // return the node corresponding to the head from the map.
 };
