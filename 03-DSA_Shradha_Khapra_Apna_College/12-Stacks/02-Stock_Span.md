@@ -1,217 +1,174 @@
 # Taught by Gemini.
 
-This problem is a classic example of using a **Monotonic Stack**. To find the "span" of a stock's price, we need to find the number of consecutive days (including the current day) where the price was less than or equal to the current price.
+The **Stock Span** problem is a classic application of the **Monotonic Stack**. The span of a stock's price on a given day is defined as the maximum number of consecutive days (including the current day) just before it, for which the price was less than or equal to the current price.
 
-Essentially, we are looking for the **previous greater element**.
+In simpler terms: we need to find the index of the **previous greater element**.
 
-### The Strategy
+### The Logic
 
-Instead of recalculating the span every time (which would be ), we store pairs of `[price, span]` in a stack.
-
-1. **Initialize**: An empty stack to store our pairs.
-2. **The `next` logic**:
-* Start with a default `span` of **1** (the current day itself).
-* While the stack is not empty and the current `price` is **greater than or equal** to the price at the top of the stack:
-* Pop the top element.
-* Add that element's span to our current `span`.
-
-
-* Push the current `[price, span]` onto the stack.
-* Return the accumulated `span`.
-
-
+* We use a stack to store the **indices** of the days.
+* For each price, we pop from the stack as long as the price at the top of the stack is less than or equal to the current price.
+* If the stack becomes empty, it means the current price is the highest so far, so the span is `index + 1`.
+* Otherwise, the span is the difference between the current index and the index of the previous greater element.
 
 ---
 
-### The Implementation
+### Implementation
+
+Here is the JavaScript implementation for your `Solution` class:
 
 ```javascript
-var StockSpanner = function() {
-    // Each element in the stack will be an array: [price, span]
-    this.stack = [];
-};
-
-/** * @param {number} price
- * @return {number}
+/**
+ * @param {number[]} arr
+ * @returns {number[]}
  */
-StockSpanner.prototype.next = function(price) {
-    let span = 1;
+class Solution {
+    calculateSpan(arr) {
+        let n = arr.length;
+        let span = new Array(n);
+        let stack = [];
 
-    // While current price is >= top of stack, we "absorb" their spans
-    while (this.stack.length > 0 && price >= this.stack[this.stack.length - 1][0]) {
-        const [prevPrice, prevSpan] = this.stack.pop();
-        span += prevSpan;
+        for (let i = 0; i < n; i++) {
+            // Pop elements from stack while the stack is not empty 
+            // and the current price is greater than or equal to 
+            // the price at the index stored at the top of the stack
+            while (stack.length > 0 && arr[stack[stack.length - 1]] <= arr[i]) {
+                stack.pop();
+            }
+
+            // If stack is empty, then arr[i] is greater than all 
+            // previous elements. Otherwise, it's greater than 
+            // elements after the index at stack top.
+            if (stack.length === 0) {
+                span[i] = i + 1;
+            } else {
+                span[i] = i - stack[stack.length - 1];
+            }
+
+            // Push this element's index to the stack
+            stack.push(i);
+        }
+
+        return span;
     }
-
-    // Push current price and its calculated span onto the stack
-    this.stack.push([price, span]);
-
-    return span;
-};
-
-/** * Your StockSpanner object will be instantiated and called as such:
- * var obj = new StockSpanner()
- * var param_1 = obj.next(price)
- */
+}
 
 ```
 
+### Complexity Analysis
+
+* **Time Complexity**: **O(n)**. Even though there is a nested `while` loop, each index is pushed and popped from the stack exactly once.
+* **Space Complexity**: **O(n)** to store the stack and the resulting span array.
+
 ---
 
-### Why this is efficient
-
-* **Time Complexity**: **O(1)** average. Although there is a `while` loop, each price is pushed and popped from the stack **exactly once** across all calls to `next`. This is known as **amortized** O(1) time.
-* **Space Complexity**: **O(n)** in the worst case (if prices are strictly decreasing), as we store each price in the stack.
-
-Would you like to see how this same logic applies to the **Daily Temperatures** problem?
+Would you like me to walk through a dry run of this logic with a specific example array?
 
 ---
 
 # Taught by ChatGPT.
 
-Very good.
-Now you’re entering **monotonic stack** territory. This is an important pattern.
+Good. This is the classic **Stock Span** problem — solved using a **monotonic stack**.
 
-LeetCode 901 – Stock Spanner
+One-line intuition:
+For each day, span = number of consecutive previous days with price ≤ today’s price.
 
-Problem in simple words:
+We keep a stack of indices where prices are in **decreasing order**.
 
-For each day’s price, return how many consecutive days (including today) the price was **≤ today’s price**.
+---
 
-Example:
+### 🔹 Algorithm Logic
 
-Prices:
-100 → span = 1
-80 → 1
-60 → 1
-70 → 2  (70 ≥ 60)
-60 → 1
-75 → 4  (75 ≥ 60,70,60)
-85 → 6
+For each index `i`:
 
-Core Idea (one line)
+1. While stack is not empty **and**
+   `arr[stack.top] <= arr[i]`
+   → pop from stack
+   (because those days are included in span)
 
-We need to remove smaller elements behind us → so they never get checked again → use a **monotonic decreasing stack**.
+2. If stack becomes empty
+   → span = `i + 1`
+   (all previous days are smaller)
 
-Why normal brute force fails?
+3. Else
+   → span = `i - stack.top`
 
-If for every price you go backward checking previous days → O(n²).
+4. Push current index `i` into stack.
 
-We want O(n).
+Time Complexity: **O(n)**
+Each element is pushed and popped at most once.
 
-Key Insight
+---
 
-If today’s price is higher than previous day’s price, then:
+### 🔹 Code (Clean & Interview Ready)
 
-* That previous day will never be useful for future comparisons.
-* So we can permanently remove it.
+```js
+/**
+ * @param {number[]} arr
+ * @returns {number[]}
+ */
 
-This is where stack shines.
+class Solution {
+    calculateSpan(arr) {
+        let n = arr.length;
+        let stack = [];      // will store indices
+        let span = new Array(n);
 
-What do we store in stack?
+        for (let i = 0; i < n; i++) {
 
-Instead of storing only price, we store:
+            // Pop smaller or equal elements
+            while (stack.length > 0 && arr[stack[stack.length - 1]] <= arr[i]) {
+                stack.pop();
+            }
 
-[price, span]
+            // If stack is empty
+            if (stack.length === 0) {
+                span[i] = i + 1;
+            } else {
+                span[i] = i - stack[stack.length - 1];
+            }
 
-Why?
+            // Push current index
+            stack.push(i);
+        }
 
-Because when we pop smaller prices, we accumulate their span.
-
-That’s the trick.
-
-Implementation
-
-```javascript
-var StockSpanner = function() {
-    this.stack = []; 
-    // Each element: [price, span]
-};
-
-StockSpanner.prototype.next = function(price) {
-    let span = 1;
-    
-    // Pop all smaller or equal prices
-    while (this.stack.length > 0 && this.stack[this.stack.length - 1][0] <= price) {
-        span += this.stack.pop()[1];
+        return span;
     }
-    
-    this.stack.push([price, span]);
-    
-    return span;
-};
+}
 ```
 
-Why This Works
+---
 
-Suppose stack top has:
+### 🔹 Why This Works (Deep Understanding)
 
-[70, 2]
+The stack always maintains **previous greater element indices**.
 
-That means:
+So for each `i`, we are actually finding:
 
-* 70 was valid for 2 consecutive days.
-* If today’s price is 75,
-  then those 2 days automatically become part of today's span.
+> Distance from current index to previous greater element.
 
-So we don’t check each day individually.
-We compress history.
+That distance is exactly the stock span.
 
-Time Complexity
+---
 
-Amortized O(1) per call
-Each element is pushed once and popped once.
+### 🔹 Pattern Recognition (Important for DSA)
 
-Overall O(n)
+Whenever you see:
 
-Space Complexity
-O(n)
+* "consecutive previous smaller elements"
+* "nearest greater to left"
+* "monotonic behavior"
 
-Pattern Recognition for You
+→ Think **Monotonic Stack**
 
-This is the same family as:
+---
 
-* Next Greater Element
-* Daily Temperatures
-* Largest Rectangle in Histogram
+If you want, I can now:
 
-Whenever question says:
+* Dry run on example `[100, 80, 60, 70, 60, 75, 85]`
+* Or connect this to real backend/web dev logic for pattern clarity
+* Or explain how this relates to `LeetCode 901` (StockSpanner class version)
 
-* Consecutive
-* Previous smaller/greater
-* Next greater
-* Span
-* Until condition breaks
-
-→ Think Monotonic Stack.
-
-Web Development Relation (important for you)
-
-Think of it like caching.
-
-If a weaker entry is overshadowed by a stronger one,
-you delete it permanently from consideration.
-
-Exactly like:
-
-* Removing stale cache entries.
-* Maintaining decreasing priority queues.
-* Keeping only relevant middleware in a chain.
-
-Now a small thinking exercise for you:
-
-Why do we use
-<=
-and not
-<
-
-in this line?
-
-```
-this.stack[this.stack.length - 1][0] <= price
-```
-
-Answer that carefully. This is where real understanding lies.
-
+What would you prefer?
 
 ---
