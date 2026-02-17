@@ -1,15 +1,4 @@
-/**
-# Stock Span.
 
-## Link: https://www.geeksforgeeks.org/problems/stock-span-problem-1587115621/1
-
-## Question: We've to return stock span array.
-1. Stock span is a number of consecutive days before the current day where the stock price is equal or less than the today's/current price.
-
-## Solution:
-1. We'll take a stack and will keep pushing the previous high array elements in it.
-    1.1. Thus, span for the current day will be today's index - previous high index (taken from the stack top).
-*/
 
 /**
  * @param {number[]} arr
