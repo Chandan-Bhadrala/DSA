@@ -16,5 +16,42 @@
  * @return {number}
  */
 var trap = function (height) {
-  
+  let leftBoundaryHeightArr = ltBoundaryHt(height);
+  let rightBoundaryHeightArr = rtBoundaryHt(height);
 };
+
+function ltBoundaryHt(height) {
+  let stack = [];
+  let resArr = [];
+
+  for (let i = 0; i < height.length; i++) {
+    // Pop the stack's top element if it's smaller or equal to the current height[i].
+    while (stack.length > 0 && stack[stack.length - 1] <= height[i]) {
+      stack.pop();
+    }
+
+    stack.length == 0 ? resArr.push(-1) : resArr.push(stack[stack.length - 1]);
+
+    stack.push(height[i]);
+  }
+
+  return resArr;
+}
+
+function rtBoundaryHt(height) {
+  let stack = [];
+  let resArr = [];
+
+  for (let i = height.length - 1; i >= 0; i--) {
+    // Pop the stack's top element if it's smaller or equal to the current height[i].
+    while (stack.length > 0 && stack[stack.length - 1] <= height[i]) {
+      stack.pop();
+    }
+
+    stack.length == 0 ? resArr.push(-1) : resArr(stack[stack.length - 1]);
+
+    stack.push(height[i]);
+  }
+
+  return resArr;
+}
