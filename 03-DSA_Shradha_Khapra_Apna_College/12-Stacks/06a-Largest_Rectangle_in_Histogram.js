@@ -26,6 +26,10 @@ function prevSmallerIndex(heights) {
   let res = [];
 
   for (let i = 0; i < heights.length; i++) {
+
+    // >= instead of just >. 
+    // To pop off the same length bar of the histogram.
+    // So, that we're finally able to reach the true smaller bar.
     while (stack.length > 0 && heights[stack[stack.length - 1]] >= heights[i]) {
       stack.pop();
     }

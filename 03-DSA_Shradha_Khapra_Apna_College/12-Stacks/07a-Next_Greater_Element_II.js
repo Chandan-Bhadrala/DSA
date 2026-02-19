@@ -1,29 +1,35 @@
 /**
+# Next Greater Element II.
+
+## Question:
+1. We've to check for the next greater element in the array.
+    1.1. However, we've to treat the array as a circular array.
+2. We can loop the array twice in a loop if we iterate for the 2 * arr.length - 1 times.
+3. We'll be using "i % arr.length" to access the proper index of the array.
+
+## Solution:
+*/
+
+/**
  * @param {number[]} nums
  * @return {number[]}
  */
-var nextGreaterElements = function(nums) {
-    const n = nums.length;
-    const res = new Array(n).fill(-1);
-    const stack = []; // Stores indices
+var nextGreaterElements = function (nums) {
+  let stack = [];
+  let res = [];
 
-    // Loop twice to handle circular property
-    for (let i = 0; i < n * 2; i++) {
-        const currentIndex = i % n;
-        const currentVal = nums[currentIndex];
-
-        // While stack is not empty and current element is greater 
-        // than the element at the stack's top index
-        while (stack.length > 0 && nums[stack[stack.length - 1]] < currentVal) {
-            const lastIndex = stack.pop();
-            res[lastIndex] = currentVal;
-        }
-
-        // Only push indices during the first pass or if they need a result
-        if (i < n) {
-            stack.push(currentIndex);
-        }
+  for (let i = nums.length * 2 - 1; i >= 0; i--) {
+    while (
+      stack.length > 0 &&
+      stack[stack.length - 1] <= nums[i % nums.length]
+    ) {
+      stack.pop();
     }
 
-    return res;
+    stack.length == 0
+      ? (res[i % nums.length] = -1)
+      : (res[i % nums.length] = stack[stack.length - 1]);
+    stack.push(nums[i % nums.length]);
+  }
+  return res;
 };
