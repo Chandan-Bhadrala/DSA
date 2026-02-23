@@ -191,7 +191,7 @@ If there is only one node:
 
 ```
 head → [10] → null
-tail ─────────┘
+tail ───┘
 ```
 
 Then:

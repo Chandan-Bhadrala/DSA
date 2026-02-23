@@ -1,4 +1,4 @@
-# Shall I do array implementation. Or leave it as it will lead to the O(n) pop-front operation. And If I used two pointers in the array to mark locations as head and tail then, it will lead to empty initial array slots. If upon dequeue I kept moving the head forward then initial array as stated before, will remain empty and unusable but acquired by the Queue Data structure. That'll be a wasteful way to implement the Queue.
+# Q2) Shall I do array implementation. Or leave it as it will lead to the O(n) pop-front operation. And If I used two pointers in the array to mark locations as head and tail then, it will lead to empty initial array slots. If upon dequeue I kept moving the head forward then initial array as stated before, will remain empty and unusable but acquired by the Queue Data structure. That'll be a wasteful way to implement the Queue.
 
 Very good. Now you’re thinking about **trade-offs**, not just code.
 
@@ -150,3 +150,4 @@ That’s the shift from beginner → engineer.
 If you want, we can implement a clean circular queue together next.
 
 ---
+
