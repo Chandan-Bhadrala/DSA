@@ -16,15 +16,14 @@ class LinkedQueue {
 
   // Add to the back (Tail)
   enqueue(value) {
-    const newNode = new Node(value);
+    let newNode = new Node(value);
 
-    if (this.isEmpty()) {
+    // Below if-block code is for the very first node insertion
+    if (this.head == this.tail) {
       this.head = newNode;
       this.tail = newNode;
     } else {
-      // Connect the current tail to the new node
       this.tail.next = newNode;
-      // Move the tail pointer to the new node
       this.tail = newNode;
     }
 
@@ -33,20 +32,14 @@ class LinkedQueue {
 
   // Remove from the front (Head)
   dequeue() {
-    if (this.isEmpty()) return null;
+    if (!this.head) return null;
 
-    const removedNode = this.head;
-    
-    // Move the head pointer to the next node in line
+    let removedNode = this.head;
     this.head = this.head.next;
     this.length--;
 
-    // If the queue is now empty, reset the tail to null
-    if (this.length === 0) {
-      this.tail = null;
-    }
-
-    return removedNode.value;
+    removedNode.next = null;
+    return removedNode;
   }
 
   peek() {
@@ -54,7 +47,7 @@ class LinkedQueue {
   }
 
   isEmpty() {
-    return this.length === 0;
+    return this.length == 0;
   }
 }
 
@@ -64,4 +57,4 @@ printerQueue.enqueue("Document_A.pdf");
 printerQueue.enqueue("Photo_B.jpg");
 
 console.log(printerQueue.dequeue()); // "Document_A.pdf"
-console.log(printerQueue.peek());    // "Photo_B.jpg"
+console.log(printerQueue.peek()); // "Photo_B.jpg"
