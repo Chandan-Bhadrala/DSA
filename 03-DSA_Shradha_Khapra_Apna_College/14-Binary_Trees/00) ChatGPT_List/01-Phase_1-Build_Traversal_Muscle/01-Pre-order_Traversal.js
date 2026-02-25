@@ -11,23 +11,19 @@ class Node {
  * Pre-order Traversal: Root -> Left -> Right
  */
 function preOrder(root) {
-  // Travel to the bottom of the tree using recursion.
-  // Return from the point of the null.
-  if (!root) return;
+  // Base case: if the node is empty, just return
+  if (!root) {
+    return;
+  }
 
-  // Console the value of the root.
+  // 1. Visit the Root
   console.log(root.value);
 
-  // Traverse to the left node (or left subtree completely).
-  // For the next recursive calls, it'll be a root node.
+  // 2. Traverse the Left subtree
   preOrder(root.left);
-  
-  // After traversing all the left nodes of the tree with the help of the above recursive call.
-  // Traverse to the right sub-tree or right nodes using below recursive call.
-  preOrder(root.right);
 
-  // We'll be printing the nodes in the starting of the function using the console.log(root) statement.
-  // As these nodes will be a root for the new function call.
+  // 3. Traverse the Right subtree
+  preOrder(root.right);
 }
 
 // Example Usage:
