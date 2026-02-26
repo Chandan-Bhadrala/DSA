@@ -1,3 +1,12 @@
+// Define the Node structure
+class Node {
+  constructor(value) {
+    this.value = value;
+    this.left = null;
+    this.right = null;
+  }
+}
+
 /**
  * Search in an unsorted Binary Tree
  * @param {Node} root 
