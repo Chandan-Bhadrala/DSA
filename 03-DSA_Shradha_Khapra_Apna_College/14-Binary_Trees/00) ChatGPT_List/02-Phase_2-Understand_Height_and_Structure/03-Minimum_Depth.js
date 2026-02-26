@@ -1,42 +1,37 @@
-// Define the Node structure
-class Node {
-  constructor(value) {
-    this.value = value;
-    this.left = null;
-    this.right = null;
-  }
-}
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ * this.val = (val===undefined ? 0 : val)
+ * this.left = (left===undefined ? null : left)
+ * this.right = (right===undefined ? null : right)
+ * }
+ */
 
 /**
- * Pre-order Traversal: Root -> Left -> Right
+ * @param {TreeNode} root
+ * @return {number}
  */
-function preOrder(root) {
-  // Base case: if the node is empty, just return
-  if (!root) {
-    return;
+const minDepth = function(root) {
+  // 1. Base case: Empty tree
+  if (root === null) {
+    return 0;
   }
 
-  // 1. Visit the Root
-  console.log(root.value);
+  // 2. Base case: Leaf node (no children)
+  if (root.left === null && root.right === null) {
+    return 1;
+  }
 
-  // 2. Traverse the Left subtree
-  preOrder(root.left);
+  // 3. If left child is null, we must recurse into the right subtree
+  if (root.left === null) {
+    return minDepth(root.right) + 1;
+  }
 
-  // 3. Traverse the Right subtree
-  preOrder(root.right);
-}
+  // 4. If right child is null, we must recurse into the left subtree
+  if (root.right === null) {
+    return minDepth(root.left) + 1;
+  }
 
-// Example Usage:
-//        1
-//       / \
-//      2   3
-//     / \
-//    4   5
-const tree = new Node(1);
-tree.left = new Node(2);
-tree.right = new Node(3);
-tree.left.left = new Node(4);
-tree.left.right = new Node(5);
-
-preOrder(tree);
-// Output: 1, 2, 4, 5, 3
+  // 5. If both exist, find the minimum of the two
+  return Math.min(minDepth(root.left), minDepth(root.right)) + 1;
+};
