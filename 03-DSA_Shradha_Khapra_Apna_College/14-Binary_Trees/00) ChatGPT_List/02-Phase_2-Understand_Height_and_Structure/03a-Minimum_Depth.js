@@ -11,27 +11,16 @@
  * @param {TreeNode} root
  * @return {number}
  */
-const minDepth = function(root) {
-  // 1. Base case: Empty tree
-  if (root === null) {
-    return 0;
+
+// We recurse till we find the **LEAF NODE** (a node with no/0 child).
+const minDepth = function (root) {
+  // Base case: We recurse till we find a node with no right and the left node. A true leaf node.
+  // Because a leaf node decides the min or the max height.
+  if (!root) return 0;
+
+  if (!root.left) {
+    minDepth(root.right);
   }
 
-  // 2. Base case: Leaf node (no children)
-  if (root.left === null && root.right === null) {
-    return 1;
-  }
-
-  // 3. If left child is null, we must recurse into the right subtree
-  if (root.left === null) {
-    return minDepth(root.right) + 1;
-  }
-
-  // 4. If right child is null, we must recurse into the left subtree
-  if (root.right === null) {
-    return minDepth(root.left) + 1;
-  }
-
-  // 5. If both exist, find the minimum of the two
-  return Math.min(minDepth(root.left), minDepth(root.right)) + 1;
+  if()
 };
