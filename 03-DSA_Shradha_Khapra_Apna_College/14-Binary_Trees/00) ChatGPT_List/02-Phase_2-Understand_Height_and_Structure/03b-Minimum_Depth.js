@@ -12,21 +12,33 @@
  * @return {number}
  */
 
+/**
+## Error: In approach.
+1. If both children exist, neither if block runs, so both remain Infinity.
+  1. That gives Infinity, which is wrong.
+*/
+
+
 // We recurse till we find the **LEAF NODE** (a node with no/0 child).
 const minDepth = function (root) {
-  // Base case: We recurse till we find a node with no right and the left node. A true LEAF NODE.
-  // Because a leaf node decides the min or the max height.
-  if (!root) return 0; // Recurse till leaf node is found and then only return a base value to compile answer on.
+  // Base Case: We return when we hit null value/node.
+  if (!root) return 0; // Null value/node will not be considered in the tree height calculation.
+
+  // Only when we will find the true LEAF NODE, we'll return 1 for the further accumulation purpose to calculate the tree's height.
+  if (!root.left && !root.right) return 1; // For accumulation to purpose. To calculate the tree's height.
+
+  let ltBranchHT = Infinity;
+  let rtBranchHT = Infinity;
 
   if (!root.left) {
-    // Just recurse, if there is a right branch. To reach to the Leaf Node.
-    minDepth(root.right);
+    // Recurse till we reach to the end of the right branch of the parent's node.
+    rtBranchHT = minDepth(root.right);
   }
 
   if (!root.right) {
-    // Just recurse, if there is a left branch. Again just to reach to the Leaf Node.
-    minDepth(root.left);
+    // Recurse till we reach to the end of the left branch of the parent's node.
+    ltBranchHT = minDepth(root.left);
   }
 
-  return Math.min() + 1; // I've nothing now other than 0, to accumulate my answer on. +1 is for the parent node. How to accumulate children result.
+  return Math.min(ltBranchHT, rtBranchHT) + 1; // +1 to add the parent node's ht into the tree ht. +1 into the children's ht. // This return value will be received by the grand parent node for further addition.
 };
