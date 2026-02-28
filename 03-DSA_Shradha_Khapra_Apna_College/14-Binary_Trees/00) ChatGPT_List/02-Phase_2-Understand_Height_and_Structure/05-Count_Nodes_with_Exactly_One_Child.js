@@ -1,42 +1,19 @@
-// Define the Node structure
-class Node {
-  constructor(value) {
-    this.value = value;
-    this.left = null;
-    this.right = null;
-  }
-}
+function countSingleChildNodes(root) {
+  // Base Case: If the node is null, it contributes 0 to the count.
+  if (!root) return 0;
 
-/**
- * Pre-order Traversal: Root -> Left -> Right
- */
-function preOrder(root) {
-  // Base case: if the node is empty, just return
-  if (!root) {
-    return;
+  // Condition for exactly one child:
+  // (Left exists AND Right is null) OR (Left is null AND Right exists)
+  const hasOnlyLeft = root.left && !root.right;
+  const hasOnlyRight = !root.left && root.right;
+
+  if (hasOnlyLeft || hasOnlyRight) {
+    // If this node has exactly one child, we count it (1) 
+    // and continue searching both branches.
+    return 1 + countSingleChildNodes(root.left) + countSingleChildNodes(root.right);
   }
 
-  // 1. Visit the Root
-  console.log(root.value);
-
-  // 2. Traverse the Left subtree
-  preOrder(root.left);
-
-  // 3. Traverse the Right subtree
-  preOrder(root.right);
+  // If the node has zero children (leaf) or two children, 
+  // we don't count it (0) but still recurse to find single-child nodes deeper down.
+  return countSingleChildNodes(root.left) + countSingleChildNodes(root.right);
 }
-
-// Example Usage:
-//        1
-//       / \
-//      2   3
-//     / \
-//    4   5
-const tree = new Node(1);
-tree.left = new Node(2);
-tree.right = new Node(3);
-tree.left.left = new Node(4);
-tree.left.right = new Node(5);
-
-preOrder(tree);
-// Output: 1, 2, 4, 5, 3
