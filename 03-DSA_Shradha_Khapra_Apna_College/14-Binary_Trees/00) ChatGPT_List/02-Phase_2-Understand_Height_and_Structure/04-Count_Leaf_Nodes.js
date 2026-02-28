@@ -1,42 +1,32 @@
-// Define the Node structure
 class Node {
-  constructor(value) {
-    this.value = value;
-    this.left = null;
-    this.right = null;
-  }
+    constructor(value) {
+        this.value = value;
+        this.left = null;
+        this.right = null;
+    }
 }
 
-/**
- * Pre-order Traversal: Root -> Left -> Right
- */
-function preOrder(root) {
-  // Base case: if the node is empty, just return
-  if (!root) {
-    return;
-  }
+function countLeafNodes(root) {
+    // Base Case 1: Empty tree
+    if (root === null) {
+        return 0;
+    }
 
-  // 1. Visit the Root
-  console.log(root.value);
+    // Base Case 2: Leaf node (no children)
+    if (root.left === null && root.right === null) {
+        return 1;
+    }
 
-  // 2. Traverse the Left subtree
-  preOrder(root.left);
-
-  // 3. Traverse the Right subtree
-  preOrder(root.right);
+    // Recursive Step: Sum the leaves of both subtrees
+    return countLeafNodes(root.left) + countLeafNodes(root.right);
 }
 
-// Example Usage:
-//        1
-//       / \
-//      2   3
-//     / \
-//    4   5
-const tree = new Node(1);
-tree.left = new Node(2);
-tree.right = new Node(3);
-tree.left.left = new Node(4);
-tree.left.right = new Node(5);
+// --- Example Usage ---
+const root = new Node(1);
+root.left = new Node(2);
+root.right = new Node(3);
+root.left.left = new Node(4);
+root.left.right = new Node(5);
 
-preOrder(tree);
-// Output: 1, 2, 4, 5, 3
+console.log("Total Leaf Nodes:", countLeafNodes(root)); 
+// Output: 3 (Nodes 4, 5, and 3 are leaves)
