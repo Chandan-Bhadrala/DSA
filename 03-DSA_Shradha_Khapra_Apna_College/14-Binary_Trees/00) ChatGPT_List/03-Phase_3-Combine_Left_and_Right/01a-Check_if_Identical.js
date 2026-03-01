@@ -13,14 +13,13 @@ class Node {
  * @return {boolean}
  */
 const isSameTree = (p, q) => {
-  // 1. If both nodes are null, they are identical
-  if (!p && !q) return true;
+  if (!p || !q) return p == q; // Both must be equal and both must be null to return true.
 
-  // 2. If one is null and the other isn't, or values differ
-  if (!p || !q || p.val !== q.val) return false;
+  // Recurse into the right and the left sub-tree.
+  let ltCheck = isSameTree(p.left, q.left);
+  let rtCheck = isSameTree(p.right, q.right);
 
-  // 3. Recursively check left and right children
-  return isSameTree(p.left, q.left) && isSameTree(p.right, q.right);
+  return ltCheck && rtCheck && p.val == q.val;
 };
 
 // Example Usage:
