@@ -27,6 +27,7 @@ class Node {
 */
 
 const printPaths = (root, res = [], path = []) => {
+  // Below line is an incomplete base case. There must be a universal base case of "if(!root) return;"
   
   if (!root.left && !root.right) return res.push([...path]); // Insert one full path once leaf node is touched.
 

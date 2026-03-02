@@ -13,12 +13,6 @@ class Node {
  */
 
 /**
-## Error: In Approach.
-1. I was returning early upon finding the leaf node.
-  1. I was not popping off the leaf node.
-*/
-
-/**
 res -> is used to accumulate all paths, as a nested array.
 path -> is used to track the current path. Once leaf node is touched. We'll push the path into the res (resultant) array.
 */
@@ -31,7 +25,13 @@ const printPaths = (root, res = [], path = []) => {
   path.push(root.val);
 
   // Below is the conditional base case required for this question requirement.
-  if (!root.left && !root.right) return res.push([...path]); // Insert one full path once leaf node is touched.
+  if (!root.left && !root.right) {
+    // return res.push([...path]); // Insert one full path once leaf node is touched.
+    // Above returning is making, popping leaf node impossible.
+    // So, just add the whole path into the res array.
+    // We'll return later.
+    res.push([...path]);
+  }
 
   // Recurse deep till the null value.
   printPaths(root.left, res, path);
