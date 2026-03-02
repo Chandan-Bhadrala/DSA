@@ -7,27 +7,44 @@ class Node {
 }
 
 /**
- * Function to find and print all root-to-leaf paths
- * @param {Node} root
- * @param {string} path - Accumulates the values as we go
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ * this.val = (val===undefined ? 0 : val)
+ * this.left = (left===undefined ? null : left)
+ * this.right = (right===undefined ? null : right)
+ * }
  */
-const printPaths = (root, path = "") => {
-  // 1. Base Case: If the tree is empty
-  if (!root) return;
 
-  // 2. Append current node value to the path string
-  // If path is empty, just add val; otherwise, add an arrow separator
-  const currentPath = path === "" ? `${root.val}` : `${path} -> ${root.val}`;
+/**
+ * @param {TreeNode} root
+ * @return {string[]}
+ */
+const binaryTreePaths = function (root) {
+  const result = [];
 
-  // 3. Leaf Check: If it's a leaf, we found a complete path
-  if (!root.left && !root.right) {
-    console.log(currentPath);
-    return;
-  }
+  // Helper function for DFS
+  const findPaths = (node, currentPath) => {
+    if (!node) return;
 
-  // 4. Recursive Step: Continue searching left and right
-  printPaths(root.left, currentPath);
-  printPaths(root.right, currentPath);
+    // Add current node value to path
+    currentPath.push(node.val);
+
+    // Check if it's a leaf node
+    if (!node.left && !node.right) {
+      // Join the path array into a string format "1->2->3"
+      result.push(currentPath.join("->"));
+    } else {
+      // Continue traversal to children
+      findPaths(node.left, currentPath);
+      findPaths(node.right, currentPath);
+    }
+
+    // Backtrack: remove the current node before going back up the tree
+    currentPath.pop();
+  };
+
+  findPaths(root, []);
+  return result;
 };
 
 // Example Usage:
@@ -38,4 +55,4 @@ root.left.left = new Node(3);
 root.left.right = new Node(5);
 root.right.left = new Node(2);
 
-printPaths(root);
+console.log(binaryTreePaths(root))
