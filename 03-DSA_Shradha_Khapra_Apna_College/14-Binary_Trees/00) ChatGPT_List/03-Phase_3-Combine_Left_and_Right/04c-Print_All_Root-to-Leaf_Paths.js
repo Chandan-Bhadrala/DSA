@@ -11,15 +11,15 @@ class Node {
  * @param {Node} root
  * @param {string} path - Accumulates the values as we go
  */
-const printPaths = (root, path = []) => {
-  if (!root) return;
+const printPaths = (root, res = [], path = []) => {
+  if (!root.left && !root.right) return res.push([...path]); // Insert one full path once leaf node is touched.
 
   // Push current node.
   path.push(root.val);
 
   // Recurse deep till the null value.
-  printPaths(root.left);
-  printPaths(root.right);
+  printPaths(root.left, res, path);
+  printPaths(root.right, res, path);
 
   // While backtracking pop the last node so that last left-node gets popped up to make space/room for the right-node.
   path.pop();
@@ -28,7 +28,7 @@ const printPaths = (root, path = []) => {
   // While popping one full path must not be interrupted.
   // I need to store the full path as a nested array securely.
 
-  return path;
+  return res;
 };
 
 // Example Usage:
