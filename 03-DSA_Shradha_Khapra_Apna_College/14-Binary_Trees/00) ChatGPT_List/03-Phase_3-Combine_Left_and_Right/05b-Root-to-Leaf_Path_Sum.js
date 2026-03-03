@@ -22,12 +22,13 @@ const hasPathSum = (root, targetSum, calSum = 0) => {
     return true;
   }
 
-  hasPathSum(root.left, targetSum, calSum);
-  hasPathSum(root.right, targetSum, calSum);
+  let leftCheck = hasPathSum(root.left, targetSum, calSum);
+  let rightCheck = hasPathSum(root.right, targetSum, calSum);
 
   calSum -= root.val;
 
-  return calSum == targetSum;
+  // Parent return to the Grand Parent the truth returned by the child node.
+  return leftCheck || rightCheck; // If either of the child says yes. We propagate that answer to the top.
 };
 
 // Example Usage:
