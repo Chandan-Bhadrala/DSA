@@ -34,8 +34,6 @@
 // Trial: 5 -> Let's try to write correct code with time complexity of **O(n)**.
 
 var diameterOfBinaryTree = function (root) {
-  if (!root) return 0; // Universal base case to return from the
-
   let maxDia = 0;
 
   // Now, will write the helper function as a nested function. This nested helper function will keep on calculating the maxHt for each node and along with it node's Ht calculation, it'll also update the parent's Dia variable for the maxDia value.

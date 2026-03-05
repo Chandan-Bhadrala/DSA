@@ -6,20 +6,20 @@ If any single node in the tree fails this condition, the entire tree is consider
 
 ---
 
-### ## The Core Condition
+## The Core Condition
 
 For every node $n$:
 `abs(height(n.left) - height(n.right)) <= 1`
 
 ---
 
-### ## The Efficient Approach (O(n))
+## The Efficient Approach (O(n))
 
 Just like finding the **Diameter**, the most efficient way to check balance is a **bottom-up DFS**.
 
 Instead of checking the height of every node repeatedly ($O(n^2)$), we check for balance while we are already calculating the height. If we find an unbalanced subtree, we "bubble up" an error value (like `-1`) to signal that the tree is broken.
 
-### ### JavaScript Implementation
+### JavaScript Implementation
 
 ```javascript
 /**
@@ -65,7 +65,7 @@ var isBalanced = function(root) {
 
 ---
 
-### ## Why this works
+## Why this works
 
 * **Efficiency:** We visit each node exactly once.
 * **Early Exit:** As soon as one subtree returns `-1`, the recursion effectively stops doing meaningful work and just passes the `-1` back up to the root.
@@ -76,7 +76,7 @@ var isBalanced = function(root) {
 
 ---
 
-### ## Visual Comparison
+## Visual Comparison
 
 | Balanced Tree | Unbalanced Tree |
 | --- | --- |
