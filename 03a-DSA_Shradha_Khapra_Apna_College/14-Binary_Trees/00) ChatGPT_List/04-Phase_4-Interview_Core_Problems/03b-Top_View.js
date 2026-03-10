@@ -23,8 +23,8 @@
     2. Similarly, left to the parent node, will get col-1 in comparison to its parent node.
 3. I'll be storing the node value in pair with its colNo.
     1. If a node for the same colNo., already exists in the map, then I'll ignore adding the same colNo. and node pair into the map.
-    2. As, the next pair of node and colNo. will indicate a node right below the above/previously added node.
-    3. So, the next time, I'll get another node with the already existing colNo. in the map. I'll ignore adding that node into the map.
+      1. As, the next pair of node and colNo. will indicate a node right below the above/previously added node.
+      2. So, the next time, I'll get another node with the already existing colNo. in the map. I'll ignore adding that node into the map.
 4. So, I need a queue to process BFS and a map to store/keep track of the node and the colNo.
 */
 
