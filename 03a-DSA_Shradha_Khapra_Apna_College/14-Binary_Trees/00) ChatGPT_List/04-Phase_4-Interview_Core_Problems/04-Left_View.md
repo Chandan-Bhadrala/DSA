@@ -4,7 +4,7 @@ The **Left View** of a binary tree is the set of nodes visible when the tree is 
 
 ---
 
-### ## The Strategy: DFS with Depth Tracking
+## The Strategy: DFS with Depth Tracking
 
 While you can use BFS (Level Order Traversal) and just pick the first element of each level, **DFS** is often more elegant and memory-efficient for this specific problem.
 
@@ -16,7 +16,7 @@ We keep track of the current `depth` and compare it to the size of our `result` 
 
 ---
 
-### ## JavaScript Implementation
+## JavaScript Implementation
 
 ```javascript
 /**
