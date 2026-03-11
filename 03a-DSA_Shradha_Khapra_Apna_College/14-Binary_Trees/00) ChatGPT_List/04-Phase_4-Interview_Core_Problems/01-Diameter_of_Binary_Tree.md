@@ -4,7 +4,7 @@ The **Diameter of a Binary Tree** is a classic problem that tests your understan
 
 ---
 
-### ## Understanding the Logic
+## Understanding the Logic
 
 To find the diameter, you need to look at every node in the tree and calculate the "longest path" that passes through it. For any specific node, that path is:
 
@@ -14,13 +14,13 @@ The overall diameter of the tree is the **maximum** value found across all nodes
 
 ---
 
-### ## The Efficient Approach (O(n))
+## The Efficient Approach (O(n))
 
 A common mistake is to calculate the height for every node separately, which leads to an $O(n^2)$ time complexity. Instead, we can calculate the height and the diameter in a **single bottom-up pass**.
 
 We use a recursive function that returns the **height** of a node but updates a global (or passed-by-reference) variable for the **diameter**.
 
-### ### JavaScript Implementation
+### JavaScript Implementation
 
 ```javascript
 /**
@@ -62,7 +62,7 @@ var diameterOfBinaryTree = function(root) {
 
 ---
 
-### ## Key Takeaways
+## Key Takeaways
 
 * **Time Complexity:** **O(n)** because we visit each node exactly once.
 * **Space Complexity:** **O(h)** where **h** is the height of the tree (due to the recursion stack).
@@ -70,7 +70,7 @@ var diameterOfBinaryTree = function(root) {
 
 ---
 
-### ## Visual Example
+## Visual Example
 
 Imagine a tree where the root has a very deep left subtree and a very deep right subtree. The diameter is the "bridge" connecting the deepest leaf on the left to the deepest leaf on the right.
 
