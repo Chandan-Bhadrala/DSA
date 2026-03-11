@@ -2,38 +2,15 @@
  * @param {TreeNode} root
  * @return {number[][]}
  */
+
+/**
+## Question:
+1. We've to travel the binary tree using BFS and has to store each level values as a nested array in a main res array.
+2. However, the catch is. We've to store each level in a zig-zag fashion.
+    1. Meaning, if we traverse and store the values of one level in **left-to-right manner**, then next level values'll be stored in **right-to-left manner**.
+    2. And we'll keep swinging the traversal manner every time we go down the level.
+*/
 var zigzagLevelOrder = function(root) {
-    if (!root) return [];
 
-    let result = [];
-    let queue = [root];
-    let leftToRight = true; // Flag to control the direction
-
-    while (queue.length > 0) {
-        let levelSize = queue.length;
-        let currentLevel = [];
-
-        for (let i = 0; i < levelSize; i++) {
-            let node = queue.shift();
-
-            // Logic to handle the zigzag direction
-            if (leftToRight) {
-                // Normal push: [1, 2, 3]
-                currentLevel.push(node.val);
-            } else {
-                // Add to beginning: [3, 2, 1]
-                currentLevel.unshift(node.val);
-            }
-
-            // Always add children to the queue in standard order (Left then Right)
-            // This ensures the NEXT level is ready in the queue correctly
-            if (node.left) queue.push(node.left);
-            if (node.right) queue.push(node.right);
-        }
-
-        result.push(currentLevel);
-        leftToRight = !leftToRight; // Flip the direction for the next level
-    }
-
-    return result;
+   
 };
