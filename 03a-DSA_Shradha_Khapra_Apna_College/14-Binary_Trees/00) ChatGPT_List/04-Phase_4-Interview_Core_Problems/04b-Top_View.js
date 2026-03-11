@@ -28,17 +28,13 @@
 4. So, I need a queue to process BFS and a map to store/keep track of the node and the colNo.
 */
 
+
 /**
-## Error: In Approach.
-1. I'd small error in approach.
-2. I thought map keeps the keys in a sorted order.
-    1. But map keeps the keys in an insertion order.
-    2. Map keeps the keys in a way they were inserted.
-3. It's not the Map, it's the JS object which keeps the positive integer keys in a sorted pattern.
-    1. And the string keys in an insertion order.
-    2. However, negative (such as, -1 or -2 or any other) numbers are treated as strings in the objects and not as integers.
-4. So, sorting keys even using objects are necessary, as HD will be negative too.
+## Improvement: In Approach.
+1. Last code was quite okay, just needed to return the sorted array instead of simply returning back the original map.
+2. As map keeps an insertion order and not the sorted order of the keys.
 */
+
 
 var topView = function (root) {
   if (!root) return [];
