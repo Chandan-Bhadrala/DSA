@@ -1,4 +1,4 @@
-# Code review and correction by the ChatGPT.
+# Code review by the ChatGPT.
 
 Your implementation is **correct and clean**. The logic clearly shows that you understand BFS and the idea of **processing one level at a time**. Let’s refine the conceptual understanding a little so the pattern becomes permanently clear.
 
@@ -263,7 +263,7 @@ Once you understand those, **80% of BFS tree problems become trivial**.
 
 ---
 
-# Code review and correction by the Gemini.
+# Code review by the Gemini.
 
 Your implementation of the **Binary Tree Level Order Traversal** is spot on. You’ve correctly identified that a **Queue** is the ideal data structure for Breadth-First Search (BFS) and used the `queue.length` snapshot to distinguish between levels.
 

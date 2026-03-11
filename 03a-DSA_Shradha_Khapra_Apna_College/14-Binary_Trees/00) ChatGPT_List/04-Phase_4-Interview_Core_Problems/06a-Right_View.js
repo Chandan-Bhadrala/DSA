@@ -2,23 +2,28 @@
  * @param {TreeNode} root
  * @return {number[]}
  */
-var rightSideView = function(root) {
-    let result = [];
 
-    function traverse(node, depth) {
-        if (!node) return;
+// ## Using BFS.
+var rightSideView = function (root) {
+  if (!root) return []; // Early return upon finding empty tree.
 
-        // If this is the first time we've reached this depth,
-        // it must be the rightmost node (because we visit right children first).
-        if (depth === result.length) {
-            result.push(node.val);
-        }
+  let queue = [root];
+  let res = [];
 
-        // CRITICAL: Visit RIGHT child before LEFT child
-        traverse(node.right, depth + 1);
-        traverse(node.left, depth + 1);
+  while (queue.length) {
+    let levelSize = queue.length;
+
+    for (let i = 0; i < levelSize; i++) {
+      let currentNode = queue.shift();
+
+      // Collect the right-most node-value from the level of the tree.
+      if (i == levelSize - 1) res.push(currentNode.val);
+
+      if (currentNode.left) queue.push(currentNode.left);
+      if (currentNode.right) queue.push(currentNode.right);
     }
+  }
 
-    traverse(root, 0);
-    return result;
+  // Return the collected rightmost nodes-value.
+  return res;
 };

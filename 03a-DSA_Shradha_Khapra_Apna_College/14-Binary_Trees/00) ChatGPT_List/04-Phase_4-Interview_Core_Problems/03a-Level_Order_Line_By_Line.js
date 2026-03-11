@@ -32,12 +32,12 @@ var levelOrder = function (root) {
   // Initializing it with root.
 
   while (queue.length) {
-    let queueLength = queue.length; // Capturing the queue length to extract the single level elements.
+    let levelSize = queue.length; // Capturing the queue length to extract the single level elements.
 
     let singleLevelElements = [];
 
     // Extracting all elements pertaining to the single level.
-    for (let i = 0; i < queueLength; i++) {
+    for (let i = 0; i < levelSize; i++) {
       let currentNode = queue.shift();
 
       singleLevelElements.push(currentNode.val);
