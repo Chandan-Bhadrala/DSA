@@ -1,18 +1,12 @@
 function hasPathSum(root, targetSum) {
-  // If the node is null, we haven't found a path
-  if (root === null) {
-    return false;
-  }
+if(!root) return false; // If we reached the last null value and still early returned the true. Then that means tree doesn't have a target sum in any of its root to leaf branch.
 
-  // Check if we are at a leaf node
-  if (root.left === null && root.right === null) {
-    // Is the remaining sum equal to the leaf's value?
-    return targetSum === root.val;
-  }
+// Compare the target sum with branch sum upon reaching the leaf node.
+if(!root.left&&!root.right) return 
 
-  // Recurse to children with the updated remaining sum
-  const remainingSum = targetSum - root.val;
-  
-  return hasPathSum(root.left, remainingSum) || 
-         hasPathSum(root.right, remainingSum);
+hasPathSum(root.left,targetSum);
+hasPathSum(root.right,targetSum);
+
+
+
 }
