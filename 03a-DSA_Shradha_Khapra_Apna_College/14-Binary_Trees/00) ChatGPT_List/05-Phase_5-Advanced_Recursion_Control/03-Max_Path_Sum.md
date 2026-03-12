@@ -109,14 +109,25 @@ Maximum sum:
 ```
 
 ---
-
 Core Idea
 
-At every node we consider **three possible roles**:
+At every node we calculate two things:
 
-1. Path goes through **left child**
-2. Path goes through **right child**
-3. Path passes **through the current node connecting both sides**
+1. **Best path passing through the node**
+
+```text
+left + node + right
+```
+
+2. **Best path we can return upward to the parent**
+
+```text
+node + max(left, right)
+```
+
+Why?
+
+Because a parent path **cannot branch into both sides**.
 
 Example
 

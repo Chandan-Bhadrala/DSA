@@ -8,23 +8,33 @@
 */
 
 /**
-## Error: In Approach.
-1. I'm supposed to return the root.val + Math.max(ltSum, rtSum);
-2. However, maintain the maxSum = Math.max(root.val + ltSum + rtSum,maxSum) separately.
-3. I Can use Kadane's logic to avoid adding/checking negative numbers/root.val.
+## Improvement: In Approach.
+1. Now, I'll only return: root.val + Math.max(ltSum, rtSum).
+2. And I'll maintain a global maxSum separately.
+3. I'll Kadane's logic in the next iteration of the code.
 */
 
+/**
+## Error: In Approach.
+1. maxSum is primitive value and every call stack its own value of maxSum and it cannot be updated via. below code.
+  1. So, either use an object, an array or a global value to update the maxSum.
+2. Passing a primitive value into the parameter would've worked only, if the return statement had that parameter value.
+  1. Then, maxSum value would've been updated for the call stack while returning back.
+3. Issue with returning the maxSum is:
+  1. I need to return currentPathSum too.
+  2. So, I'd have to return {currentPathSum, maxSum} and then destructure this o/p on every recursive call to read.
+  3. I've used an object in the return value because I need two different independent o/p's to propagate through the recursive calls.
+*/
 
 function maxPathSum(root, maxSum = -Infinity) {
-  if (!root)  0;
+  if (!root) return 0;
 
-  let ltSum = maxPathSum(root.left, maxSum);
-  let rtSum = maxPathSum(root.right, maxSum);
+  // Adding maxSum to the function call to meet the function contract. And to maintain the global maxSum value.
+  let ltSum = maxPathSum(root.left, maxSum); // Collecting the sum of the left branch.
+  let rtSum = maxPathSum(root.right, maxSum); // Collecting the sum of the right branch.
 
   let currentPathSum = ltSum + rtSum + root.val;
+  maxSum = Math.max(currentPathSum, maxSum); // Updating maxSum value.
 
-  return Math.max(currentPathSum, maxSum);
-
-  // This code is returning the sum of all the nodes.
-  // I need to return the maxSum of the path in a tree.
+  return root.val + Math.max(ltSum, rtSum); // Returning parent the maxSum obtained from either of the branch.
 }
