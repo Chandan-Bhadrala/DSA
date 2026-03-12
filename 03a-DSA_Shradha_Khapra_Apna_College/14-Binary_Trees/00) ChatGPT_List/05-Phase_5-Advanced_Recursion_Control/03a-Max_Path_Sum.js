@@ -1,23 +1,30 @@
-function maxPathSum(root) {
-  let maxSum = -Infinity;
+/**
+## Question:
+1. We've to find the max possible sum that can be attained in a tree.
 
-  function gainFromSubtree(node) {
-    if (node === null) return 0;
+## Solution:
+1. Simply, keep track of the maxSum seen and keep counting the sum.
+2. If the currentSum > maxSum, then update the maxSum value.
+*/
 
-    // Recursively get max gains, ignore negative paths (0)
-    const leftGain = Math.max(gainFromSubtree(node.left), 0);
-    const rightGain = Math.max(gainFromSubtree(node.right), 0);
+/**
+## Error: In Approach.
+1. I'm supposed to return the root.val + Math.max(ltSum, rtSum);
+2. However, maintain the maxSum = Math.max(root.val + ltSum + rtSum,maxSum) separately.
+3. I Can use Kadane's logic to avoid adding/checking negative numbers/root.val.
+*/
 
-    // Current path sum passing through this node
-    const currentPathSum = node.val + leftGain + rightGain;
 
-    // Update global maximum
-    maxSum = Math.max(maxSum, currentPathSum);
+function maxPathSum(root, maxSum = -Infinity) {
+  if (!root)  0;
 
-    // Return the max gain this node adds to its parent
-    return node.val + Math.max(leftGain, rightGain);
-  }
+  let ltSum = maxPathSum(root.left, maxSum);
+  let rtSum = maxPathSum(root.right, maxSum);
 
-  gainFromSubtree(root);
-  return maxSum;
+  let currentPathSum = ltSum + rtSum + root.val;
+
+  return Math.max(currentPathSum, maxSum);
+
+  // This code is returning the sum of all the nodes.
+  // I need to return the maxSum of the path in a tree.
 }
