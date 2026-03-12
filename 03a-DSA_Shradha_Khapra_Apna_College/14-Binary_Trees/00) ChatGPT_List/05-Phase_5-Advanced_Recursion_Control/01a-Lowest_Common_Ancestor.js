@@ -1,34 +1,27 @@
 /**
- * Definition for a binary tree node.
- * function TreeNode(val, left, right) {
- * this.val = (val===undefined ? 0 : val)
- * this.left = (left===undefined ? null : left)
- * this.right = (right===undefined ? null : right)
- * }
- */
+## Question:
+1. We need to find the closest ascendant (root) which has both **p and q** as its descendants.
+    1. That closest ascendant node will be consider as LCA (Lowest-Common-Ancestor).
+2. If say, q is descendant of the p, then we consider **p** as the LCA.
 
-/**
- * @param {TreeNode} root
- * @return {number}
- */
-var diameterOfBinaryTree = function(root) {
-    let maxDiameter = 0;
+## Solution:
+1. Recurse the tree in pursuit to find p and q.
+2. First node which receives success result for the search of p and q is the LCA node.
+    1. And if we only find p and not q. Then that means p is the **ascendant** or **LCA**.
+*/
+var lowestCommonAncestor = function (root, p, q) {
+  if (!root) return null; // If root == null; return null and start moving back upward.
 
-    function dfs(node) {
-        if (!node) return 0;
+  if (root == p || root == q) return root; // If root == p or q. Return this node/root. As we found 1/2 required node/root.
 
-        // Recursively find the height of left and right subtrees
-        let leftHeight = dfs(node.left);
-        let rightHeight = dfs(node.right);
+  let ltRes = lowestCommonAncestor(root.left, p, q); // Recurse into the left branch and store its result.
+  let rtRes = lowestCommonAncestor(root.right, p, q); // Recurse into the right branch and store its result.
 
-        // Update the global diameter if the path through 
-        // this node is larger than what we've seen so far
-        maxDiameter = Math.max(maxDiameter, leftHeight + rightHeight);
+  // Success case:
+  if (ltRes && rtRes) return root; // If we've found both p and q. Then, this node/root is our LCA.
 
-        // Return the height of this node to its parent
-        return 1 + Math.max(leftHeight, rightHeight);
-    }
-
-    dfs(root);
-    return maxDiameter;
+  // Otherwise, if we've only found 1/2. Then return that result upwards.
+  if (ltRes) return ltRes;
+  else return rtRes; // In this else case rtRes will be either the desired node or the null value.
+  // In both the case rtRes will move the right value upwards.
 };
