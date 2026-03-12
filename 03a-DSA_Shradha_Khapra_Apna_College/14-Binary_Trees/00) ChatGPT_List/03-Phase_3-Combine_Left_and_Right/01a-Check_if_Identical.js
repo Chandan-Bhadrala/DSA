@@ -14,6 +14,8 @@ class Node {
  */
 const isSameTree = (p, q) => {
   if (!p || !q) return p == q; // Both must be equal and both must be null to return true.
+  // Above base case won't run if both of them are a **node**.
+  // In such case recursion will proceed w/o base case getting hit, till to the point either of them or both of them are a null node.
 
   // Recurse into the right and the left sub-tree.
   let ltCheck = isSameTree(p.left, q.left);

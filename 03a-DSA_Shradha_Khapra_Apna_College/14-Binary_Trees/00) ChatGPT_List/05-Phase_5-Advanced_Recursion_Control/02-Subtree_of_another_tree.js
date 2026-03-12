@@ -7,28 +7,28 @@
  * }
  */
 
-/**
- * @param {TreeNode} root
- * @return {number}
- */
-var diameterOfBinaryTree = function(root) {
-    let maxDiameter = 0;
+// Helper: Checks if two trees are identical
+function isIdentical(node1, node2) {
+  if (node1 === null && node2 === null) return true;
+  if (node1 === null || node2 === null) return false;
 
-    function dfs(node) {
-        if (!node) return 0;
+  return (
+    node1.val === node2.val &&
+    isIdentical(node1.left, node2.left) &&
+    isIdentical(node1.right, node2.right)
+  );
+}
 
-        // Recursively find the height of left and right subtrees
-        let leftHeight = dfs(node.left);
-        let rightHeight = dfs(node.right);
+// Main: Checks if subRoot is a subtree of root
+function isSubtree(root, subRoot) {
+  // An empty tree is always a subtree
+  if (subRoot === null) return true;
+  // A non-empty tree cannot be a subtree of an empty tree
+  if (root === null) return false;
 
-        // Update the global diameter if the path through 
-        // this node is larger than what we've seen so far
-        maxDiameter = Math.max(maxDiameter, leftHeight + rightHeight);
+  // Check if trees are identical at the current root
+  if (isIdentical(root, subRoot)) return true;
 
-        // Return the height of this node to its parent
-        return 1 + Math.max(leftHeight, rightHeight);
-    }
-
-    dfs(root);
-    return maxDiameter;
-};
+  // Otherwise, recurse to the left and right children
+  return isSubtree(root.left, subRoot) || isSubtree(root.right, subRoot);
+}

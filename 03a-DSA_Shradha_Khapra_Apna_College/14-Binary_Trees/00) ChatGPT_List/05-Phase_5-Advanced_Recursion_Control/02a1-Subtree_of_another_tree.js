@@ -7,20 +7,7 @@
  * }
  */
 
-/**
-## Error: In Approach.
-1. It's a beautiful solution.
-    1. But there's a minor bug.
-    2. This code upon matching the first node pair will execute the isIdentical helper function and will return the boolean result.
-2. If the boolean result is true, then we're good to go.
-    1. If the boolean result is false.
-        1. Then this code will exit the further comparison for the branch.
-    2. We'll this way return a bit earlier w/o checking the nodes down the branch.
-    3. There could be a potential sub-tree down the branch.
-3. So, improved base case would be:
-    if (root.val === subRoot.val && isIdentical(root, subRoot))
-      return true;
-*/
+
 
 
 // Main: Checks if subRoot is a subtree of root
@@ -29,7 +16,8 @@ function isSubtree(root, subRoot) {
 
   if (!root) return false; // To recurse back from the point of null.
 
-  if (root.val == subRoot.val) return isIdentical(root, subRoot); // Run the helper function isIdentical if any root value found to be equal to the subRoot and return the answer for their structures.
+  if (root.val == subRoot.val && isIdentical(root,subRoot)) return true; // Run the helper function isIdentical **only** if any root value found to be equal to the subRoot and **only return** if isIdentical returns true.
+  // Otherwise continue recursing deeper into the main tree.
 
   let ltRes = isSubtree(root.left, subRoot);
   let rtRes = isSubtree(root.right, subRoot);
