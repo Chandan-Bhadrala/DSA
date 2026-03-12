@@ -1,34 +1,12 @@
-/**
- * Definition for a binary tree node.
- * function TreeNode(val, left, right) {
- * this.val = (val===undefined ? 0 : val)
- * this.left = (left===undefined ? null : left)
- * this.right = (right===undefined ? null : right)
- * }
- */
+function minDepth(root) {
+  if (root === null) return 0;
 
-/**
- * @param {TreeNode} root
- * @return {number}
- */
-var diameterOfBinaryTree = function(root) {
-    let maxDiameter = 0;
+  // If left child is null, we must go down the right side
+  if (root.left === null) return minDepth(root.right) + 1;
+  
+  // If right child is null, we must go down the left side
+  if (root.right === null) return minDepth(root.left) + 1;
 
-    function dfs(node) {
-        if (!node) return 0;
-
-        // Recursively find the height of left and right subtrees
-        let leftHeight = dfs(node.left);
-        let rightHeight = dfs(node.right);
-
-        // Update the global diameter if the path through 
-        // this node is larger than what we've seen so far
-        maxDiameter = Math.max(maxDiameter, leftHeight + rightHeight);
-
-        // Return the height of this node to its parent
-        return 1 + Math.max(leftHeight, rightHeight);
-    }
-
-    dfs(root);
-    return maxDiameter;
-};
+  // If both exist, take the minimum of both sides
+  return Math.min(minDepth(root.left), minDepth(root.right)) + 1;
+}

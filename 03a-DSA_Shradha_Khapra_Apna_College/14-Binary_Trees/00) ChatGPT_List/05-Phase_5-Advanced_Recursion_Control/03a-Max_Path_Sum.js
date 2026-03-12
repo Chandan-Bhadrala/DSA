@@ -1,34 +1,23 @@
-/**
- * Definition for a binary tree node.
- * function TreeNode(val, left, right) {
- * this.val = (val===undefined ? 0 : val)
- * this.left = (left===undefined ? null : left)
- * this.right = (right===undefined ? null : right)
- * }
- */
+function maxPathSum(root) {
+  let maxSum = -Infinity;
 
-/**
- * @param {TreeNode} root
- * @return {number}
- */
-var diameterOfBinaryTree = function(root) {
-    let maxDiameter = 0;
+  function gainFromSubtree(node) {
+    if (node === null) return 0;
 
-    function dfs(node) {
-        if (!node) return 0;
+    // Recursively get max gains, ignore negative paths (0)
+    const leftGain = Math.max(gainFromSubtree(node.left), 0);
+    const rightGain = Math.max(gainFromSubtree(node.right), 0);
 
-        // Recursively find the height of left and right subtrees
-        let leftHeight = dfs(node.left);
-        let rightHeight = dfs(node.right);
+    // Current path sum passing through this node
+    const currentPathSum = node.val + leftGain + rightGain;
 
-        // Update the global diameter if the path through 
-        // this node is larger than what we've seen so far
-        maxDiameter = Math.max(maxDiameter, leftHeight + rightHeight);
+    // Update global maximum
+    maxSum = Math.max(maxSum, currentPathSum);
 
-        // Return the height of this node to its parent
-        return 1 + Math.max(leftHeight, rightHeight);
-    }
+    // Return the max gain this node adds to its parent
+    return node.val + Math.max(leftGain, rightGain);
+  }
 
-    dfs(root);
-    return maxDiameter;
-};
+  gainFromSubtree(root);
+  return maxSum;
+}

@@ -1,34 +1,34 @@
-/**
- * Definition for a binary tree node.
- * function TreeNode(val, left, right) {
- * this.val = (val===undefined ? 0 : val)
- * this.left = (left===undefined ? null : left)
- * this.right = (right===undefined ? null : right)
- * }
- */
-
-/**
- * @param {TreeNode} root
- * @return {number}
- */
-var diameterOfBinaryTree = function(root) {
-    let maxDiameter = 0;
-
-    function dfs(node) {
-        if (!node) return 0;
-
-        // Recursively find the height of left and right subtrees
-        let leftHeight = dfs(node.left);
-        let rightHeight = dfs(node.right);
-
-        // Update the global diameter if the path through 
-        // this node is larger than what we've seen so far
-        maxDiameter = Math.max(maxDiameter, leftHeight + rightHeight);
-
-        // Return the height of this node to its parent
-        return 1 + Math.max(leftHeight, rightHeight);
+// Serialize: Convert Tree to String
+function serialize(root) {
+  const result = [];
+  
+  function traverse(node) {
+    if (!node) {
+      result.push("#");
+      return;
     }
+    result.push(node.val);
+    traverse(node.left);
+    traverse(node.right);
+  }
+  
+  traverse(root);
+  return result.join(",");
+}
 
-    dfs(root);
-    return maxDiameter;
-};
+// Deserialize: Convert String to Tree
+function deserialize(data) {
+  const nodes = data.split(",");
+  
+  function build() {
+    const val = nodes.shift();
+    if (val === "#") return null;
+    
+    const node = new TreeNode(Number(val));
+    node.left = build();
+    node.right = build();
+    return node;
+  }
+  
+  return build();
+}

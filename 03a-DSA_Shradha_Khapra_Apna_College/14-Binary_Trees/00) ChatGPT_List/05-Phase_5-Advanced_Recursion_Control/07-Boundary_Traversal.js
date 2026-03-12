@@ -1,34 +1,34 @@
-/**
- * Definition for a binary tree node.
- * function TreeNode(val, left, right) {
- * this.val = (val===undefined ? 0 : val)
- * this.left = (left===undefined ? null : left)
- * this.right = (right===undefined ? null : right)
- * }
- */
+function boundaryTraversal(root) {
+  if (!root) return [];
+  const result = [root.val];
 
-/**
- * @param {TreeNode} root
- * @return {number}
- */
-var diameterOfBinaryTree = function(root) {
-    let maxDiameter = 0;
+  // Helper: Is it a leaf node?
+  const isLeaf = (node) => !node.left && !node.right;
 
-    function dfs(node) {
-        if (!node) return 0;
+  // 1. Left Boundary (excluding leaves)
+  let curr = root.left;
+  while (curr) {
+    if (!isLeaf(curr)) result.push(curr.val);
+    curr = curr.left || curr.right;
+  }
 
-        // Recursively find the height of left and right subtrees
-        let leftHeight = dfs(node.left);
-        let rightHeight = dfs(node.right);
+  // 2. Collect Leaves (left to right)
+  function getLeaves(node) {
+    if (!node) return;
+    if (isLeaf(node)) result.push(node.val);
+    getLeaves(node.left);
+    getLeaves(node.right);
+  }
+  getLeaves(root);
 
-        // Update the global diameter if the path through 
-        // this node is larger than what we've seen so far
-        maxDiameter = Math.max(maxDiameter, leftHeight + rightHeight);
+  // 3. Right Boundary (excluding leaves, in reverse)
+  const rightPath = [];
+  curr = root.right;
+  while (curr) {
+    if (!isLeaf(curr)) rightPath.push(curr.val);
+    curr = curr.right || curr.left;
+  }
+  result.push(...rightPath.reverse());
 
-        // Return the height of this node to its parent
-        return 1 + Math.max(leftHeight, rightHeight);
-    }
-
-    dfs(root);
-    return maxDiameter;
-};
+  return result;
+}

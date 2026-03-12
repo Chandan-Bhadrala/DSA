@@ -1,34 +1,18 @@
-/**
- * Definition for a binary tree node.
- * function TreeNode(val, left, right) {
- * this.val = (val===undefined ? 0 : val)
- * this.left = (left===undefined ? null : left)
- * this.right = (right===undefined ? null : right)
- * }
- */
+function hasPathSum(root, targetSum) {
+  // If the node is null, we haven't found a path
+  if (root === null) {
+    return false;
+  }
 
-/**
- * @param {TreeNode} root
- * @return {number}
- */
-var diameterOfBinaryTree = function(root) {
-    let maxDiameter = 0;
+  // Check if we are at a leaf node
+  if (root.left === null && root.right === null) {
+    // Is the remaining sum equal to the leaf's value?
+    return targetSum === root.val;
+  }
 
-    function dfs(node) {
-        if (!node) return 0;
-
-        // Recursively find the height of left and right subtrees
-        let leftHeight = dfs(node.left);
-        let rightHeight = dfs(node.right);
-
-        // Update the global diameter if the path through 
-        // this node is larger than what we've seen so far
-        maxDiameter = Math.max(maxDiameter, leftHeight + rightHeight);
-
-        // Return the height of this node to its parent
-        return 1 + Math.max(leftHeight, rightHeight);
-    }
-
-    dfs(root);
-    return maxDiameter;
-};
+  // Recurse to children with the updated remaining sum
+  const remainingSum = targetSum - root.val;
+  
+  return hasPathSum(root.left, remainingSum) || 
+         hasPathSum(root.right, remainingSum);
+}
